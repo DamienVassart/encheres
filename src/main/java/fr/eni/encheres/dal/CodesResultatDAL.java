@@ -1,5 +1,11 @@
 package fr.eni.encheres.dal;
 
+/**
+ * 
+ * @author Damien Vassart
+ *
+ */
+
 public abstract class CodesResultatDAL {
 	/*
 	 * Echec lors de la tentative d'insertion d'un utilisateur NULL
