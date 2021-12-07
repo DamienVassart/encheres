@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.encheres.bo.Article;
+import fr.eni.javaee.suividesrepas.dal.DAOFactory;
+import fr.eni.javaee.suividesrepas.dal.RepasDAO;
 
 /**
  * 
@@ -13,6 +15,17 @@ import fr.eni.encheres.bo.Article;
  */
 
 public class ArticleManager {
+	
+	// Si erreur de compilation: ArticleDAO encore non créé
+	// ne pas tenter de résoudre le problème et attendre que la personne concernée ait créé le compossant manquant
+	private ArticleDAO articleDAO;
+	
+	// Si erreur de compilation: DAOFactory encore non créé
+	// ne pas tenter de résoudre le problème et attendre que la personne concernée ait créé le compossant manquant
+	public ArticleManager() {
+		super();
+		this.articleDAO = DAOFactory.getArticleDAO();
+	}
 	
 	public void addArticle(String nomArticle, String description, LocalDate dateDebut, LocalDate dateFin, int miseAPrix) {
 		// TODO
