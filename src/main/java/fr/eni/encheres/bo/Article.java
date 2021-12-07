@@ -83,7 +83,14 @@ public class Article {
 		this.estVendu = estVendu;
 	}
 
-	public static void add (Article article) {
-		
+	public static void add(Article article) {
+
+	}
+
+	// @override
+	public String toString() {
+		return "Article [noArticle : " + this.noArticle + "\n" + "Nom Article : " + this.nomArticle + "\n "
+				+ "Description : " + this.description + "\n" + "Début de l'enchère : " + this.dateDebutEncheres + "\n"
+				+ "Fin de l'enchère : " + this.dateFinEncheres + "\n" + "Mise à prix : " + this.miseAPrix;
 	}
 }
