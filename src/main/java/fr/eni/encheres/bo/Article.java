@@ -2,6 +2,12 @@ package fr.eni.encheres.bo;
 
 import java.time.LocalDateTime;
 
+/**
+ * 
+ * @author Laurane Marie
+ *
+ */
+
 public class Article {
 
 	private int noArticle;
