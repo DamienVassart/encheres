@@ -1,5 +1,9 @@
 package fr.eni.encheres.messages;
 
+/**
+ * @author Damien Vassart
+ */
+
 import java.util.ResourceBundle;
 
 public class LecteurMessage {
@@ -7,7 +11,7 @@ public class LecteurMessage {
 	
 	static {
 		try {
-			rb = ResourceBundle.getBundle("fr.eni.javaee.suividesrepas.messages.messages_erreur");
+			rb = ResourceBundle.getBundle("fr.eni.encheres.messages.messages_erreur");
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
