@@ -55,7 +55,7 @@ public class ArticleManager {
 			retrait.setVille(ville);
 			
 			/*
-			 * TODO: mettre à jour la signature de la méthode insert dans ArticleDAO vers: public void insert(Article article, Retrait retrait) throws BusinessException;
+			 * TODO: importer fr.eni.encheres.bo.Retrait dans ArticleDAO
 			 */
 			this.articleDAO.insert(article, retrait);
 			
@@ -90,7 +90,7 @@ public class ArticleManager {
 			retrait.setVille(ville);
 			
 			/*
-			 * TODO: mettre à jour la signature de la méthode update dans Article DAO vers: public void update(Article article, Retrait retrait) throws BusinessException;
+			 * TODO: importer fr.eni.encheres.bo.Retrait dans ArticleDAO
 			 */
 			this.articleDAO.update(article, retrait);
 			
