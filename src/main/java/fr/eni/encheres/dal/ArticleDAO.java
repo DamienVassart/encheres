@@ -24,10 +24,10 @@ public interface ArticleDAO {
 	public List<Article> selectByCategory(String categorie) throws BusinessException;
 	
 	//Modifier les attributs d'un article connu en BD
-	public void update(Article article) throws BusinessException;
+	public void update(Article article, Retrait retrait) throws BusinessException;
 			
 	//Insérer un nouvel article
-	public void insert(Article article) throws BusinessException;
+	public void insert(Article article, Retrait retrait) throws BusinessException;
 	
 	//Supprimer un article
 	public void delete(int noArticle) throws BusinessException;
