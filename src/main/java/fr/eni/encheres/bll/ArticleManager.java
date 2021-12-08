@@ -1,13 +1,12 @@
 package fr.eni.encheres.bll;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.encheres.BusinessException;
 import fr.eni.encheres.bo.Article;
+import fr.eni.encheres.bo.Retrait;
 import fr.eni.encheres.dal.ArticleDAO;
-import fr.eni.encheres.dal.CodesResultatDAL;
 import fr.eni.encheres.dal.DAOFactory;
 
 /**
@@ -29,7 +28,7 @@ public class ArticleManager {
 		this.articleDAO = DAOFactory.getArticleDAO();
 	}
 	
-	public void addArticle(String nomArticle, String description, LocalDate dateDebut, LocalDate dateFin, int miseAPrix) throws BusinessException {
+	public void addArticle(String nomArticle, String description, LocalDate dateDebut, LocalDate dateFin, int miseAPrix, String rue, String codePostal, String ville) throws BusinessException {
 		BusinessException ex = new BusinessException();
 		Article article = null;
 		
@@ -37,7 +36,10 @@ public class ArticleManager {
 		this.validerDescription(description, ex);
 		this.validerDateDebut(dateDebut, ex);
 		this.validerDateFin(dateFin, ex);
-		this.valiserMiseAPrix(miseAPrix, ex);
+		this.validerMiseAPrix(miseAPrix, ex);
+		this.validerRue(rue, ex);
+		this.validerCodePostal(codePostal, ex);
+		this.validerVille(ville, ex);
 		
 		if(!ex.hasErreurs()) {
 			article = new Article();
@@ -47,14 +49,22 @@ public class ArticleManager {
 			article.setDateFinEncheres(dateFin); 
 			article.setMiseAPrix(miseAPrix);
 			
-			this.articleDAO.insert(article);
+			Retrait retrait = new Retrait();
+			retrait.setRue(rue);
+			retrait.setCodePostal(codePostal);
+			retrait.setVille(ville);
+			
+			/*
+			 * TODO: mettre à jour la signature de la méthode insert dans ArticleDAO vers: public void insert(Article article, Retrait retrait) throws BusinessException;
+			 */
+			this.articleDAO.insert(article, retrait);
 			
 		} else {
 			throw ex;
 		}
 	}
 	
-	public void updateArticle(String nomArticle, String description, LocalDate dateDebut, LocalDate dateFin, int miseAPrix) throws BusinessException {
+	public void updateArticle(String nomArticle, String description, LocalDate dateDebut, LocalDate dateFin, int miseAPrix, String rue, String codePostal, String ville) throws BusinessException {
 		BusinessException ex = new BusinessException();
 		Article article = null;
 		
@@ -62,7 +72,10 @@ public class ArticleManager {
 		this.validerDescription(description, ex);
 		this.validerDateDebut(dateDebut, ex);
 		this.validerDateFin(dateFin, ex);
-		this.valiserMiseAPrix(miseAPrix, ex);
+		this.validerMiseAPrix(miseAPrix, ex);
+		this.validerRue(rue, ex);
+		this.validerCodePostal(codePostal, ex);
+		this.validerVille(ville, ex);
 		
 		if(!ex.hasErreurs()) {
 			article = new Article();
@@ -71,7 +84,15 @@ public class ArticleManager {
 			article.setDateDebutEncheres(dateDebut); 
 			article.setDateFinEncheres(dateFin); 
 			
-			this.articleDAO.update(article); // Le DAOFactory doit retourner une instance de ArticleDAOJDBCImpl
+			Retrait retrait = new Retrait();
+			retrait.setRue(rue);
+			retrait.setCodePostal(codePostal);
+			retrait.setVille(ville);
+			
+			/*
+			 * TODO: mettre à jour la signature de la méthode update dans Article DAO vers: public void update(Article article, Retrait retrait) throws BusinessException;
+			 */
+			this.articleDAO.update(article, retrait);
 			
 		} else {
 			throw ex;
@@ -118,8 +139,23 @@ public class ArticleManager {
 			ex.ajouterErreur(CodesResultatBLL.REGLE_ARTICLE_DATE_FIN_ERREUR);
 	}
 	
-	private void valiserMiseAPrix(int prix, BusinessException ex) {
+	private void validerMiseAPrix(int prix, BusinessException ex) {
 		if(prix == 0)
 			ex.ajouterErreur(CodesResultatBLL.REGLE_ARTICLE_PRIX_ERREUR);
+	}
+	
+	private void validerRue(String rue, BusinessException ex) {
+		if(rue == null || rue.trim().equals("") || rue.trim().length() > 30)
+			ex.ajouterErreur(CodesResultatBLL.REGLE_RETRAIT_RUE_ERREUR);
+	}
+	
+	private void validerCodePostal(String codePostal, BusinessException ex) {
+		if(codePostal == null || codePostal.trim().equals("") || codePostal.trim().length() > 15)
+			ex.ajouterErreur(CodesResultatBLL.REGLE_RETRAIT_CPO_ERREUR);
+	}
+	
+	private void validerVille(String ville, BusinessException ex) {
+		if(ville == null || ville.trim().equals("") || ville.trim().length() > 30)
+			ex.ajouterErreur(CodesResultatBLL.REGLE_RETRAIT_VILLE_ERREUR);
 	}
 }
