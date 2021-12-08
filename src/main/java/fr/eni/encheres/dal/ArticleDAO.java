@@ -15,17 +15,13 @@ public interface ArticleDAO {
 	public List<Article> selectByName(String nom);
 	public List<Article> selectByCategory(String categorie);
 	
+	public Article insert(Article article);
+	public Article selectById(int noArticle);
+	public Article select(int idArticle);
+	
 	//Modifier l'article
 	public void update(Article article);
 	
 	//Supprimer l'article
 	public void delete(int noArticle);
-
-	
-	public Article insert(Article article);
-	
-	public Article selectById(int noArticle);
-	
-	public Article select(int idArticle);
-	
 }
