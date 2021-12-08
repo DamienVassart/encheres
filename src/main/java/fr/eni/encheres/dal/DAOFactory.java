@@ -3,6 +3,7 @@ package fr.eni.encheres.dal;
 import fr.eni.encheres.bo.Article;
 import fr.eni.encheres.bo.Utilisateur;
 
+
 /**
  * 
  * @author Laurane Marie
