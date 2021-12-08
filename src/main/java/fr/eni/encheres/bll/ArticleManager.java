@@ -6,6 +6,7 @@ import java.util.List;
 
 import fr.eni.encheres.BusinessException;
 import fr.eni.encheres.bo.Article;
+import fr.eni.encheres.dal.ArticleDAO;
 import fr.eni.encheres.dal.CodesResultatDAL;
 import fr.eni.javaee.suividesrepas.dal.DAOFactory;
 import fr.eni.javaee.suividesrepas.dal.RepasDAO;
