@@ -4,7 +4,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.eni.encheres.BusinessException;
 import fr.eni.encheres.bo.Article;
+import fr.eni.encheres.dal.CodesResultatDAL;
 import fr.eni.javaee.suividesrepas.dal.DAOFactory;
 import fr.eni.javaee.suividesrepas.dal.RepasDAO;
 
@@ -27,59 +29,98 @@ public class ArticleManager {
 		this.articleDAO = DAOFactory.getArticleDAO();
 	}
 	
-	public void addArticle(String nomArticle, String description, LocalDate dateDebut, LocalDate dateFin, int miseAPrix) {
-		// TODO
+	public void addArticle(String nomArticle, String description, LocalDate dateDebut, LocalDate dateFin, int miseAPrix) throws BusinessException {
+		BusinessException ex = new BusinessException();
+		Article article = null;
+		
+		this.validerNom(nomArticle, ex);
+		this.validerDescription(description, ex);
+		this.validerDateDebut(dateDebut, ex);
+		this.validerDateFin(dateFin, ex);
+		this.valiserMiseAPrix(miseAPrix, ex);
+		
+		if(!ex.hasErreurs()) {
+			article = new Article();
+			article.setNomArticle(nomArticle);
+			article.setDescription(description);
+			article.setDateDebutEncheres(dateDebut); // Incompatibilité avec le type utilisé dans la méthode setDateDebutEncheres de la classe Article
+			article.setDateFinEncheres(dateFin); // Incompatibilité avec le type utilisé dans la méthode setDateFinEncheres de la classe Article
+			article.setMiseAPrix(miseAPrix);
+			
+			this.articleDAO.insert(article); // Le DAOFactory doit retourner une instance de ArticleDAOJDBCImpl
+			
+		} else {
+			throw ex;
+		}
 	}
 	
-	public void updateArticle(String nomArticle, String description, LocalDate dateDebut, LocalDate dateFin, int prixVente) {
-		// TODO
+	public void updateArticle(String nomArticle, String description, LocalDate dateDebut, LocalDate dateFin, int prixVente) throws BusinessException {
+		BusinessException ex = new BusinessException();
+		Article article = null;
+		
+		this.validerNom(nomArticle, ex);
+		this.validerDescription(description, ex);
+		this.validerDateDebut(dateDebut, ex);
+		this.validerDateFin(dateFin, ex);
+		this.valiserMiseAPrix(miseAPrix, ex);
+		
+		if(!ex.hasErreurs()) {
+			article = new Article();
+			article.setNomArticle(nomArticle);
+			article.setDescription(description);
+			article.setDateDebutEncheres(dateDebut); // Incompatibilité avec le type utilisé dans la méthode setDateDebutEncheres de la classe Article
+			article.setDateFinEncheres(dateFin); // Incompatibilité avec le type utilisé dans la méthode setDateFinEncheres de la classe Article
+			article.setMiseAPrix(miseAPrix);
+			
+			this.articleDAO.update(article); // Le DAOFactory doit retourner une instance de ArticleDAOJDBCImpl
+			
+		} else {
+			throw ex;
+		}
 	}
 	
 	public void removeArticle(int noArticle) {
-		// TODO
+		this.articleDAO.delete(noArticle); // Le DAOFactory doit retourner une instance de ArticleDAOJDBCImpl
 	}
 	
 	public List<Article> getArticles() {
-		List<Article> listeArticles = new ArrayList<>();
-		// TODO
-		return listeArticles;
+		return this.articleDAO.selectAll(); // Le DAOFactory doit retourner une instance de ArticleDAOJDBCImpl
 	}
 	
 	public List<Article> getArticlesByName(String nomArticle) {
-		List<Article> listeArticles = new ArrayList<>();
-		// TODO
-		return listeArticles;
+		return this.articleDAO.selectByName(nomArticle); // Le DAOFactory doit retourner une instance de ArticleDAOJDBCImpl
 	}
 	
 	public List<Article> getArticlesByCategory(String categorie) {
-		List<Article> listeArticles = new ArrayList<>();
-		// TODO
-		return listeArticles;
+		return this.articleDAO.selectByCategory(categorie); // Le DAOFactory doit retourner une instance de ArticleDAOJDBCImpl
 	}
 	
 	public Article getArticle(int noArticle) {
-		Article article = null;
-		// TODO
-		return article;
+		return this.articleDAO.selectById(noArticle); // Le DAOFactory doit retourner une instance de ArticleDAOJDBCImpl
 	}
 	
-	public void validerNom(String nom) {
-		// TODO
+	private void validerNom(String nom, BusinessException ex) {
+		if(nom == null || nom.trim().equals("") || nom.trim().length() > 30)
+			ex.ajouterErreur(CodesResultatBLL.REGLE_ARTICLE_NOM_ERREUR); 
 	}
 	
-	public void validerDescription(String description) {
-		// TODO
+	private void validerDescription(String description, BusinessException ex) {
+		if(description == null || description.trim().equals("") || description.trim().length() > 300)
+			ex.ajouterErreur(CodesResultatBLL.REGLE_ARTICLE_DESCRIPTION_ERREUR);
 	}
 	
-	public void validerDateDebut(LocalDate dateDebut) {
-		// TODO
+	private void validerDateDebut(LocalDate dateDebut, BusinessException ex) {
+		if(dateDebut.isAfter(LocalDate.now()))
+			ex.ajouterErreur(CodesResultatBLL.REGLE_ARTICLE_DATE_DEBUT_ERREUR);
 	}
 	
-	public void validerDateFin(LocalDate dateFin) {
-		// TODO
+	private void validerDateFin(LocalDate dateFin, BusinessException ex) {
+		if(dateFin.isAfter(LocalDate.now()))
+			ex.ajouterErreur(CodesResultatBLL.REGLE_ARTICLE_DATE_FIN_ERREUR);
 	}
 	
-	public void valiserMiseAPrix(int prix) {
-		// TODO
+	private void valiserMiseAPrix(int prix, BusinessException ex) {
+		if(prix == null || prix == 0)
+			ex.ajouterErreur(CodesResultatBLL.REGLE_ARTICLE_PRIX_ERREUR);
 	}
 }
