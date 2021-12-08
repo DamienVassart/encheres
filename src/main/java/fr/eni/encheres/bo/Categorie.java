@@ -1,5 +1,11 @@
 package fr.eni.encheres.bo;
 
+/**
+ * 
+ * @author Lydie Allart
+ *
+ */
+
 public class Categorie {
 	
 	private int noCategorie;
