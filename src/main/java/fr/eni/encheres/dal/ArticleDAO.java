@@ -21,7 +21,7 @@ public interface ArticleDAO {
 	public List<Article> selectByName(String nom) throws BusinessException;
 		
 	//Sélectionner les articles par la catégorie
-	public List<Article> selectByCategorie(String categorie) throws BusinessException;
+	public List<Article> selectByCategory(String categorie) throws BusinessException;
 	
 	//Modifier les attributs d'un article connu en BD
 	public void update(Article article) throws BusinessException;
