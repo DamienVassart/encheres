@@ -8,8 +8,7 @@ import fr.eni.encheres.BusinessException;
 import fr.eni.encheres.bo.Article;
 import fr.eni.encheres.dal.ArticleDAO;
 import fr.eni.encheres.dal.CodesResultatDAL;
-import fr.eni.javaee.suividesrepas.dal.DAOFactory;
-import fr.eni.javaee.suividesrepas.dal.RepasDAO;
+import fr.eni.encheres.dal.DAOFactory;
 
 /**
  * 
@@ -48,7 +47,7 @@ public class ArticleManager {
 			article.setDateFinEncheres(dateFin); 
 			article.setMiseAPrix(miseAPrix);
 			
-			this.articleDAO.insert(article); // Le DAOFactory doit retourner une instance de ArticleDAOJDBCImpl
+			this.articleDAO.insert(article);
 			
 		} else {
 			throw ex;
@@ -79,24 +78,24 @@ public class ArticleManager {
 		}
 	}
 	
-	public void removeArticle(int noArticle) {
-		this.articleDAO.delete(noArticle); // Le DAOFactory doit retourner une instance de ArticleDAOJDBCImpl
+	public void removeArticle(int noArticle) throws BusinessException {
+		this.articleDAO.delete(noArticle); 
 	}
 	
-	public List<Article> getArticles() {
-		return this.articleDAO.selectAll(); // Le DAOFactory doit retourner une instance de ArticleDAOJDBCImpl
+	public List<Article> getArticles() throws BusinessException {
+		return this.articleDAO.selectAll(); 
 	}
 	
-	public List<Article> getArticlesByName(String nomArticle) {
-		return this.articleDAO.selectByName(nomArticle); // Le DAOFactory doit retourner une instance de ArticleDAOJDBCImpl
+	public List<Article> getArticlesByName(String nomArticle) throws BusinessException {
+		return this.articleDAO.selectByName(nomArticle); 
 	}
 	
-	public List<Article> getArticlesByCategory(String categorie) {
-		return this.articleDAO.selectByCategory(categorie); // Le DAOFactory doit retourner une instance de ArticleDAOJDBCImpl
+	public List<Article> getArticlesByCategory(String categorie) throws BusinessException {
+		return this.articleDAO.selectByCategory(categorie); 
 	}
 	
-	public Article getArticle(int noArticle) {
-		return this.articleDAO.selectById(noArticle); // Le DAOFactory doit retourner une instance de ArticleDAOJDBCImpl
+	public Article getArticle(int noArticle) throws BusinessException {
+		return this.articleDAO.selectById(noArticle); 
 	}
 	
 	private void validerNom(String nom, BusinessException ex) {
