@@ -119,7 +119,7 @@ public class ArticleManager {
 	}
 	
 	private void valiserMiseAPrix(int prix, BusinessException ex) {
-		if(prix == null || prix == 0)
+		if(prix == 0)
 			ex.ajouterErreur(CodesResultatBLL.REGLE_ARTICLE_PRIX_ERREUR);
 	}
 }
