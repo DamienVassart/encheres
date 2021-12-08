@@ -44,8 +44,8 @@ public class ArticleManager {
 			article = new Article();
 			article.setNomArticle(nomArticle);
 			article.setDescription(description);
-			article.setDateDebutEncheres(dateDebut); // Incompatibilité avec le type utilisé dans la méthode setDateDebutEncheres de la classe Article
-			article.setDateFinEncheres(dateFin); // Incompatibilité avec le type utilisé dans la méthode setDateFinEncheres de la classe Article
+			article.setDateDebutEncheres(dateDebut); 
+			article.setDateFinEncheres(dateFin); 
 			article.setMiseAPrix(miseAPrix);
 			
 			this.articleDAO.insert(article); // Le DAOFactory doit retourner une instance de ArticleDAOJDBCImpl
@@ -55,7 +55,7 @@ public class ArticleManager {
 		}
 	}
 	
-	public void updateArticle(String nomArticle, String description, LocalDate dateDebut, LocalDate dateFin, int prixVente) throws BusinessException {
+	public void updateArticle(String nomArticle, String description, LocalDate dateDebut, LocalDate dateFin, int miseAPrix) throws BusinessException {
 		BusinessException ex = new BusinessException();
 		Article article = null;
 		
@@ -69,9 +69,8 @@ public class ArticleManager {
 			article = new Article();
 			article.setNomArticle(nomArticle);
 			article.setDescription(description);
-			article.setDateDebutEncheres(dateDebut); // Incompatibilité avec le type utilisé dans la méthode setDateDebutEncheres de la classe Article
-			article.setDateFinEncheres(dateFin); // Incompatibilité avec le type utilisé dans la méthode setDateFinEncheres de la classe Article
-			article.setMiseAPrix(miseAPrix);
+			article.setDateDebutEncheres(dateDebut); 
+			article.setDateFinEncheres(dateFin); 
 			
 			this.articleDAO.update(article); // Le DAOFactory doit retourner une instance de ArticleDAOJDBCImpl
 			
