@@ -2,27 +2,34 @@ package fr.eni.encheres.dal;
 
 import java.util.List;
 import fr.eni.encheres.bo.Article;
-
+import fr.eni.encheres.dal.DALException;
 /**
  * 
  * @author Lydie Allart
  *
  */
+
 public interface ArticleDAO {
 	
-	//Ajouter l'article
-	public void add(Article article);
-	public List<Article> selectAll();
-	public List<Article> selectByName(String nom);
-	public List<Article> selectByCategory(String categorie);
+	//Sélectionner un article par son idArticle
+	public Article selectById(int idArticle) throws DALException;
 	
-	public Article insert(Article article);
-	public Article selectById(int noArticle);
-	public Article select(int idArticle);
+	//Sélectionner tous les articles 
+	public List<Article> selectAll() throws DALException;
 	
-	//Modifier l'article
-	public void update(Article article);
+	//Sélectionner les articles par nom
+	public List<Article> selectByName(int nom) throws DALException;
+		
+	//Sélectionner les articles par la catégorie
+	public List<Article> selectByCategorie(String categorie) throws DALException;
 	
-	//Supprimer l'article
-	public void delete(int noArticle);
+	//Modifier les attributs d'un article connu en BD
+	public void update(Article article) throws DALException;
+			
+	//Insérer un nouvel article
+	public void insert(Article article) throws DALException;
+	
+	//Supprimer un article
+	public void delete(int noArticle) throws DALException;
+	
 }
