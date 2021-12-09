@@ -63,17 +63,17 @@ public abstract class CodesResultatDAL {
 	public static final int SELECT_ARTICLE_ECHEC = 10010;
 	
 	/*
-	 * 
+	 * Echec lors de la tentative d'insertion d'une enchère NULL
 	 */
 	public static final int INSERT_ENCHERE_NULL = 10011;
 	
 	/*
-	 * 
+	 * Echec lors de la tentative d'insertion d'une enchère
 	 */
 	public static final int INSERT_ENCHERE_ECHEC = 10012;
 	
 	/*
-	 * 
+	 * Echec lors de la récupération d'une enchère
 	 */
 	public static final int SELECT_ENCHERE_ECHEC = 10013;
 }
