@@ -51,9 +51,6 @@ public class ArticleManager {
 			retrait.setCodePostal(codePostal);
 			retrait.setVille(ville);
 			
-			/*
-			 * TODO: importer fr.eni.encheres.bo.Retrait dans ArticleDAO
-			 */
 			this.articleDAO.insert(article, retrait);
 			
 		} else {
@@ -86,9 +83,6 @@ public class ArticleManager {
 			retrait.setCodePostal(codePostal);
 			retrait.setVille(ville);
 			
-			/*
-			 * TODO: importer fr.eni.encheres.bo.Retrait dans ArticleDAO
-			 */
 			this.articleDAO.update(article, retrait);
 			
 		} else {
@@ -115,6 +109,10 @@ public class ArticleManager {
 	public Article getArticle(int noArticle) throws BusinessException {
 		return this.articleDAO.selectById(noArticle); 
 	}
+	
+	/*
+	 * TODO: créer CodesResultatBLL
+	 */
 	
 	private void validerNom(String nom, BusinessException ex) {
 		if(nom == null || nom.trim().equals("") || nom.trim().length() > 30)
