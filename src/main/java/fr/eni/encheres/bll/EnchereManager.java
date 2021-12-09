@@ -38,11 +38,11 @@ public class EnchereManager {
 	/*
 	 * TODO: compléter EnchereDAO (@Lydie)
 	 */
-	public List<Enchere> getEnchereByNoArticle(int noArticle) throws BusinessException {
+	public Enchere getEnchereByNoArticle(int noArticle) throws BusinessException {
 		return this.enchereDAO.selectByArticle(noArticle);
 	}
 	
-	public List<Enchere> getEnchereByNoUtilisateur(int noUtilisateur) throws BusinessException {
+	public List<Enchere> getEncheresByNoUtilisateur(int noUtilisateur) throws BusinessException {
 		return this.enchereDAO.selectByUser(noUtilisateur);
 	}
 	
