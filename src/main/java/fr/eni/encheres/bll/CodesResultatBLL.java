@@ -25,5 +25,6 @@ public class CodesResultatBLL {
 	public static final int REGLE_RETRAIT_CPO_ERREUR=20015;
 	public static final int REGLE_RETRAIT_VILLE_ERREUR=20016;
 	public static final int REGLE_ENCHERE_PRIX=20017;
+	public static final int REGLE_ENCHERE_PRIX_ERREUR=20018;
 
 }
