@@ -10,9 +10,10 @@ import java.util.List;
 import fr.eni.encheres.BusinessException;
 import fr.eni.encheres.bo.Enchere;
 import fr.eni.encheres.dal.DAOFactory;
+import fr.eni.encheres.dal.EnchereDAO;
 
 public class EnchereManager {
-	private EnchereDAO enchereDAO; // TODO: créer EnchereDAO (@Lydie)
+	private EnchereDAO enchereDAO;
 	
 	public EnchereManager() {
 		super();
@@ -35,7 +36,7 @@ public class EnchereManager {
 	}
 	
 	/*
-	 * TODO: créer EnchereDAO (@Lydie)
+	 * TODO: compléter EnchereDAO (@Lydie)
 	 */
 	public Enchere getEnchereByNoArticle(int noArticle) throws BusinessException {
 		return this.enchereDAO.selectByArticle(noArticle);
