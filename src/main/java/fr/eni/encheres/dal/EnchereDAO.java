@@ -1,7 +1,10 @@
 package fr.eni.encheres.dal;
 
+import java.util.List;
+
 import fr.eni.encheres.BusinessException;
 import fr.eni.encheres.bo.Enchere;
+import fr.eni.encheres.bo.Retrait;
 
 /**
  * 
@@ -10,6 +13,26 @@ import fr.eni.encheres.bo.Enchere;
  */
 public interface EnchereDAO {
 	
-	public void insert(Enchere enchere, int noUtilisateur, int noArticle) throws BusinessException;
+	//Insérer une nouvelle enchère
+	public void insert(Enchere enchere, Retrait retrait) throws BusinessException;
+	
+	//Sélectionner tous les enchères
+	public List<Enchere> selectAll() throws BusinessException;
+	
+	//Sélectionner une enchère par son noUtilisateur, noArticle
+	public Enchere selectById(int noUtilisateur, int noArticle) throws BusinessException;
+	
+	//Sélectionner les enchères par noUtilisateur
+	public List<Enchere> selectByNoUtilisateur(int noUtilisateur) throws BusinessException;
+		
+	//Sélectionner les enchères par noArticle
+	public List<Enchere> selectByNoArticle(int noArticle) throws BusinessException;
+	
+	//Modifier les attributs d'une enchere connue en BD
+	public void update(Enchere enchere, Retrait retrait) throws BusinessException;
+			
+	//Supprimer une enchère?? par son noArticle??
+	//A VOIR, on peut pas avoir un numéro d'enchère?
+	public void delete(int noArticle) throws BusinessException;
 	
 }
