@@ -16,68 +16,71 @@ import fr.eni.encheres.bo.Retrait;
 public class ArticleDAOJDBCImpl implements ArticleDAO {
 	// SQL requests
 	// Insert dans la table Articles
-	private static final String SQL_INSERT = "INSERT INTO Articles" 
-			+ " (dateEnchere, montantEnchere) "
-			+ "Values (?, ?);";
+	private static final String SQL_INSERT_ARTICLE = "INSERT INTO Articles" 
+			+ " (no_article, nom_article, description, date_debut_encheres, date_fin_encheres, "
+			+ " prix_initial, prix_vente, no_utilisateur, no_categorie) "
+			+ "Values (?, ?, ?, ?, ?, ?, ?, ?, ?);";
 	
 	// Insert dans la table Retraits
-	private static final String SQL_INSERT1 = "INSERT INTO Retraits"
-			+ " (rue, codePostal, ville) "
-			+ "Values (?, ?, ?);"; 
+	private static final String SQL_INSERT_RETRAIT = "INSERT INTO Retraits"
+			+ " (no_article, rue, code_postal, ville) "
+			+ "Values (?, ?, ?, ?);"; 
 		
 	
 	// update dans la table Articles
-	private static final String SQL_UPDATE = "UPDATE Articles"
-			+ " () "
-			+ "Values ();";
+	private static final String SQL_UPDATE_ARTICLE = "UPDATE Articles"
+			+ " (no_article, nom_article, description, date_debut_encheres, date_fin_encheres, "
+			+ " prix_initial, prix_vente, no_utilisateur, no_categorie) "
+			+ "Values (?, ?, ?, ?, ?, ?, ?, ?, ?);";
 	
 	// update dans la table Retraits
-	private static final String SQL_UPDATE1 = "UPDATE Retraits"
-			+ " () "
-			+ "Values ();";
+	private static final String SQL_UPDATE_RETRAIT = "UPDATE Retraits"
+			+ " (no_article, rue, code_postal, ville) "
+			+ "Values (?, ?, ?, ?);"; 
 	
 	// delete dans la table Articles
-	private static final String SQL_DELETE1 = "DELETE FROM Articles" 
-			+ " () "
-			+ "Values ();";
+	private static final String SQL_DELETE_ARTICLE = "DELETE FROM Articles" 
+			+ " (no_article, nom_article, description, date_debut_encheres, date_fin_encheres, "
+			+ " prix_initial, prix_vente, no_utilisateur, no_categorie) "
+			+ "Values (?, ?, ?, ?, ?, ?, ?, ?, ?);";
 	
 	// delete dans la table Retraits
-	private static final String SQL_DELETE2 = "DELETE FROM Retraits" 
-			+ " () "
-			+ "Values ();";
+	private static final String SQL_DELETE_RETRAIT = "DELETE FROM Retraits" 
+			+ " (no_article, rue, code_postal, ville) "
+			+ "Values (?, ?, ?, ?);"; 
 	
 	// delete dans la table Encheres
-	//private static final String SQL_DELETE = "DELETE FROM Encheres" 
-	//		+ " () "
-	//		+ "Values ();";
+	private static final String SQL_DELETE_ENCHERE = "DELETE FROM Encheres" 
+			+ " (no_utilisateur, no_article, date_enchere, montant_enchere) "
+			+ "Values ();";
 	
 	// select sur toute la table Articles
-	private static final String SQL_SELECT_ALL = "SELECT (noArticle, nomArticle, description, dateDebutEnchere, "
-			+ "dateFinEncheres, miseAPrix, prixVente, etatVente)"
+	private static final String SQL_SELECT_ALL_ARTICLES = "SELECT (no_article, nom_article, description, date_debut_encheres, date_fin_encheres, "
+			+ " prix_initial, prix_vente, no_utilisateur, no_categorie)"
 			+ "FROM Articles;";
 	
 	// select par nom sur la table Articles
-	private static final String SQL_SELECT_BY_NAME = "SELECT (nomArticles)"
+	private static final String SQL_SELECT_BY_NAME_ARTICLES = "SELECT (nom_article)"
 			+ "FROM Articles;";
 	
 	// select par catégorie sur la table Articles
-	private static final String SQL_SELECT_BY_CATEGORY = "SELECT (categorieArticle)"
+	private static final String SQL_SELECT_BY_CAT_ARTICLE = "SELECT (no_categorie, libelle)"
 			+ "FROM Articles;";
 	
 	// select par id (no_article) sur la table Articles
-	private static final String SQL_SELECT_BY_ID = "SELECT (noArticle)"
+	private static final String SQL_SELECT_BY_ID_ARTICLE = "SELECT (no_article)"
 			+ "FROM Articles;";
 	
 	// select par id (no_article) sur la table Retraits
-	private static final String SQL_SELECT_BY_ID1 = "SELECT (noArticle)"
+	private static final String SQL_SELECT_RETRAIT_BY_ARTICLE = "SELECT (no_article)"
 			+ "FROM Retraits;";
 	
 	// select par id (no_article) sur la table Encheres
-	private static final String SQL_SELECT_BY_ID2 = "SELECT (noArticle)"
+	private static final String SQL_SELECT_ENCHERE_BY_ARTICLEN = "SELECT (no_article)"
 			+ "FROM Encheres;";
 	
 	// select par id (no_utilisateur) sur la table Encheres
-	private static final String SQL_SELECT_BY_ID3 = "SELECT (noUtilisateur)"
+	private static final String SSQL_SELECT_ENCHERES_BY_USER = "SELECT (no_utilisateur)"
 			+ "FROM Encheres;";
 	
 	
@@ -125,96 +128,5 @@ public class ArticleDAOJDBCImpl implements ArticleDAO {
 		// TODO Auto-generated method stub
 		
 	}
-
-	/**
-	 * @return the sqlInsert
-	 */
-	public static String getSqlInsert() {
-		return SQL_INSERT;
-	}
-
-	/**
-	 * @return the sqlInsert1
-	 */
-	public static String getSqlInsert1() {
-		return SQL_INSERT1;
-	}
-
-	/**
-	 * @return the sqlUpdate
-	 */
-	public static String getSqlUpdate() {
-		return SQL_UPDATE;
-	}
-
-	/**
-	 * @return the sqlUpdate1
-	 */
-	public static String getSqlUpdate1() {
-		return SQL_UPDATE1;
-	}
-
-	/**
-	 * @return the sqlDelete
-	 */
-	public static String getSqlDelete() {
-		return SQL_DELETE1;
-	}
-
-	/**
-	 * @return the sqlDelete2
-	 */
-	public static String getSqlDelete2() {
-		return SQL_DELETE2;
-	}
-
-	/**
-	 * @return the sqlSelectAll
-	 */
-	public static String getSqlSelectAll() {
-		return SQL_SELECT_ALL;
-	}
-
-	/**
-	 * @return the sqlSelectByName
-	 */
-	public static String getSqlSelectByName() {
-		return SQL_SELECT_BY_NAME;
-	}
-
-	/**
-	 * @return the sqlSelectByCategory
-	 */
-	public static String getSqlSelectByCategory() {
-		return SQL_SELECT_BY_CATEGORY;
-	}
-
-	/**
-	 * @return the sqlSelectById
-	 */
-	public static String getSqlSelectById() {
-		return SQL_SELECT_BY_ID;
-	}
-
-	/**
-	 * @return the sqlSelectById1
-	 */
-	public static String getSqlSelectById1() {
-		return SQL_SELECT_BY_ID1;
-	}
-
-	/**
-	 * @return the sqlSelectById2
-	 */
-	public static String getSqlSelectById2() {
-		return SQL_SELECT_BY_ID2;
-	}
-
-	/**
-	 * @return the sqlSelectById3
-	 */
-	public static String getSqlSelectById3() {
-		return SQL_SELECT_BY_ID3;
-	}
-
 }
+
