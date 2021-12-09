@@ -12,7 +12,7 @@ public class Enchere {
 
 	// je commence par établir les propriétés
 	private LocalDateTime dateEnchere; 
-	private Integer montantEnchere;
+	private int montantEnchere;
 	
 	// ensuite les getter setter pour ces propriétés
 	/**
@@ -30,13 +30,13 @@ public class Enchere {
 	/**
 	 * @return the montantEnchere
 	 */
-	public Integer getMontantEnchere() {
+	public int getMontantEnchere() {
 		return montantEnchere;
 	}
 	/**
 	 * @param montantEnchere the montantEnchere to set
 	 */
-	public void setMontantEnchere(Integer montantEnchere) {
+	public void setMontantEnchere(int montantEnchere) {
 		this.montantEnchere = montantEnchere;
 	} 
 	
