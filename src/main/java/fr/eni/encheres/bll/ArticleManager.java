@@ -110,10 +110,6 @@ public class ArticleManager {
 		return this.articleDAO.selectById(noArticle); 
 	}
 	
-	/*
-	 * TODO: créer CodesResultatBLL
-	 */
-	
 	private void validerNom(String nom, BusinessException ex) {
 		if(nom == null || nom.trim().equals("") || nom.trim().length() > 30)
 			ex.ajouterErreur(CodesResultatBLL.REGLE_ARTICLE_NOM_ERREUR); 

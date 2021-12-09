@@ -17,7 +17,7 @@ public class EnchereManager {
 	
 	public EnchereManager() {
 		super();
-		this.enchereDAO = DAOFactory.getEnchereDAO(); // TODO: ajouter méthode getEnchereDAO à DAOFactory (@Laurane)
+		this.enchereDAO = DAOFactory.getEnchereDAO();
 	}
 	
 	public void addEnchere(int prixVente, int montantEnchere) throws BusinessException {
@@ -38,7 +38,7 @@ public class EnchereManager {
 	/*
 	 * TODO: compléter EnchereDAO (@Lydie)
 	 */
-	public Enchere getEnchereByNoArticle(int noArticle) throws BusinessException {
+	public List<Enchere> getEnchereByNoArticle(int noArticle) throws BusinessException {
 		return this.enchereDAO.selectByArticle(noArticle);
 	}
 	
@@ -51,10 +51,12 @@ public class EnchereManager {
 	}
 	
 	/*
-	 * TODO: créer CodesResultatBLL (@Dorothée)
+	 * TODO: compléter CodesResultatBLL (@Dorothée)
 	 */
 	public void validerPrix(int prixVente, Integer montantEnchere, BusinessException ex) throws BusinessException {
-		if(montantEnchere == null || montantEnchere <= prixVente)
-			ex.ajouterErreur(CodesResultatBLL.REGLE_ENCHERE_PRIX);
+		if(montantEnchere == null)
+			ex.ajouterErreur(CodesResultatBLL.REGLE_ENCHERE_PRIX_NULL);
+		if(montantEnchere <= prixVente)
+			ex.ajouterErreur(CodesResultatBLL.REGLE_ENCHERE_PRIX_ERREUR);
 	}
 }
