@@ -179,6 +179,25 @@ public class UtilisateurDAOJDBCImpl implements UtilisateurDAO {
 	public Utilisateur selectById(int noUtilisateur) throws BusinessException {
 		Utilisateur utilisateur = new Utilisateur();
 		try (Connection cn = ConnectionProvider.getConnection()) {
+			PreparedStatement ps = cn.prepareStatement(SQL_SELECT_BY_ID);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));
+				utilisateur.setPseudo(rs.getString("pseudo"));
+				utilisateur.setNom(rs.getString("nom"));
+				utilisateur.setPrenom(rs.getString("prenom"));
+				utilisateur.setEmail(rs.getString("email"));
+				utilisateur.setTelephone(rs.getString("telephone"));
+				utilisateur.setRue(rs.getString("rue"));
+				utilisateur.setCodePostal(rs.getString("code_postal"));
+				utilisateur.setVille(rs.getString("ville"));
+				utilisateur.setMotDePasse(rs.getString("mot_de_passe"));
+				utilisateur.setCredit(rs.getInt("credit"));
+				utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
+			}
+			
+			rs.close();
+			ps.close();
 			
 		} catch (Exception ex) {
 			ex.printStackTrace();
