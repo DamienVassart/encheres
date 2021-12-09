@@ -7,6 +7,7 @@ package fr.eni.encheres.bll;
 import java.time.LocalDateTime;
 
 import fr.eni.encheres.BusinessException;
+import fr.eni.encheres.bo.Enchere;
 import fr.eni.encheres.dal.DAOFactory;
 
 public class EnchereManager {
@@ -17,23 +18,27 @@ public class EnchereManager {
 		this.enchereDAO = DAOFactory.getEnchereDAO(); // TODO: ajouter méthode getEnchereDAO à DAOFactory (@Laurane)
 	}
 	
-	public void addEnchere(int noUtilisateur, int noArticle, LocalDateTime dateEnchere, int montantEnchere) {
+	public void addEnchere(int noUtilisateur, int noArticle, LocalDateTime dateEnchere, int prixVente, int montantEnchere) throws BusinessException {
 		// TODO
 	}
 	
-	public void getEnchereByNoArticle(int noArticle) {
+	public Enchere getEnchereByNoArticle(int noArticle) throws BusinessException {
 		// TODO
 	}
 	
-	public void getEnchereByNoUtilisateur(int noUtilisateur) {
+	public Enchere getEnchereByNoUtilisateur(int noUtilisateur) throws BusinessException {
 		// TODO
 	}
 	
-	public void removeEnchere(int noArticle) {
+	public void removeEnchere(int noArticle) throws BusinessException {
 		// TODO
 	}
 	
-	public void validerPrix(int prix, BusinessException ex) {
-		// TODO
+	/*
+	 * TODO: créer CodesResultatBLL (@Dorothée)
+	 */
+	public void validerPrix(int prixVente, Integer prix, BusinessException ex) throws BusinessException {
+		if(prix == null || prix <= prixVente)
+			ex.ajouterErreur(CodesResultatBLL.REGLE_ENCHERE_PRIX);
 	}
 }
