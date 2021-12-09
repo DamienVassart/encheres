@@ -1,13 +1,12 @@
-/**
- * 
- * @author Dorothée Blanchard
- * a faire verifier par le groupe
- *
- */
-
 package fr.eni.encheres.bo;
 
 import java.time.LocalDateTime;
+
+/**
+ * 
+ * @author Dorothée Blanchard
+ *
+ */
 
 public class Enchere {
 

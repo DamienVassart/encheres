@@ -1,11 +1,10 @@
+package fr.eni.encheres.bll;
+
 /**
  * 
  * @author Dorothée Blanchard
- * a verifier
  *
  */
-
-package fr.eni.encheres.bll;
 
 public class CodesResultatBLL {
 	public static final int REGLE_UTILISATEUR_PSEUDO_ERREUR=20000; 
@@ -24,6 +23,7 @@ public class CodesResultatBLL {
 	public static final int REGLE_ARTICLE_PRIX_ERREUR=20013;
 	public static final int REGLE_RETRAIT_RUE_ERREUR=20014;
 	public static final int REGLE_RETRAIT_CPO_ERREUR=20015;
-
+	public static final int REGLE_RETRAIT_VILLE_ERREUR=20016;
+	public static final int REGLE_ENCHERE_PRIX=20017;
 
 }
