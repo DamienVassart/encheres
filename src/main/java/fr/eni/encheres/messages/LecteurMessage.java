@@ -11,7 +11,7 @@ public class LecteurMessage {
 	
 	static {
 		try {
-			rb = ResourceBundle.getBundle("fr.eni.encheres.messages.messages_erreur");
+			rb = ResourceBundle.getBundle("fr.eni.encheres.messages.messages_erreur"); // TODO: créer et compléter le fichier messages_erreur.properties (@Lydie)
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
