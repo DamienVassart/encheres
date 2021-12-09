@@ -17,12 +17,8 @@ import fr.eni.encheres.dal.DAOFactory;
 
 public class ArticleManager {
 	
-	// Si erreur de compilation: ArticleDAO encore non créé
-	// ne pas tenter de résoudre le problème et attendre que la personne concernée ait créé le compossant manquant
 	private ArticleDAO articleDAO;
 	
-	// Si erreur de compilation: DAOFactory encore non créé
-	// ne pas tenter de résoudre le problème et attendre que la personne concernée ait créé le compossant manquant
 	public ArticleManager() {
 		super();
 		this.articleDAO = DAOFactory.getArticleDAO();
@@ -48,6 +44,7 @@ public class ArticleManager {
 			article.setDateDebutEncheres(dateDebut); 
 			article.setDateFinEncheres(dateFin); 
 			article.setMiseAPrix(miseAPrix);
+			article.setPrixVente(miseAPrix);
 			
 			Retrait retrait = new Retrait();
 			retrait.setRue(rue);
