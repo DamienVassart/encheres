@@ -20,10 +20,9 @@ public class DAOFactory  {
 		return new UtilisateurDAOJDBCImpl();
 	}
 	
-	public static RetraitDAO getRetraitDAO() {
-		return new RetraitDAOJDBCImpl();
+	public static EnchereDAO getEnchereDAO() {
+		return new EnchereDAOJDBCImpl();
 	}
-	
 	
 
 
