@@ -20,7 +20,9 @@ public class DAOFactory  {
 		return new UtilisateurDAOJDBCImpl();
 	}
 	
-
+	public static EnchereDAO getEnchereDAO() {
+		return new EnchereDAOJDBCImpl();
+	}
 	
 
 
