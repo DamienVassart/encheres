@@ -12,8 +12,8 @@ import fr.eni.encheres.BusinessException;
 
 public interface ArticleDAO {
 	
-	//Sélectionner un article par son idArticle
-	public Article selectById(int idArticle) throws BusinessException;
+	//Sélectionner un article par son noArticle
+	public Article selectById(int noArticle) throws BusinessException;
 	
 	//Sélectionner tous les articles 
 	public List<Article> selectAll() throws BusinessException;
