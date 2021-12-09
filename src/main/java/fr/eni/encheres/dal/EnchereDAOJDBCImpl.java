@@ -165,7 +165,7 @@ import fr.eni.encheres.bo.Utilisateur;
 				ResultSet rs = ps.executeQuery();
 				if(rs.next()) {
 					
-					enchere.setNoArticle(rs.getInt("no_article"));
+					enchere.setNoArticle(rs.getInt("noArticle"));
 					
 				}
 				
@@ -181,6 +181,6 @@ import fr.eni.encheres.bo.Utilisateur;
 			return enchere;
 		}
 	
+		}
 	}
-
 }
