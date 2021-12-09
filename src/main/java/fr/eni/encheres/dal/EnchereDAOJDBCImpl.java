@@ -8,7 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.encheres.BusinessException;
+import fr.eni.encheres.bo.Article;
 import fr.eni.encheres.bo.Enchere;
+import fr.eni.encheres.bo.Retrait;
 import fr.eni.encheres.bo.Utilisateur;
 
 /**
@@ -16,19 +18,16 @@ import fr.eni.encheres.bo.Utilisateur;
  * @author Lydie Allart
  *
  */
-	public class EnchereDAOJdbcImpl implements EnchereDAO {
+	public class EnchereDAOJDBCImpl implements EnchereDAO {
 		/**
 		 * Requêtes SQL
 		 */
 		private static final String SQL_INSERT= "INSERT INTO ENCHERES VALUES(?,?,?,?);";
-		// A VOIR , numéro Enchère?
 		private static final String SQL_SELECT_ALL = "SELECT * FROM ENCHERES WHERE noArticle=?, noUtilisateur=?;";
-		// A VOIR , numéro Enchère?
 		private static final String SQL_SELECT_BY_ID = "SELECT FROM Encheres WHERE no_article = ?, noUtilisateur=?;";
 		private static final String SQL_UPDATE = "UPDATE ENCHERES SET dateEnchere = ?, "
 				+ "montantEnchere = ?\r\n"
 				+ "WHERE noArticle=?, noUtilisateur=?;";
-		// A VOIR , numéro Enchère?
 		private static final String SQL_DELETE = "DELETE FROM Encheres WHERE no_article = ?, noUtilisateur=?;";
 		
 		
@@ -48,15 +47,15 @@ import fr.eni.encheres.bo.Utilisateur;
 					PreparedStatement ps = cn.prepareStatement(SQL_SELECT_ALL, 
 							PreparedStatement.RETURN_GENERATED_KEYS);
 					
-					//ps.setTimestamp(1, enchere.getDateEnchere());//(1, java.sql.Timestamp.valueOf(enchere.getDateEnchere()));
+					ps.setTimestamp(1, java.sql.Timestamp.valueOf(enchere.getDateEnchere()));
 					ps.setInt(2, enchere.getMontantEnchere());
 					
 					ps.executeUpdate();
 					
 					ResultSet rs = ps.getGeneratedKeys();
 					if(rs.next())
-						//Numéro Enchère???
-						enchere.setDateEnchere(LocalDateTime);
+						enchere.setDateEnchere(LocalDate.of((rs.getDate("date_enchere").toLocalDate()), 
+								rs.getTime("date_enchere").toLocalTime()));
 					
 					rs.close();
 					ps.close();
@@ -77,7 +76,7 @@ import fr.eni.encheres.bo.Utilisateur;
 		/*
 		 * Mise à jour d'une enchère existante ?
 		 */
-		public void update(Enchere enchere) throws BussinessException {
+		public void update(Enchere enchere) throws BusinessException {
 			
 			try(Connection cn = ConnectionProvider.getConnection()) {
 				// on prépare la requête
@@ -180,6 +179,7 @@ import fr.eni.encheres.bo.Utilisateur;
 			}
 			return enchere;
 		}
+
 	
 		}
 	}
