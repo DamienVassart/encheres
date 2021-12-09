@@ -50,9 +50,6 @@ public class EnchereManager {
 		this.enchereDAO.delete(noArticle);
 	}
 	
-	/*
-	 * TODO: compléter CodesResultatBLL (@Dorothée)
-	 */
 	public void validerPrix(int prixVente, Integer montantEnchere, BusinessException ex) throws BusinessException {
 		if(montantEnchere == null)
 			ex.ajouterErreur(CodesResultatBLL.REGLE_ENCHERE_PRIX_NULL);
