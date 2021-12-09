@@ -1,7 +1,7 @@
 /**
  * 
  * @author Dorothée Blanchard
- * a verifier
+ * a verifier par le groupe
  *
  */
 
