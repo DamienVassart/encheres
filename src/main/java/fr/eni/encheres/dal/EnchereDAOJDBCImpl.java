@@ -24,11 +24,11 @@ import fr.eni.encheres.bo.Utilisateur;
 		 */
 		private static final String SQL_INSERT= "INSERT INTO ENCHERES VALUES(?,?,?,?);";
 		private static final String SQL_SELECT_ALL = "SELECT * FROM ENCHERES WHERE noArticle=?, noUtilisateur=?;";
-		private static final String SQL_SELECT_BY_ID = "SELECT FROM Encheres WHERE no_article = ?, noUtilisateur=?;";
+		private static final String SQL_SELECT_BY_ID = "SELECT FROM Encheres WHERE noArticle = ?, noUtilisateur=?;";
 		private static final String SQL_UPDATE = "UPDATE ENCHERES SET dateEnchere = ?, "
 				+ "montantEnchere = ?\r\n"
 				+ "WHERE noArticle=?, noUtilisateur=?;";
-		private static final String SQL_DELETE = "DELETE FROM Encheres WHERE no_article = ?, noUtilisateur=?;";
+		private static final String SQL_DELETE = "DELETE FROM Encheres WHERE noArticle = ?, noUtilisateur=?;";
 		
 		
 		/*
@@ -54,8 +54,8 @@ import fr.eni.encheres.bo.Utilisateur;
 					
 					ResultSet rs = ps.getGeneratedKeys();
 					if(rs.next())
-						enchere.setDateEnchere(LocalDateTime.of((rs.getDate("date_enchere").toLocalDate()), 
-								rs.getTime("date_enchere").toLocalTime()));
+						enchere.setDateEnchere(LocalDateTime.of((rs.getDate("dateEnchere").toLocalDate()), 
+								rs.getTime("dateEnchere").toLocalTime()));
 					
 					rs.close();
 					ps.close();
@@ -115,8 +115,9 @@ import fr.eni.encheres.bo.Utilisateur;
 				
 				if(rs.next()) {
 					
-					enchere.setDateEnchere(rs.getLocalDateTime("date_enchere"));
-					enchere.setMontantEnchere(rs.getInt("montant_enchere"));
+					enchere.setDateEnchere(LocalDateTime.of((rs.getDate("dateEnchere").toLocalDate()), 
+							rs.getTime("dateEnchere").toLocalTime()));
+					enchere.setMontantEnchere(rs.getInt("montantEnchere"));
 					
 				}
 				
