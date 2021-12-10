@@ -26,4 +26,6 @@ public interface UtilisateurDAO {
 	
 	public List<Utilisateur> selectAll() throws BusinessException;
 
+
+	
 }
