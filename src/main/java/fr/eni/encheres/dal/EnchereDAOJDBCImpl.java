@@ -54,7 +54,7 @@ import fr.eni.encheres.bo.Utilisateur;
 					
 					ResultSet rs = ps.getGeneratedKeys();
 					if(rs.next())
-						enchere.setDateEnchere(LocalDate.of((rs.getDate("date_enchere").toLocalDate()), 
+						enchere.setDateEnchere(LocalDateTime.of((rs.getDate("date_enchere").toLocalDate()), 
 								rs.getTime("date_enchere").toLocalTime()));
 					
 					rs.close();
@@ -74,56 +74,6 @@ import fr.eni.encheres.bo.Utilisateur;
 		}
 		
 		/*
-		 * Mise à jour d'une enchère existante ?
-		 */
-		public void update(Enchere enchere) throws BusinessException {
-			
-			try(Connection cn = ConnectionProvider.getConnection()) {
-				// on prépare la requête
-				PreparedStatement ps = cn.prepareStatement(SQL_UPDATE);
-				
-				ps.setTimestamp(1, enchere.getDateEnchere());//(1, java.sql.Timestamp.valueOf(enchere.getDateEnchere()));
-				ps.setInt(2, enchere.getMontantEnchere());
-				
-				ps.executeUpdate();
-				ResultSet rs = ps.getGeneratedKeys();
-				if(rs.next())
-					enchere.setNoArticle(rs.getInt(1));
-				
-				ps.executeUpdate();
-				ps.close();
-				
-			} catch (Exception ex) {
-				ex.printStackTrace();
-				BusinessException businessException = new BusinessException();
-				businessException.ajouterErreur(CodesResultatDAL.UPDATE_ENCHERE_ECHEC);//serait mieux avec un noEnchere
-				throw businessException;
-		
-			}
-		}
-		
-		/*
-		 * Suppression d'une enchère
-		 */
-		public void delete(int noArticle) throws BusinessException {
-			try (Connection cn = ConnectionProvider.getConnection()) {
-				//on prépare la requête
-				PreparedStatement ps = cn.prepareStatement(SQL_DELETE);
-				
-				ps.setInt(1, noArticle);
-				
-				ps.executeUpdate();
-				ps.close();
-				
-			} catch (Exception ex) {
-				ex.printStackTrace();
-				BusinessException businessException = new BusinessException();
-				businessException.ajouterErreur(CodesResultatDAL.DELETE_ENCHERE_ECHEC);//serait mieux avec un noEnchere
-				throw businessException;
-			}
-		}
-		
-		/*
 		 * Sélectionner tous les enchères
 		 */
 		public List<Enchere> selectAll() throws BusinessException {
@@ -134,19 +84,19 @@ import fr.eni.encheres.bo.Utilisateur;
 				PreparedStatement ps = cn.prepareStatement(SQL_SELECT_ALL);
 				ResultSet rs = ps.executeQuery();
 				Enchere enchere = new Enchere();
+				
 				while(rs.next()) {
-					
-					ps.setInt(1, noArticle, noUtilisateur);//noEnchère ???
 					
 					listeEnchere.add(enchere);
 				}
+				
 				rs.close();
 				ps.close();
 				
 			} catch (Exception ex) {
 				ex.printStackTrace();
 				BusinessException businessException = new BusinessException();
-				businessException.ajouterErreur(CodesResultatDAL.SELECT_ENCHERE_ECHEC);//serait mieux avec un noEnchere
+				businessException.ajouterErreur(CodesResultatDAL.SELECT_ENCHERE_ECHEC);
 				throw businessException;
 			}
 			
@@ -162,9 +112,11 @@ import fr.eni.encheres.bo.Utilisateur;
 				//on prépare la requête
 				PreparedStatement ps = cn.prepareStatement(SQL_SELECT_BY_ID);
 				ResultSet rs = ps.executeQuery();
+				
 				if(rs.next()) {
 					
-					enchere.setNoArticle(rs.getInt("noArticle"));
+					enchere.setDateEnchere(rs.getLocalDateTime("date_enchere"));
+					enchere.setMontantEnchere(rs.getInt("montant_enchere"));
 					
 				}
 				
@@ -180,7 +132,23 @@ import fr.eni.encheres.bo.Utilisateur;
 			return enchere;
 		}
 
-	
+		@Override
+		public void insert(Enchere enchere, Article article, int noUtilisateur, int noArticle)
+				throws BusinessException {
+			
 		}
+
+		@Override
+		public List<Enchere> selectByNoUtilisateur(int noUtilisateur) throws BusinessException {
+			return null;
+		}
+
+		@Override
+		public List<Enchere> selectByNoArticle(int noArticle) throws BusinessException {
+			return null;
+		}
+
+	
+		
 	}
 }
