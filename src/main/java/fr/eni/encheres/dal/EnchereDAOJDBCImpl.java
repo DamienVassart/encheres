@@ -167,7 +167,7 @@ import fr.eni.encheres.bo.Enchere;
 			try {
 				cn = ConnectionProvider.getConnection();
 				ps = cn.prepareStatement(SQL_SelectByNoArticle);
-				ps.setInt(noArticle);
+				ps.setInt(noArticle, );
 				rs = ps.executeQuery();
 				Enchere enchere = new Enchere();
 				
@@ -202,7 +202,7 @@ import fr.eni.encheres.bo.Enchere;
 			try {
 				cn = ConnectionProvider.getConnection();
 				ps = cn.prepareStatement(SQL_SelectByNoUtilisateur);
-				ps.setInt(noUtilisateur);
+				ps.setInt(noUtilisateur,);
 				rs = ps.executeQuery();
 				Enchere enchere = new Enchere();
 				
