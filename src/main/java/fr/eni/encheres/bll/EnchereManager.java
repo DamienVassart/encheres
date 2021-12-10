@@ -35,16 +35,20 @@ public class EnchereManager {
 		}
 	}
 	
+	public List<Enchere> getAllEncheres() throws BusinessException {
+		return this.enchereDAO.selectAll();
+	}
+	
+	public Enchere getEnchere(int noUtilisateur, int noArticle) throws BusinessException {
+		return this.enchereDAO.selectById(noUtilisateur, noArticle);
+	}
+	
 	public List<Enchere> getEnchereByNoArticle(int noArticle) throws BusinessException {
 		return this.enchereDAO.selectByNoArticle(noArticle);
 	}
 	
 	public List<Enchere> getEncheresByNoUtilisateur(int noUtilisateur) throws BusinessException {
 		return this.enchereDAO.selectByNoUtilisateur(noUtilisateur);
-	}
-	
-	public void removeEnchere(int noArticle) throws BusinessException {
-		this.enchereDAO.delete(noArticle);
 	}
 	
 	public void validerPrix(int prixVente, Integer montantEnchere, BusinessException ex) throws BusinessException {
