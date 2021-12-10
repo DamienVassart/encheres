@@ -14,6 +14,21 @@ public class Enchere {
 	private LocalDateTime dateEnchere; 
 	private int montantEnchere;
 	
+	// les constructeurs
+	public Enchere() {
+		
+	}
+	
+	/**
+	 * @param dateEnchere
+	 * @param montantEnchere
+	 */
+	public Enchere(LocalDateTime dateEnchere, int montantEnchere) {
+		super();
+		this.dateEnchere = dateEnchere;
+		this.montantEnchere = montantEnchere;
+	}
+	
 	// ensuite les getter setter pour ces propriétés
 	/**
 	 * @return the dateEnchere
@@ -38,13 +53,12 @@ public class Enchere {
 	 */
 	public void setMontantEnchere(int montantEnchere) {
 		this.montantEnchere = montantEnchere;
-	} 
-	
+	}
+
 	// ne pas oublier le string
 	@Override
 	public String toString() {
-		return null;
-		
-	}
+		return "Enchere [dateEnchere=" + dateEnchere + ", montantEnchere=" + montantEnchere + "]";
+	} 
 
 }

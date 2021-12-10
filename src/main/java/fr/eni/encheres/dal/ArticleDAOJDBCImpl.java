@@ -104,7 +104,6 @@ public class ArticleDAOJDBCImpl implements ArticleDAO {
 	
 	//Supprimer un article
 	
-	
 	// add implementing methods
 	@Override
 	public Article selectById(int noArticle) throws BusinessException {
@@ -148,10 +147,5 @@ public class ArticleDAOJDBCImpl implements ArticleDAO {
 		
 	}
 	
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return super.toString();
-	}
 }
 
