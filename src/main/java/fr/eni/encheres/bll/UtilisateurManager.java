@@ -129,7 +129,7 @@ public class UtilisateurManager {
 	
 	private void validerNoUtilisateur(int noUtilisateur, BusinessException ex) {
 		if(noUtilisateur == 0)
-			ex.ajouterErreur(CodesResultatBLL.REGLE_UTILISATEUR_NO_UTILISATEUR_ERREUR); 
+			ex.ajouterErreur(CodesResultatBLL.REGLE_UTILISATEUR_NO_UTILISATEUR?_ERREUR); 
 	}
 	private void validerPseudo(String pseudo, BusinessException ex) {
 		if(pseudo == null || pseudo.trim().equals("") || pseudo.trim().length() > 30)
@@ -148,10 +148,10 @@ public class UtilisateurManager {
 		if(email == null || email.trim().equals("") || email.trim().length() > 300)
 			ex.ajouterErreur(CodesResultatBLL.REGLE_UTILISATEUR_EMAIL_ERREUR);
 	}
-	//Voir BDD
+
 	private void validerTelephone(String telephone, BusinessException ex) {
 		if(telephone == null || telephone.trim().equals("") || telephone.trim().length() > 10)
-			ex.ajouterErreur(CodesResultatBLL.REGLE_UTILISATEUR_TELEPHONE_ERREUR);
+			ex.ajouterErreur(CodesResultatBLL.REGLE_UTILISATEUR_TEL_ERREUR);
 	}
 	
 	private void validerRue(String rue, BusinessException ex) {
@@ -172,21 +172,18 @@ public class UtilisateurManager {
 	//Voir la BDD
 	private void validerMotDePasse(String motDePasse, BusinessException ex) {
 		if(motDePasse == null || motDePasse.trim().equals("") || motDePasse.trim().length() > 30)
-			ex.ajouterErreur(CodesResultatBLL.REGLE_UTILISATEUR_MOTDEPASSE_ERREUR);
+			ex.ajouterErreur(CodesResultatBLL.REGLE_UTILISATEUR_MDP_ERREUR);
 	}
 	
-	//Retrouver procédure pour bll int
 	private void validerCredit(int credit, BusinessException ex) {
 		if(credit == 0)
-			ex.ajouterErreur(CodesResultatBLL.REGLE_UTILISATEUR_CREDIT_ERREUR);
+			ex.ajouterErreur(CodesResultatBLL.REGLE_UTILISATEUR_CREDIT?_ERREUR);
 	}
 	
-	//Retrouver procédure bll BOOLEAN
 	private void validerAdministrateur(boolean administrateur, BusinessException ex) {
 		if(administrateur == null || administrateur.trim().equals("") || administrateur.trim().length() > 30)
-			ex.ajouterErreur(CodesResultatBLL.REGLE_UTILISATEUR_ADMINISTRATEUR_ERREUR);
+			ex.ajouterErreur(CodesResultatBLL.REGLE_UTILISATEUR_ADMINISTRATEUR?_ERREUR);
 	}
-}
 }
 }
 
