@@ -39,12 +39,15 @@ import fr.eni.encheres.bo.Enchere;
 		private static final String SQL_SelectByNoUtilisateur = "SELECT "
 				+ "noUtilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur"
 				+ "WHERE no_utilisateur=?"
-				+" FROM ENCHERES";
+				+ " FROM ENCHERES";
+		
 		/*
 		 * Insertion d'une nouvelle enchère
 		 */
 		public void insert(Enchere enchere) throws BusinessException {
-			
+			Connection cn = null;
+			PreparedStatement ps = null;
+			ResultSet rs = null;
 			
 			if(enchere == null) {
 				BusinessException businessException = new BusinessException();
@@ -52,18 +55,16 @@ import fr.eni.encheres.bo.Enchere;
 				throw businessException;
 			}
 			
-			try (Connection cn = ConnectionProvider.getConnection()) {
+			try{
 				try {
-					//On prépare la requête:
-					PreparedStatement ps = cn.prepareStatement(SQL_INSERT, 
-							PreparedStatement.RETURN_GENERATED_KEYS);
+				cn = ConnectionProvider.getConnection();
+				ps = cn.prepareStatement(SQL_INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
+				
+				ps.setTimestamp(1, java.sql.Timestamp.valueOf(enchere.getDateEnchere()));
+				ps.setInt(2, enchere.getMontantEnchere());
+				
+				ps.executeUpdate();
 					
-					ps.setTimestamp(1, java.sql.Timestamp.valueOf(enchere.getDateEnchere()));
-					ps.setInt(2, enchere.getMontantEnchere());
-					
-					ps.executeUpdate();
-					
-					ResultSet rs = ps.getGeneratedKeys();
 					if(rs.next())
 						
 					enchere.setDateEnchere(LocalDateTime.of((rs.getDate("dateEnchere").toLocalDate()), 
@@ -77,27 +78,30 @@ import fr.eni.encheres.bo.Enchere;
 					ex.printStackTrace();
 					throw ex;
 				}
-				
-			} catch (Exception ex) {
-				ex.printStackTrace();
-				BusinessException businessException = new BusinessException();
-				businessException.ajouterErreur(CodesResultatDAL.INSERT_ENCHERE_ECHEC);
-				throw businessException;
-			}
+					} catch (Exception ex) {
+						ex.printStackTrace();
+						BusinessException businessException = new BusinessException();
+						businessException.ajouterErreur(CodesResultatDAL.SELECT_ENCHERE_ECHEC);
+						throw businessException;
+					}
 		}
 		
 		/*
 		 * Sélectionner toutes les enchères
 		 */
+		@Override
 		public List<Enchere> selectAll() throws BusinessException {
-			List<Enchere> listeEnchere = new ArrayList<>();
+			Connection cn = null;
+			PreparedStatement ps = null;
+			ResultSet rs = null;
+			List<Enchere> listeEnchere = new ArrayList<Enchere>();
 			
-			try (Connection cn = ConnectionProvider.getConnection()) {
-				
-				PreparedStatement ps = cn.prepareStatement(SQL_SELECT_ALL);
-				ResultSet rs = ps.executeQuery();
-				Enchere enchere = new Enchere();
-				
+			try {
+				cn = ConnectionProvider.getConnection();
+				ps = cn.prepareStatement(SQL_SELECT_ALL);
+				rs = ps.executeQuery();
+				Enchere enchere = null;
+			
 				while(rs.next()) {
 					
 					listeEnchere.add(enchere);
@@ -115,25 +119,29 @@ import fr.eni.encheres.bo.Enchere;
 			
 			return listeEnchere;
 		}
+		
 		/*
 		 * Sélection d'une enchère par son noUtilisateur, noArticle....
 		 */
+		@Override
 		public Enchere selectById(int noUtilisateur,int noArticle) throws BusinessException {
+			Connection cn = null;
+			PreparedStatement ps = null;
+			ResultSet rs = null;
 			Enchere enchere = new Enchere();
-			try (Connection cn = ConnectionProvider.getConnection()) {
+			
+			try {
+				cn = ConnectionProvider.getConnection();
+				ps = cn.prepareStatement(SQL_SELECT_BY_ID);
+				ps.setInt(noUtilisateur, noArticle);
 				
-				//on prépare la requête
-				PreparedStatement ps = cn.prepareStatement(SQL_SELECT_BY_ID);
-				ResultSet rs = ps.executeQuery();
-				
-				if(rs.next()) {
+				rs = ps.executeQuery();
+				if(rs.next()){
 					
 					enchere.setDateEnchere(LocalDateTime.of((rs.getDate("dateEnchere").toLocalDate()), 
 							rs.getTime("dateEnchere").toLocalTime()));
 					enchere.setMontantEnchere(rs.getInt("montantEnchere"));
-					
 				}
-				
 				rs.close();
 				ps.close();
 				
@@ -150,12 +158,18 @@ import fr.eni.encheres.bo.Enchere;
 		 * Sélection d'une enchère par son noArticle....
 		 */
 		public Enchere selectByArticle(int noArticle) throws BusinessException {
-			Enchere enchere = new Enchere();
-			try (Connection cn = ConnectionProvider.getConnection()) {
-				
-				//on prépare la requête
-				PreparedStatement ps = cn.prepareStatement(SQL_SELECT_BY_ID);
-				ResultSet rs = ps.executeQuery();
+			Connection cn = null;
+			PreparedStatement ps = null;
+			ResultSet rs = null;
+			
+			List<Enchere> liste = new ArrayList<Enchere>();
+			
+			try {
+				cn = ConnectionProvider.getConnection();
+				ps = cn.prepareStatement(SQL_SelectByNoArticle);
+				ps.setInt(noArticle);
+				rs = ps.executeQuery();
+				Enchere enchere = new Enchere();
 				
 				if(rs.next()) {
 					
@@ -173,25 +187,30 @@ import fr.eni.encheres.bo.Enchere;
 				businessException.ajouterErreur(CodesResultatDAL.SELECT_ENCHERE_ECHEC);
 				throw businessException;
 			}
-			return enchere;
+			return liste;
 		}
 		/*
 		 * Sélection d'une enchère par son noUtilisateur....
 		 */
-		public List<Enchere> selectByUtilisateur(int noUtilisateur) throws BusinessException {
+		public Enchere selectByUtilisateur(int noUtilisateur) throws BusinessException {
+			Connection cn = null;
+			PreparedStatement ps = null;
+			ResultSet rs = null;
 			
-			Enchere enchere = new Enchere();
-			try (Connection cn = ConnectionProvider.getConnection()) {
-				
-				//on prépare la requête
-				PreparedStatement ps = cn.prepareStatement(SQL_SELECT_BY_UTILISATEUR);
-				ResultSet rs = ps.executeQuery();
+			List<Enchere> liste = new ArrayList<Enchere>();
+			
+			try {
+				cn = ConnectionProvider.getConnection();
+				ps = cn.prepareStatement(SQL_SelectByNoUtilisateur);
+				ps.setInt(noUtilisateur);
+				rs = ps.executeQuery();
+				Enchere enchere = new Enchere();
 				
 				if(rs.next()) {
 					
 					enchere.setDateEnchere(LocalDateTime.of((rs.getDate("dateEnchere").toLocalDate()), 
 							rs.getTime("dateEnchere").toLocalTime()));
-					enchere.setMontantEnchere(rs.getInt("montantEnchere"));	
+					enchere.setMontantEnchere(rs.getInt("montantEnchere"));
 				}
 				
 				rs.close();
@@ -203,7 +222,7 @@ import fr.eni.encheres.bo.Enchere;
 				businessException.ajouterErreur(CodesResultatDAL.SELECT_ENCHERE_ECHEC);
 				throw businessException;
 			}
-			return enchere;
+			return liste;
 		}
 		
 		@Override
