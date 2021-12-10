@@ -52,11 +52,6 @@ public class UtilisateurManager {
 			utilisateur.setVille(ville);
 			utilisateur.setMotDePasse(motDePasse);
 			
-			Retrait retrait = new Retrait();
-			retrait.setRue(rue);
-			retrait.setCodePostal(codePostal);
-			retrait.setVille(ville);
-			
 			this.utilisateurDAO.insert(utilisateur);
 			
 		} else {
@@ -90,11 +85,6 @@ public class UtilisateurManager {
 				utilisateur.setCodePostal(codePostal);
 				utilisateur.setVille(ville);
 				utilisateur.setMotDePasse(motDePasse);
-				
-				Retrait retrait = new Retrait();
-				retrait.setRue(rue);
-				retrait.setCodePostal(codePostal);
-				retrait.setVille(ville);
 			
 			this.utilisateurDAO.update(utilisateur);
 			
