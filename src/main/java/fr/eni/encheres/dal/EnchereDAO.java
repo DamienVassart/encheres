@@ -5,7 +5,6 @@ import java.util.List;
 import fr.eni.encheres.BusinessException;
 import fr.eni.encheres.bo.Article;
 import fr.eni.encheres.bo.Enchere;
-import fr.eni.encheres.bo.Retrait;
 
 /**
  * 

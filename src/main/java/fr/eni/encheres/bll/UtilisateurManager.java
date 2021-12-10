@@ -1,11 +1,8 @@
 package fr.eni.encheres.bll;
 
-import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.List;
 
 import fr.eni.encheres.BusinessException;
-import fr.eni.encheres.bo.Retrait;
 import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.dal.DAOFactory;
 import fr.eni.encheres.dal.UtilisateurDAO;
