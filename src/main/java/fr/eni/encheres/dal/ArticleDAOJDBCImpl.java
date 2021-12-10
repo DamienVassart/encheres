@@ -14,7 +14,9 @@ import fr.eni.encheres.bo.Retrait;
  */
 
 public class ArticleDAOJDBCImpl implements ArticleDAO {
-	// SQL requests
+	/*
+	 *  SQL requests
+	 */
 	// Insert dans la table Articles
 	// note DB: pas besoin d'insérer no_article, c'est une clé primaire autogénérée
 	private static final String SQL_INSERT_ARTICLE = "INSERT INTO Articles_Vendus" 
@@ -83,7 +85,24 @@ public class ArticleDAOJDBCImpl implements ArticleDAO {
 	private static final String SQL_SELECT_ENCHERES_BY_USER = "SELECT (date_enchere, montant_enchere) "
 			+ "FROM Encheres WHERE no_utilisateur = ?;";
 	
+	/*
+	 * Implémenter les méthodes d'ArticleDAO
+	 */
+
 	
+	//Sélectionner un article par son noArticle
+	
+	//Sélectionner tous les articles 
+	
+	//Sélectionner les articles par nom
+	
+	//Sélectionner les articles par la catégorie
+	
+	//Modifier les attributs d'un article connu en BD
+	
+	//Insérer un nouvel article
+	
+	//Supprimer un article
 	
 	
 	// add implementing methods
@@ -127,6 +146,12 @@ public class ArticleDAOJDBCImpl implements ArticleDAO {
 	public void delete(int noArticle) throws BusinessException {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return super.toString();
 	}
 }
 

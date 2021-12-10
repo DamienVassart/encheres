@@ -1,5 +1,7 @@
 package fr.eni.encheres.bo;
 
+import java.util.ArrayList;
+
 /**
  * Définit la Classe Utilisateur
  * @author Damien Vassart
@@ -19,6 +21,9 @@ public class Utilisateur {
 	private String motDePasse;
 	private int credit;
 	private boolean administrateur;
+	private ArrayList<Article> articlesMisEnVente = new ArrayList<>();
+	private ArrayList<Article> articlesAchetes = new ArrayList<>();
+	private ArrayList<Enchere> encheres = new ArrayList<>();
 	
 	/**
 	 * Constructeur pour la classe Utilisateur
@@ -224,6 +229,49 @@ public class Utilisateur {
 	 */
 	public void setAdministrateur(boolean administrateur) {
 		this.administrateur = administrateur;
+	}
+
+
+	/**
+	 * @return the articlesMisEnVente
+	 */
+	public ArrayList<Article> getArticlesMisEnVente() {
+		return this.articlesMisEnVente;
+	}
+
+	/**
+	 * @param articlesMisEnVente the articlesMisEnVente to set
+	 */
+	public void setArticlesMisEnVente(ArrayList<Article> articlesMisEnVente) {
+		this.articlesMisEnVente = articlesMisEnVente;
+	}
+
+	/**
+	 * @return the articlesAchetes
+	 */
+	public ArrayList<Article> getArticlesAchetes() {
+		return this.articlesAchetes;
+	}
+
+	/**
+	 * @param articlesAchetes the articlesAchetes to set
+	 */
+	public void setArticlesAchetes(ArrayList<Article> articlesAchetes) {
+		this.articlesAchetes = articlesAchetes;
+	}
+
+	/**
+	 * @return the encheres
+	 */
+	public ArrayList<Enchere> getEncheres() {
+		return this.encheres;
+	}
+
+	/**
+	 * @param encheres the encheres to set
+	 */
+	public void setEncheres(ArrayList<Enchere> encheres) {
+		this.encheres = encheres;
 	}
 
 	@Override
