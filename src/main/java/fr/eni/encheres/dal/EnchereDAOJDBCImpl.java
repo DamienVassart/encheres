@@ -10,8 +10,7 @@ import java.util.List;
 import fr.eni.encheres.BusinessException;
 import fr.eni.encheres.bo.Article;
 import fr.eni.encheres.bo.Enchere;
-import fr.eni.encheres.bo.Retrait;
-import fr.eni.encheres.bo.Utilisateur;
+
 
 /**
  * 
@@ -22,15 +21,17 @@ import fr.eni.encheres.bo.Utilisateur;
 		/**
 		 * Requêtes SQL
 		 */
-		private static final String SQL_INSERT= "INSERT INTO ENCHERES VALUES(?,?,?,?);";
-		private static final String SQL_SELECT_ALL = "SELECT * FROM ENCHERES WHERE noArticle=?, noUtilisateur=?;";
-		private static final String SQL_SELECT_BY_ID = "SELECT FROM Encheres WHERE noArticle = ?, noUtilisateur=?;";
-		private static final String SQL_UPDATE = "UPDATE ENCHERES SET dateEnchere = ?, "
-				+ "montantEnchere = ?\r\n"
-				+ "WHERE noArticle=?, noUtilisateur=?;";
-		private static final String SQL_DELETE = "DELETE FROM Encheres WHERE noArticle = ?, noUtilisateur=?;";
-		
-		
+		private static final String SQL_INSERT= "INSERT INTO ENCHERES "
+				+ "(no_utilisateur, no_article, date_enchere, montant_enchere) "
+				+ " VALUES(?,?,?,?)";
+		private static final String SQL_SELECT_ALL = "SELECT FROM ENCHERES "
+				+ "(no_utilisateur, no_article, date_enchere, montant_enchere)";
+		private static final String SQL_SELECT_BY_ID = "SELECT FROM Encheres "
+				+ "WHERE no_article = ? AND no_utilisateur=?";
+		private static final String SQL_SELECT_BY_NO_ARTICLE = "SELECT FROM ENCHERES "
+				+ "WHERE no_article = ?";
+		private static final String SQL_SELECT_BY_NO_UTILISATEUR = "SELECT FROM ENCHERES "
+				+ "WHERE no_utilisateur=?";
 		/*
 		 * Insertion d'une nouvelle enchère
 		 */
@@ -54,8 +55,10 @@ import fr.eni.encheres.bo.Utilisateur;
 					
 					ResultSet rs = ps.getGeneratedKeys();
 					if(rs.next())
-						enchere.setDateEnchere(LocalDateTime.of((rs.getDate("dateEnchere").toLocalDate()), 
+						
+					enchere.setDateEnchere(LocalDateTime.of((rs.getDate("dateEnchere").toLocalDate()), 
 								rs.getTime("dateEnchere").toLocalTime()));
+					enchere.setMontantEnchere(rs.getInt("montantEnchere"));
 					
 					rs.close();
 					ps.close();
@@ -74,7 +77,7 @@ import fr.eni.encheres.bo.Utilisateur;
 		}
 		
 		/*
-		 * Sélectionner tous les enchères
+		 * Sélectionner toutes les enchères
 		 */
 		public List<Enchere> selectAll() throws BusinessException {
 			List<Enchere> listeEnchere = new ArrayList<>();
@@ -132,11 +135,69 @@ import fr.eni.encheres.bo.Utilisateur;
 			}
 			return enchere;
 		}
-
+		
+		/*
+		 * Sélection d'une enchère par son noArticle....
+		 */
+		public Enchere selectByNoArticle(int noArticle) throws BusinessException {
+			Enchere enchere = new Enchere();
+			try (Connection cn = ConnectionProvider.getConnection()) {
+				
+				//on prépare la requête
+				PreparedStatement ps = cn.prepareStatement(SQL_SELECT_BY_ID);
+				ResultSet rs = ps.executeQuery();
+				
+				if(rs.next()) {
+					
+					enchere.setDateEnchere(LocalDateTime.of((rs.getDate("dateEnchere").toLocalDate()), 
+							rs.getTime("dateEnchere").toLocalTime()));
+					enchere.setMontantEnchere(rs.getInt("montantEnchere"));
+				}
+				
+				rs.close();
+				ps.close();
+				
+			} catch (Exception ex) {
+				ex.printStackTrace();
+				BusinessException businessException = new BusinessException();
+				businessException.ajouterErreur(CodesResultatDAL.SELECT_ENCHERE_ECHEC);
+				throw businessException;
+			}
+			return enchere;
+		}
+		/*
+		 * Sélection d'une enchère par son noUtilisateur....
+		 */
+		public Enchere selectByNoUtilisateur(int noUtilisateur) throws BusinessException {
+			Enchere enchere = new Enchere();
+			try (Connection cn = ConnectionProvider.getConnection()) {
+				
+				//on prépare la requête
+				PreparedStatement ps = cn.prepareStatement(SQL_SELECT_BY_ID);
+				ResultSet rs = ps.executeQuery();
+				
+				if(rs.next()) {
+					
+					enchere.setDateEnchere(LocalDateTime.of((rs.getDate("dateEnchere").toLocalDate()), 
+							rs.getTime("dateEnchere").toLocalTime()));
+					enchere.setMontantEnchere(rs.getInt("montantEnchere"));
+					
+				}
+				
+				rs.close();
+				ps.close();
+				
+			} catch (Exception ex) {
+				ex.printStackTrace();
+				BusinessException businessException = new BusinessException();
+				businessException.ajouterErreur(CodesResultatDAL.SELECT_ENCHERE_ECHEC);
+				throw businessException;
+			}
+			return enchere;
+		}
 		@Override
 		public void insert(Enchere enchere, Article article, int noUtilisateur, int noArticle)
 				throws BusinessException {
-			
 		}
 
 		@Override
