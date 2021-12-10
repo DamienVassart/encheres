@@ -211,6 +211,9 @@ public class UtilisateurDAOJDBCImpl implements UtilisateurDAO {
 		return utilisateur;
 	}
 	
+	/*
+	 * Sélection d'un utilisateur par nom (Se connecter)
+	 */
 	public Utilisateur selectByName(String nom) throws BusinessException {
 		Utilisateur utilisateur = new Utilisateur();
 		try (Connection cn = ConnectionProvider.getConnection()) {
