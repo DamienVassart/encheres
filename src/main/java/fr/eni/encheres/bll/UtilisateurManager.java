@@ -102,8 +102,20 @@ public class UtilisateurManager {
 		}
 	}
 	
+	public void removeUtilisateur(int noUtilisateur) throws BusinessException {
+		this.utilisateurDAO.delete(noUtilisateur);
+	}
+	
 	public List<Utilisateur> getUtilisateurs() throws BusinessException {
 		return this.utilisateurDAO.selectAll(); 
+	}
+	
+	public Utilisateur getUtilisateurById(int noUtilisateur) throws BusinessException {
+		return this.utilisateurDAO.selectById(noUtilisateur);
+	}
+	
+	public Utilisateur getUtilisateurByName(String nom) throws BusinessException {
+		return this.utilisateurDAO.selectByName(nom);
 	}
 	
 	private void validerPseudo(String pseudo, BusinessException ex) {
