@@ -1,7 +1,13 @@
 package fr.eni.encheres.dal;
 
 import java.util.List;
+
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList; 
 
 import fr.eni.encheres.BusinessException;
 import fr.eni.encheres.bo.Article;
@@ -62,18 +68,15 @@ public class ArticleDAOJDBCImpl implements ArticleDAO {
 			+ "FROM Articles_Vendus WHERE nom_article LIKE '%?%';";
 	
 	// select par catégorie sur la table Articles
-	//  ici la requête comporte une jointure entre les tables Articles_Vendus et Categories. 
-	// C'est un peu plus complexe, on en rediscutera en visio
 	private static final String SQL_SELECT_BY_CAT_ARTICLE = "SELECT (no_categorie, libelle)"
 			+ "FROM Articles_Vendus;"
-			+ "JOIN Articles_Vendus.no_categorie = Categories.no_categorie"; // le join est-il correct? 
+			+ "INNER JOIN Articles_Vendus.no_categorie = Categories.no_categorie"; // le join est-il correct? 
 	
 	// select par id (no_article) sur la table Articles
-	// Il y aura de plus une jointure avec la table Retraits à prévoir, mais comme pour la jointure évoquée en 8, on en rediscutera en visio
 	private static final String SQL_SELECT_BY_ID_ARTICLE = "SELECT (no_article, nom_article, description, date_debut_encheres,"
 			+ "date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie) "
 			+ "FROM Articles_Vendus WHERE no_article = ?;"
-			+ "JOIN Articles_Vendus.no_article = Retraits.no_article"; // le join est-il correct? 
+			+ "NATURAL JOIN Articles_Vendus.no_article = Retraits.no_article"; // le join est-il correct? 
 	
 	// select par id (no_article) sur la table Retraits
 	private static final String SQL_SELECT_RETRAIT_BY_ARTICLE = "SELECT (no_article, rue, code_postal, ville) "
@@ -91,61 +94,215 @@ public class ArticleDAOJDBCImpl implements ArticleDAO {
 	 * Implémenter les méthodes d'ArticleDAO
 	 */
 
-	
 	//Sélectionner un article par son noArticle
-	
-	//Sélectionner tous les articles 
+	public Article selectById(int noArticle) throws BusinessException {
+		Article article = new Article();
+		try (Connection cn = ConnectionProvider.getConnection()) {
+			PreparedStatement ps = cn.prepareStatement(SQL_SELECT_BY_ID_ARTICLE);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				article.setNoArticle(rs.getInt("noArticle"));
+				// faire la meme chose avec les autres trucs de l'article
+				article.setNomArticle(rs.getString("nom_article"));
+				article.setDescription(rs.getString("description"));
+				article.setDateDebutEncheres((rs.getDate("date_debut_encheres").toLocalDate()));
+				article.setDateFinEncheres((rs.getDate("date_fin_encheres").toLocalDate()));
+				article.setMiseAPrix(rs.getInt("prix_initial"));
+				article.setPrixVente(rs.getInt("prix_vente"));
+				article.setEstVendu(rs.getBoolean("est_vendu"));
+			}
+			rs.close();
+			ps.close();
+			
+		} catch (Exception ex) {
+			ex.printStackTrace(); //ne pas oublier de le mettre
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.SELECT_ARTICLE_ECHEC);
+			throw businessException;
+		} return article;
+	}
+
+	//Sélectionner tous les articles
+	public List<Article> selectAll() throws BusinessException {
+		List<Article> listeArticles = new ArrayList<>(); 
+		try (Connection cn = ConnectionProvider.getConnection()) {
+			PreparedStatement ps = cn.prepareStatement(SQL_SELECT_ALL_ARTICLES);
+			ResultSet rs = ps.executeQuery(); 
+			Article article = new Article(); 
+			while(rs.next() ) {
+				article.setNoArticle(rs.getInt("no_article"));
+				article.setNomArticle(rs.getString("nom_article"));
+				article.setDescription(rs.getString("description"));
+				article.setDateDebutEncheres((rs.getDate("date_debut_encheres").toLocalDate()));
+				article.setDateFinEncheres((rs.getDate("date_fin_encheres").toLocalDate()));
+				article.setMiseAPrix(rs.getInt("prix_initial"));
+				article.setPrixVente(rs.getInt("prix_vente"));
+				article.setEstVendu(rs.getBoolean("est_vendu"));
+				
+				listeArticles.add(article);
+			}
+			rs.close();
+			ps.close();
+			
+		} catch (Exception ex) {
+			ex.printStackTrace(); //ne pas oublier de le mettre
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.SELECT_LISTE_ARTICLES_ECHEC);
+			throw businessException;
+		} return listeArticles;
+		
+	}
 	
 	//Sélectionner les articles par nom
+	public List<Article> selectByName(String nom) throws BusinessException {
+		List<Article> listeArticles = new ArrayList<>(); 
+		try (Connection cn = ConnectionProvider.getConnection()) {
+			PreparedStatement ps = cn.prepareStatement(SQL_SELECT_BY_NAME_ARTICLES);
+			ResultSet rs = ps.executeQuery(); 
+			Article article = new Article(); 
+			while(rs.next() ) {
+				article.setNoArticle(rs.getInt("no_article"));
+				article.setNomArticle(rs.getString("nom_article"));
+				article.setDescription(rs.getString("description"));
+				article.setDateDebutEncheres((rs.getDate("date_debut_encheres").toLocalDate()));
+				article.setDateFinEncheres((rs.getDate("date_fin_encheres").toLocalDate()));
+				article.setMiseAPrix(rs.getInt("prix_initial"));
+				article.setPrixVente(rs.getInt("prix_vente"));
+				article.setEstVendu(rs.getBoolean("est_vendu"));
+				
+				listeArticles.add(article);
+			}
+			rs.close();
+			ps.close();
+			
+		} catch (Exception ex) {
+			ex.printStackTrace(); //ne pas oublier de le mettre
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.SELECT_LISTE_ARTICLES_ECHEC);
+			throw businessException;
+		} return listeArticles;
+	}
 	
 	//Sélectionner les articles par la catégorie
-	
-	//Modifier les attributs d'un article connu en BD
-	
-	//Insérer un nouvel article
-	
-	//Supprimer un article
-	
-	// add implementing methods
-	@Override
-	public Article selectById(int noArticle) throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Article> selectAll() throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Article> selectByName(String nom) throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public List<Article> selectByCategory(String categorie) throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
+		List<Article> listeArticles = new ArrayList<>(); 
+		try (Connection cn = ConnectionProvider.getConnection()) {
+			PreparedStatement ps = cn.prepareStatement(SQL_SELECT_BY_CAT_ARTICLE);
+			ResultSet rs = ps.executeQuery(); 
+			Article article = new Article(); 
+			while(rs.next() ) {
+				article.setNoArticle(rs.getInt("no_article"));
+				article.setNomArticle(rs.getString("nom_article"));
+				article.setDescription(rs.getString("description"));
+				article.setDateDebutEncheres((rs.getDate("date_debut_encheres").toLocalDate()));
+				article.setDateFinEncheres((rs.getDate("date_fin_encheres").toLocalDate()));
+				article.setMiseAPrix(rs.getInt("prix_initial"));
+				article.setPrixVente(rs.getInt("prix_vente"));
+				article.setEstVendu(rs.getBoolean("est_vendu"));
+				
+				listeArticles.add(article);
+			}
+			rs.close();
+			ps.close();
+			
+		} catch (Exception ex) {
+			ex.printStackTrace(); //ne pas oublier de le mettre
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.SELECT_ARTICLE_ECHEC);
+			throw businessException;
+		} return listeArticles;
 	}
-
-	@Override
+	
+	//Modifier les attributs d'un article connu en base de données
 	public void update(Article article, Retrait retrait) throws BusinessException {
-		// TODO Auto-generated method stub
+		try (Connection cn = ConnectionProvider.getConnection()) {
+			PreparedStatement ps = cn.prepareStatement(SQL_UPDATE_ARTICLE);
+			
+			ps.setInt(1, article.getNoArticle());
+			ps.setString(2, article.getNomArticle());
+			ps.setString(3, article.getDescription());
+			ps.setDate(4, article.getDateDebutEncheres()); 
+			ps.setDate(5, article.getDateFinEncheres());
+			ps.setInt(6, article.getMiseAPrix());
+			ps.setInt(7, article.getPrixVente());
+			ps.setBoolean(8, article.getEstVendu());
+			
+			ps.executeUpdate();
+			ps.close();
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.UPDATE_ARTICLE_ECHEC);
+			throw businessException;
+
+		}
 		
 	}
 
-	@Override
+	//Insérer un nouvel article
 	public void insert(Article article, Retrait retrait) throws BusinessException {
-		// TODO Auto-generated method stub
+		if(article == null) {
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.INSERT_ARTICLE_NULL);
+			throw businessException;
+		}
+		
+		try (Connection cn = ConnectionProvider.getConnection()){
+			
+			try {
+				PreparedStatement ps = cn.prepareStatement(SQL_INSERT_ARTICLE, PreparedStatement.RETURN_GENERATED_KEYS); 
+				
+				ps.setInt(1, article.getNoArticle());
+				ps.setString(2, article.getNomArticle());
+				ps.setString(3, article.getDescription());
+				ps.setDate(4, article.getDateDebutEncheres());
+				ps.setDate(5, article.getDateFinEncheres());
+				ps.setInt(6, article.getMiseAPrix());
+				ps.setInt(7, article.getPrixVente());
+				ps.setBoolean(8, article.getEstVendu());
+				
+				ps.executeUpdate(); 
+				
+				ResultSet rs = ps.getGeneratedKeys(); 
+				if(rs.next())
+					article.setNoArticle(rs.getInt(1));
+				
+				rs.close();
+				ps.close();
+				
+				
+			} catch (Exception ex) {
+				throw ex;
+			}
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.INSERT_ARTICLE_ECHEC );
+			throw businessException;
+
+		}
+
 		
 	}
 
-	@Override
+	//Supprimer un article
 	public void delete(int noArticle) throws BusinessException {
-		// TODO Auto-generated method stub
+		try (Connection cn = ConnectionProvider.getConnection()) {
+			PreparedStatement ps = cn.prepareStatement(SQL_DELETE_ARTICLE);
+			ps.setInt(1, noArticle);
+			ps.executeUpdate();
+			ps.close();
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.DELETE_ARTICLE_ECHEC);
+			throw businessException;
+
+		}
+		
 		
 	}
 	
