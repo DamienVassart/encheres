@@ -81,19 +81,20 @@ public class UtilisateurManager {
 			this.validerMotDePasse(motDePasse, ex);
 	
 			if(!ex.hasErreurs()) {
-			utilisateur.setPseudo(pseudo);
-			utilisateur.setNom(nom); 
-			utilisateur.setEmail(email); 
-			utilisateur.setTelephone(telephone);
-			utilisateur.setRue(rue);
-			utilisateur.setCodePostal(codePostal);
-			utilisateur.setVille(ville);
-			utilisateur.setMotDePasse(motDePasse);
-			
-			Retrait retrait = new Retrait();
-			retrait.setRue(rue);
-			retrait.setCodePostal(codePostal);
-			retrait.setVille(ville);
+				utilisateur = new Utilisateur();
+				utilisateur.setPseudo(pseudo);
+				utilisateur.setNom(nom); 
+				utilisateur.setEmail(email); 
+				utilisateur.setTelephone(telephone);
+				utilisateur.setRue(rue);
+				utilisateur.setCodePostal(codePostal);
+				utilisateur.setVille(ville);
+				utilisateur.setMotDePasse(motDePasse);
+				
+				Retrait retrait = new Retrait();
+				retrait.setRue(rue);
+				retrait.setCodePostal(codePostal);
+				retrait.setVille(ville);
 			
 			this.utilisateurDAO.update(utilisateur);
 			
