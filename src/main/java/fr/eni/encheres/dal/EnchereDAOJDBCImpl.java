@@ -148,7 +148,6 @@ import fr.eni.encheres.bo.Utilisateur;
 			return null;
 		}
 
-	
-		
-	}
+
 }
+
