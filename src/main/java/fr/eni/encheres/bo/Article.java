@@ -1,7 +1,7 @@
 package fr.eni.encheres.bo;
 
 import java.time.LocalDate;
-
+import java.util.ArrayList;
 
 /**
  * 
@@ -19,6 +19,23 @@ public class Article {
 	private int miseAPrix;
 	private int prixVente;
 	private boolean estVendu;
+	private Retrait Retrait = new Retrait();
+	private Categorie Categories = new Categorie();
+	private ArrayList<Enchere> encheres = new ArrayList<>();
+
+	public Article(int noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
+			LocalDate dateFinEnchere, int miseAPrix, int prixVente, boolean estVendu) {
+		super();
+		this.noArticle = noArticle;
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEnchere;
+		this.miseAPrix = miseAPrix;
+		this.prixVente = prixVente;
+		this.estVendu = estVendu;
+
+	}
 
 	public int getNoArticle() {
 		return noArticle;
@@ -88,10 +105,35 @@ public class Article {
 
 	}
 
+	public Retrait getRetrait() {
+		return Retrait;
+	}
+
+	public void setRetrait(Retrait retrait) {
+		Retrait = retrait;
+	}
+
+	public Categorie getCategories() {
+		return Categories;
+	}
+
+	public void setCategories(Categorie categories) {
+		Categories = categories;
+	}
+
+	public ArrayList<Enchere> getEncheres() {
+		return encheres;
+	}
+
+	public void setEncheres(ArrayList<Enchere> encheres) {
+		this.encheres = encheres;
+	}
+
 	// @override
 	public String toString() {
 		return "Article [noArticle : " + this.noArticle + "\n" + "Nom Article : " + this.nomArticle + "\n "
 				+ "Description : " + this.description + "\n" + "Début de l'enchère : " + this.dateDebutEncheres + "\n"
 				+ "Fin de l'enchère : " + this.dateFinEncheres + "\n" + "Mise à prix : " + this.miseAPrix;
 	}
+
 }
