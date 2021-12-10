@@ -103,7 +103,7 @@ import fr.eni.encheres.bo.Utilisateur;
 			return listeEnchere;
 		}
 		/*
-		 * Sélection d'une enchère par son noUtilisateur, noArticle
+		 * Sélection d'une enchère par son noUtilisateur, noArticle....
 		 */
 		public Enchere selectById(int noUtilisateur,int noArticle) throws BusinessException {
 			Enchere enchere = new Enchere();
