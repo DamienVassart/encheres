@@ -37,6 +37,10 @@ public class Article {
 
 	}
 
+	public Article() {
+		super();
+	}
+
 	public int getNoArticle() {
 		return noArticle;
 	}
