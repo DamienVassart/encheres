@@ -35,15 +35,12 @@ public class EnchereManager {
 		}
 	}
 	
-	/*
-	 * TODO: compléter EnchereDAO (@Lydie)
-	 */
-	public Enchere getEnchereByNoArticle(int noArticle) throws BusinessException {
-		return this.enchereDAO.selectByArticle(noArticle);
+	public List<Enchere> getEnchereByNoArticle(int noArticle) throws BusinessException {
+		return this.enchereDAO.selectByNoArticle(noArticle);
 	}
 	
 	public List<Enchere> getEncheresByNoUtilisateur(int noUtilisateur) throws BusinessException {
-		return this.enchereDAO.selectByUser(noUtilisateur);
+		return this.enchereDAO.selectByNoUtilisateur(noUtilisateur);
 	}
 	
 	public void removeEnchere(int noArticle) throws BusinessException {
