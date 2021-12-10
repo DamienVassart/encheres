@@ -20,13 +20,6 @@ public interface EnchereDAO {
 	//Sélectionner une enchère par son noUtilisateur, noArticle
 	public Enchere selectById(int noUtilisateur, int noArticle) throws BusinessException;
 	
-	//Modifier les attributs d'une enchere connue en BD
-	public void update(Enchere enchere, Retrait retrait) throws BusinessException;
-			
-	//Supprimer une enchère, par son noArticle??
-	//A VOIR, on peut pas avoir un numéro d'enchère?
-	public void delete(int noArticle) throws BusinessException;
-	
 	//Sélectionner la liste de toutes les enchères
 	public List<Enchere> selectAll() throws BusinessException;
 		
