@@ -39,6 +39,7 @@ public class Article {
 
 	public Article() {
 		super();
+
 	}
 
 	public int getNoArticle() {
@@ -103,10 +104,6 @@ public class Article {
 
 	public void setEstVendu(boolean estVendu) {
 		this.estVendu = estVendu;
-	}
-
-	public static void add(Article article) {
-
 	}
 
 	public Retrait getRetrait() {
