@@ -57,7 +57,7 @@ public class UtilisateurManager {
 			retrait.setCodePostal(codePostal);
 			retrait.setVille(ville);
 			
-			this.utilisateurDAO.insert(utilisateur);
+			this.utilisateurDAO.insert(utilisateur, retrait);
 			
 		} else {
 			throw ex;
@@ -95,7 +95,7 @@ public class UtilisateurManager {
 			retrait.setCodePostal(codePostal);
 			retrait.setVille(ville);
 			
-			this.utilisateurDAO.update(utilisateur);
+			this.utilisateurDAO.update(utilisateur, retrait);
 			
 		} else {
 			throw ex;
