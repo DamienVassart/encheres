@@ -64,14 +64,16 @@ public class ArticleDAOJDBCImpl implements ArticleDAO {
 	// select par catégorie sur la table Articles
 	//  ici la requête comporte une jointure entre les tables Articles_Vendus et Categories. 
 	// C'est un peu plus complexe, on en rediscutera en visio
-	// private static final String SQL_SELECT_BY_CAT_ARTICLE = "SELECT (no_categorie, libelle)"
-	//		+ "FROM Articles_Vendus;";
+	private static final String SQL_SELECT_BY_CAT_ARTICLE = "SELECT (no_categorie, libelle)"
+			+ "FROM Articles_Vendus;"
+			+ "JOIN Articles_Vendus.no_categorie = Categories.no_categorie"; // le join est-il correct? 
 	
 	// select par id (no_article) sur la table Articles
 	// Il y aura de plus une jointure avec la table Retraits à prévoir, mais comme pour la jointure évoquée en 8, on en rediscutera en visio
 	private static final String SQL_SELECT_BY_ID_ARTICLE = "SELECT (no_article, nom_article, description, date_debut_encheres,"
 			+ "date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie) "
-			+ "FROM Articles_Vendus WHERE no_article = ?;";
+			+ "FROM Articles_Vendus WHERE no_article = ?;"
+			+ "JOIN Articles_Vendus.no_article = Retraits.no_article"; // le join est-il correct? 
 	
 	// select par id (no_article) sur la table Retraits
 	private static final String SQL_SELECT_RETRAIT_BY_ARTICLE = "SELECT (no_article, rue, code_postal, ville) "
