@@ -64,18 +64,9 @@ public class ServletAjouterVente extends HttpServlet {
 		
 		String nomArticle = request.getParameter("nom_article");
 		String description = request.getParameter("description");
-		int noCategorie = Integer.parseInt(request.getParameter("no_categorie"));
-		int miseAPrix = Integer.parseInt(request.getParameter("prix_initial"));
+		
 		String lectureDateDebut = request.getParameter("date_debut");
 		String lectureDateFin = request.getParameter("date_fin");
-		
-		String lectureRue = request.getParameter("rue");
-		String lectureCodePostal = request.getParameter("code_postal");
-		String lectureVille = request.getParameter("ville");
-		
-		String rue = lectureRue.trim().equals("") ? (String) session.getAttribute("rue") : lectureRue; // A confirmer
-		String codePostal = lectureCodePostal.trim().equals("") ? (String) session.getAttribute("code_postal") : lectureCodePostal; // A confirmer
-		String ville =  lectureVille.trim().equals("") ? (String) session.getAttribute("ville") : lectureVille; // A confirmer
 		
 		try {
 			dateDebut = Date.valueOf(lectureDateDebut);
@@ -91,6 +82,19 @@ public class ServletAjouterVente extends HttpServlet {
 			listeCodesErreur.add(CodesResultatsServlets.FORMAT_DATE_FIN_ERREUR);
 		}
 		
+		int miseAPrix = Integer.parseInt(request.getParameter("prix_initial"));
+		
+		String lectureRue = request.getParameter("rue");
+		String lectureCodePostal = request.getParameter("code_postal");
+		String lectureVille = request.getParameter("ville");
+		
+		String rue = lectureRue.trim().equals("") ? (String) session.getAttribute("rue") : lectureRue; // A confirmer
+		String codePostal = lectureCodePostal.trim().equals("") ? (String) session.getAttribute("code_postal") : lectureCodePostal; // A confirmer
+		String ville =  lectureVille.trim().equals("") ? (String) session.getAttribute("ville") : lectureVille; // A confirmer
+		
+		int noUtilisateur = (int) session.getAttribute("no_utilisateur");
+		int noCategorie = Integer.parseInt(request.getParameter("no_categorie"));
+		
 		if(listeCodesErreur.size() > 0) {
 			request.setAttribute("listeCodesErreur", listeCodesErreur);
 			rd = request.getRequestDispatcher("/WEB-INF/nouvelleVente.jsp");
@@ -98,7 +102,7 @@ public class ServletAjouterVente extends HttpServlet {
 		} else {
 			ArticleManager articleManager = new ArticleManager();
 			try {
-				articleManager.addArticle(nomArticle, description, dateDebut, dateFin, miseAPrix, rue, codePostal, ville, noCategorie);
+				articleManager.addArticle(nomArticle, description, dateDebut, dateFin, miseAPrix, rue, codePostal, ville, noUtilisateur, noCategorie);
 				rd = request.getRequestDispatcher("/WEB-INF/index.jsp");
 				rd.forward(request, response);
 			} catch (BusinessException ex) {

@@ -1,12 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
-  <display-name>ProjetEncheres</display-name>
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-  </welcome-file-list>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+	id="WebApp_ID" version="4.0">
+	<display-name>ProjetEncheres</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+
+	<servlet>
+		<description> Servlet de connexion</description>
+		<servlet-name>ServletSeConnecter</servlet-name>
+		<servlet-class>fr.eni.encheres.servlet.ServletSeConnecter</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ServletSeConnecter</servlet-name>
+		<url-pattern></url-pattern>
+	</servlet-mapping>
+
+
+
+	<servlet>
+		<description> Servlet d'inscription</description>
+		<servlet-name>ServletSinscrire</servlet-name>
+		<servlet-class>fr.eni.encheres.servlet.ServletSinscrire</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ServletSinscrire</servlet-name>
+		<url-pattern></url-pattern>
+	</servlet-mapping>
+	
+
+	<servlet>
+		<description> Servlet de modifcation de profil</description>
+		<servlet-name>ServletModifierMonProfil</servlet-name>
+		<servlet-class>fr.eni.encheres.servlet.ServletModifierMonProfil</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ServletModifierMonProfil</servlet-name>
+		<url-pattern></url-pattern>
+	</servlet-mapping>
+	
+
+	<servlet>
+		<description> Servlet de Suppression de profil</description>
+		<servlet-name>ServletSupprimerMonCompte</servlet-name>
+		<servlet-class>fr.eni.encheres.servlet.ServletSupprimerMonCompte</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ServletSupprimerMonCompte</servlet-name>
+		<url-pattern></url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<description> Servlet de déconnexion</description>
+		<servlet-name>ServletSeDeconnecter</servlet-name>
+		<servlet-class>fr.eni.encheres.servlet.ServletSeDeconnecter</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ServletSeDeconnecter</servlet-name>
+		<url-pattern></url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<description> Servlet affichant un profil</description>
+		<servlet-name>ServletAffichantUnProfil</servlet-name>
+		<servlet-class>fr.eni.encheres.servlet.ServletAffichantUnProfil</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ServletAffichantUnProfil</servlet-name>
+		<url-pattern></url-pattern>
+	</servlet-mapping>
 </web-app>
