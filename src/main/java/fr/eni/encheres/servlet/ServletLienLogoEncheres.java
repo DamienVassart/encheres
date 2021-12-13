@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 /**
 * 
 * @author Dorothée Blanchard
-* travail en cours
 * 
 */
 
