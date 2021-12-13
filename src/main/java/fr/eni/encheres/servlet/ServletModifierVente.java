@@ -105,6 +105,8 @@ public class ServletModifierVente extends HttpServlet {
 				rd.forward(request, response);
 			} catch (BusinessException ex) {
 				ex.printStackTrace();
+				rd = request.getRequestDispatcher("/WEB-INF/modifierVente.jsp");
+				rd.forward(request, response);
 			}
 			
 		}

@@ -16,14 +16,10 @@ public interface UtilisateurDAO {
 	public void insert(Utilisateur utilisateur) throws BusinessException;
 
 	// Modifier profil
-	public static int update(Utilisateur utilisateur) throws BusinessException {
-		return 0;
-	}
+	public void update(Utilisateur utilisateur) throws BusinessException;
 
 	// Supprimer profil
-	public static void delete(String noUtilisateur) throws BusinessException {
-
-	}
+	public void delete(int noUtilisateur) throws BusinessException;
 
 	// Se Connecter / Afficher Profil
 	public Utilisateur selectById(int noUtilisateur) throws BusinessException;

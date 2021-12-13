@@ -14,7 +14,7 @@ import fr.eni.encheres.bo.Enchere;
 public interface EnchereDAO {
 	
 	//Faire une nouvelle enchère
-	public void insert(Enchere enchere, Article article, int noUtilisateur, int noArticle) throws BusinessException;
+	public void insert(Enchere enchere) throws BusinessException;
 	
 	//Sélectionner une enchère par son noUtilisateur, noArticle
 	public Enchere selectById(int noUtilisateur, int noArticle) throws BusinessException;

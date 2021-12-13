@@ -77,7 +77,7 @@ public class ArticleManager {
 			article.setNomArticle(nomArticle);
 			article.setDescription(description);
 			article.setDateDebutEncheres(dateDebut); 
-			article.setDateFinEncheres(dateFin); 
+			article.setDateFinEncheres(dateFin);
 			article.setMiseAPrix(miseAPrix);
 			article.setPrixVente(miseAPrix);
 			article.setNoUtilisateur(noUtilisateur);

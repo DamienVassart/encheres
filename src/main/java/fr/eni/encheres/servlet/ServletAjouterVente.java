@@ -107,6 +107,8 @@ public class ServletAjouterVente extends HttpServlet {
 				rd.forward(request, response);
 			} catch (BusinessException ex) {
 				ex.printStackTrace();
+				rd = request.getRequestDispatcher("/WEB-INF/nouvelleVente.jsp");
+				rd.forward(request, response);
 			}
 			
 		}
