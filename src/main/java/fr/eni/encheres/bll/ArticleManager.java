@@ -25,7 +25,7 @@ public class ArticleManager {
 		this.articleDAO = DAOFactory.getArticleDAO();
 	}
 	
-	public void addArticle(String nomArticle, String description, Date dateDebut, Date dateFin, int miseAPrix, String rue, String codePostal, String ville) throws BusinessException {
+	public void addArticle(String nomArticle, String description, Date dateDebut, Date dateFin, int miseAPrix, String rue, String codePostal, String ville, int noCategorie) throws BusinessException {
 		BusinessException ex = new BusinessException();
 		Article article = null;
 		
@@ -45,6 +45,7 @@ public class ArticleManager {
 			article.setDateFinEncheres(dateFin); 
 			article.setMiseAPrix(miseAPrix);
 			article.setPrixVente(miseAPrix);
+			article.setNoCategorie(noCategorie);
 			
 			Retrait retrait = new Retrait();
 			retrait.setRue(rue);
