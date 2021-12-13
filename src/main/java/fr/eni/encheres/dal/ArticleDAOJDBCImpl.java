@@ -71,13 +71,14 @@ public class ArticleDAOJDBCImpl<getLocalDate> implements ArticleDAO {
 	// select par catégorie sur la table Articles
 	private static final String SQL_SELECT_BY_CAT_ARTICLE = "SELECT (no_categorie, libelle)"
 			+ "FROM Articles_Vendus;"
-			+ "INNER JOIN Articles_Vendus.no_categorie = Categories.no_categorie"; // le join est-il correct? 
+			+ "INNER JOIN Articles_Vendus.no_categorie = Categories.no_categorie";  
 	
 	// select par id (no_article) sur la table Articles
 	private static final String SQL_SELECT_BY_ID_ARTICLE = "SELECT (no_article, nom_article, description, date_debut_encheres,"
 			+ "date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie) "
 			+ "FROM Articles_Vendus WHERE no_article = ?;"
-			+ "NATURAL JOIN Articles_Vendus.no_article = Retraits.no_article"; // le join est-il correct? 
+			+ "INNER JOIN Retraits.no_article"
+			+ "INNER JOIN Categories.no_categorie"; 
 	
 	// select par id (no_article) sur la table Retraits
 	private static final String SQL_SELECT_RETRAIT_BY_ARTICLE = "SELECT (no_article, rue, code_postal, ville) "
