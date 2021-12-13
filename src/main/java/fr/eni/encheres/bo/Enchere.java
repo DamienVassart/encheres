@@ -57,12 +57,6 @@ public class Enchere {
 		this.montantEnchere = montantEnchere;
 	}
 
-	// ne pas oublier le string
-	@Override
-	public String toString() {
-		return "Enchere [dateEnchere=" + dateEnchere + ", montantEnchere=" + montantEnchere + "]";
-	}
-
 	/**
 	 * @return the noUtilisateur
 	 */
@@ -90,5 +84,11 @@ public class Enchere {
 	public void setNoArticle(int noArticle) {
 		this.noArticle = noArticle;
 	} 
+	
+	// ne pas oublier le string
+	@Override
+	public String toString() {
+		return "Enchere [dateEnchere=" + dateEnchere + ", montantEnchere=" + montantEnchere + "]";
+	}
 
 }
