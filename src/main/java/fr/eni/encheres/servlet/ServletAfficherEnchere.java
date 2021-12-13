@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Servlet implementation class ServletAfficherEnchere
+ * @author Damien Vassart
  */
 @WebServlet("/ServletAfficherEnchere")
 public class ServletAfficherEnchere extends HttpServlet {
