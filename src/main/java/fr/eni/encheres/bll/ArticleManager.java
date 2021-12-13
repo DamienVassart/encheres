@@ -1,5 +1,6 @@
 package fr.eni.encheres.bll;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -24,14 +25,13 @@ public class ArticleManager {
 		this.articleDAO = DAOFactory.getArticleDAO();
 	}
 	
-	public void addArticle(String nomArticle, String description, LocalDate dateDebut, LocalDate dateFin, int miseAPrix, String rue, String codePostal, String ville) throws BusinessException {
+	public void addArticle(String nomArticle, String description, Date dateDebut, Date dateFin, int miseAPrix, String rue, String codePostal, String ville) throws BusinessException {
 		BusinessException ex = new BusinessException();
 		Article article = null;
 		
 		this.validerNom(nomArticle, ex);
 		this.validerDescription(description, ex);
-		this.validerDateDebut(dateDebut, ex);
-		this.validerDateFin(dateFin, ex);
+		this.validerDateFin(dateDebut, dateFin, ex);
 		this.validerMiseAPrix(miseAPrix, ex);
 		this.validerRue(rue, ex);
 		this.validerCodePostal(codePostal, ex);
@@ -58,14 +58,13 @@ public class ArticleManager {
 		}
 	}
 	
-	public void updateArticle(String nomArticle, String description, LocalDate dateDebut, LocalDate dateFin, int miseAPrix, String rue, String codePostal, String ville) throws BusinessException {
+	public void updateArticle(String nomArticle, String description, Date dateDebut, Date dateFin, int miseAPrix, String rue, String codePostal, String ville) throws BusinessException {
 		BusinessException ex = new BusinessException();
 		Article article = null;
 		
 		this.validerNom(nomArticle, ex);
 		this.validerDescription(description, ex);
-		this.validerDateDebut(dateDebut, ex);
-		this.validerDateFin(dateFin, ex);
+		this.validerDateFin(dateDebut, dateFin, ex);
 		this.validerMiseAPrix(miseAPrix, ex);
 		this.validerRue(rue, ex);
 		this.validerCodePostal(codePostal, ex);
@@ -120,13 +119,8 @@ public class ArticleManager {
 			ex.ajouterErreur(CodesResultatBLL.REGLE_ARTICLE_DESCRIPTION_ERREUR);
 	}
 	
-	private void validerDateDebut(LocalDate dateDebut, BusinessException ex) {
-		if(dateDebut.isAfter(LocalDate.now()))
-			ex.ajouterErreur(CodesResultatBLL.REGLE_ARTICLE_DATE_DEBUT_ERREUR);
-	}
-	
-	private void validerDateFin(LocalDate dateFin, BusinessException ex) {
-		if(dateFin.isAfter(LocalDate.now()))
+	private void validerDateFin(Date dateDebut, Date dateFin, BusinessException ex) {
+		if(dateDebut.after(dateFin))
 			ex.ajouterErreur(CodesResultatBLL.REGLE_ARTICLE_DATE_FIN_ERREUR);
 	}
 	
