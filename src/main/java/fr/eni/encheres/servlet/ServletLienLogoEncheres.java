@@ -36,7 +36,6 @@ public class ServletLienLogoEncheres extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		String name=request.getParameter("welcome"); // modifier le nom en vert
 		response.sendRedirect("mainPageUrl");  // modifier l'url en vert
 	}
 
