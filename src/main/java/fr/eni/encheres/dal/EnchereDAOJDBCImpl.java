@@ -32,7 +32,7 @@ public class EnchereDAOJDBCImpl implements EnchereDAO {
 
 	@Override
 	// Insertion d'une nouvelle enchère----
-	public void insert(Enchere enchere) throws BusinessException {
+	public void insert(Enchere enchere, Article article, int noUtilisateur, int noArticle) throws BusinessException {
 		Connection cn = null;
 		PreparedStatement ps = null;
 
@@ -47,8 +47,8 @@ public class EnchereDAOJDBCImpl implements EnchereDAO {
 				cn = ConnectionProvider.getConnection();
 				ps = cn.prepareStatement(SQL_INSERT);
 
-				ps.setInt(1, enchere.getNoUtilisateur());
-				ps.setInt(2, enchere.getNoArticle());
+				ps.setInt(1, noUtilisateur);
+				ps.setInt(2, noArticle);
 				ps.setDate(3, enchere.getDateEnchere());
 				ps.setInt(4, enchere.getMontantEnchere());
 
