@@ -78,4 +78,16 @@
 		<servlet-name>ServletAffichantUnProfil</servlet-name>
 		<url-pattern></url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+	<!-- Dorothée -->
+		<description>Servlet affichant la page d'accueil</description>
+		<servlet-name>Page d'accueil</servlet-name>
+		<jsp-file>/WEB-INF/PageAccueil.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+	<!-- Dorothee -->
+		<servlet-name>ServletPageAccueil</servlet-name>
+		<url-pattern></url-pattern>
+	</servlet-mapping>
 </web-app>
