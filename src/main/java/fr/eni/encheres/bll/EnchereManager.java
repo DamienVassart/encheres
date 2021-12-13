@@ -20,7 +20,7 @@ public class EnchereManager {
 		super();
 		this.enchereDAO = DAOFactory.getEnchereDAO();
 	}
-	public void addEnchere(int noUtilisateur, int noArticle ,Date dateEnchere, int prixVente, int montantEnchere) throws BusinessException {
+	public void addEnchere(int noUtilisateur, int noArticle , Date dateEnchere, int prixVente, int montantEnchere) throws BusinessException {
 		BusinessException ex = new BusinessException();
 		Enchere enchere = null;
 		
