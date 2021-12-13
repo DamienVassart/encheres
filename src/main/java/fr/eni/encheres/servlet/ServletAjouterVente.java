@@ -14,6 +14,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.encheres.BusinessException;
+import fr.eni.encheres.bll.ArticleManager;
+
 /**
  * Servlet implementation class ServletAjouterVente
  * @author Damien Vassart
@@ -51,12 +54,12 @@ public class ServletAjouterVente extends HttpServlet {
 		String nomArticle = request.getParameter("nom_article");
 		String description = request.getParameter("description");
 		String noCategorie = request.getParameter("no_categorie");
-		String miseAPrix = request.getParameter("prix_initial");
+		int miseAPrix = Integer.parseInt(request.getParameter("prix_initial"));
 		String lectureDateDebut = request.getParameter("date_debut");
 		String lectureDateFin = request.getParameter("date_fin");
-		String rue = request.getParameter("rue");
-		String codePostal = request.getParameter("code_postal");
-		String ville = request.getParameter("ville");
+		String rue = request.getParameter("rue"); // TODO: vérifier si c'est renseigné; sinon affecter l'adresse du vendeur
+		String codePostal = request.getParameter("code_postal"); // TODO: vérifier si c'est renseigné; sinon affecter l'adresse du vendeur
+		String ville = request.getParameter("ville"); // TODO: vérifier si c'est renseigné; sinon affecter l'adresse du vendeur
 		
 		try {
 			dateDebut = Date.valueOf(lectureDateDebut);
@@ -77,8 +80,15 @@ public class ServletAjouterVente extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/nouvelleVente.jsp");
 			rd.forward(request, response);
 		} else {
-			// TODO: si pas d'erreur, insérer l'article dans la table Articles_Vendus 
-			// et les données relatives au retrait dans la table Retraits
+			ArticleManager articleManager = new ArticleManager();
+			try {
+				articleManager.addArticle(nomArticle, description, dateDebut, dateFin, miseAPrix, rue, codePostal, ville);
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/index.jsp");
+				rd.forward(request, response);
+			} catch (BusinessException ex) {
+				ex.printStackTrace();
+			}
+			
 		}
 		 
 	}
