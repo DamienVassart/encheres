@@ -28,13 +28,14 @@ import fr.eni.encheres.bo.Enchere;
 		private static final String SQL_SELECT_BY_ID = "SELECT "
 				+ "(no_utilisateur, no_article, date_enchere, montant_enchere)"
 				+ "FROM Enchere"
-				+ "WHERE no_article = ? AND no_utilisateur=?";
+				+ "WHERE no_article = ? AND no_utilisateur=?,";
 		private static final String SQL_SelectByNoArticle = "SELECT  "
-				+ "no_utilisateur, no_article, date_enchere, montant_enchere)"
+				+ "noArticle, nomArticle, description, dateDebutEncheres, dateFinEnchere,  miseAPrix, prixVente, estVendu"
 				+ "FROM ENCHERES"
 				+ "WHERE no_article = ?";
+				 
 		private static final String SQL_SelectByNoUtilisateur = "SELECT "
-				+ "no_utilisateur, no_article, date_enchere, montant_enchere)"
+				+ "noUtilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur"
 				+ " FROM ENCHERES"
 				+ "WHERE no_utilisateur=?";
 		
