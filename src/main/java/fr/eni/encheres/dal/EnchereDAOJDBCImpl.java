@@ -31,12 +31,13 @@ import fr.eni.encheres.bo.Enchere;
 				+ "WHERE no_article = ? AND no_utilisateur=?,";
 		private static final String SQL_SelectByNoArticle = "SELECT  "
 				+ "noArticle, nomArticle, description, dateDebutEncheres, dateFinEnchere,  miseAPrix, prixVente, estVendu"
-				+ "WHERE no_article = ?"
-				+ "FROM ENCHERES";
+				+ "FROM ENCHERES"
+				+ "WHERE no_article = ?";
+				 
 		private static final String SQL_SelectByNoUtilisateur = "SELECT "
 				+ "noUtilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur"
-				+ "WHERE no_utilisateur=?"
-				+ " FROM ENCHERES";
+				+ " FROM ENCHERES"
+				+ "WHERE no_utilisateur=?";
 		
 		@Override
 		//Insertion d'une nouvelle enchère
