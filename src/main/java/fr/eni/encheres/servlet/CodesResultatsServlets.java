@@ -7,10 +7,10 @@ package fr.eni.encheres.servlet;
  */
 
 public abstract class CodesResultatsServlets {
-	
+
 	// Erreur Format pseudo
 	public static final int FORMAT_PSEUDO_ERREUR = 30000;
-	
+
 	// Erreur Format nom utilisateur
 	public static final int FORMAT_NOM_UTILISATEUR_ERREUR = 30001;
 
@@ -40,7 +40,7 @@ public abstract class CodesResultatsServlets {
 
 	// Erreur Format description de l'article
 	public static final int FORMAT_DESCRIPTION_ERREUR = 30010;
-	
+
 	// Erreur Format date de début de l'enchère
 	public static final int FORMAT_DATE_DEBUT_ERREUR = 30011;
 
@@ -49,5 +49,35 @@ public abstract class CodesResultatsServlets {
 
 	// Erreur Format mise a prix
 	public static final int FORMAT_MISE_A_PRIX_ERREUR = 30013;
+
+	// Erreur Pseudo null
+	public static final int FORMAT_PSEUDO_NULL = 30014;
+
+	// Erreur Utilisateur null
+	public static final int FORMAT_NOM_UTILISATEUR_NULL = 30015;
+
+	// prenom null
+	public static final int FORMAT_PRENOM_NULL = 30016;
+
+	// nom null
+	public static final int FORMAT_NOM_NULL = 30017;
+
+	// email null
+	public static final int FORMAT_EMAIL_NULL = 30018;
+
+	// mdp null
+	public static final int FORMAT_MDP_NULL = 30019;
+
+	// Erreur Format telephone null
+	public static final int FORMAT_TEL_NULL = 30020;
+
+	// Rue null
+	public static final int FORMAT_RUE_NULL = 30021;
+	
+	// CPO null
+	public static final int FORMAT_CPO_NULL = 30022;
+	
+	// ville null
+	public static final int FORMAT_VILLE_NULL = 30023;
 
 }

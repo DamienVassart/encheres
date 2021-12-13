@@ -20,12 +20,13 @@ public class Article {
 	private int miseAPrix;
 	private int prixVente;
 	private boolean estVendu;
+	private int noCategorie;
 	private Retrait Retrait = new Retrait();
 	private Categorie Categories = new Categorie();
 	private ArrayList<Enchere> encheres = new ArrayList<>();
 
-	public Article(int noArticle, String nomArticle, String description, Date dateDebutEncheres,
-			Date dateFinEncheres, int miseAPrix, int prixVente, boolean estVendu) {
+	public Article(int noArticle, String nomArticle, String description, Date dateDebutEncheres, Date dateFinEncheres,
+			int miseAPrix, int prixVente, boolean estVendu) {
 		super();
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
@@ -129,6 +130,14 @@ public class Article {
 
 	public void setEncheres(ArrayList<Enchere> encheres) {
 		this.encheres = encheres;
+	}
+
+	public int getNoCategorie() {
+		return noCategorie;
+	}
+
+	public void setNoCategorie(int noCategorie) {
+		this.noCategorie = noCategorie;
 	}
 
 	// @override
