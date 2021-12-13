@@ -13,9 +13,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.encheres.BusinessException;
 import fr.eni.encheres.bll.ArticleManager;
+import fr.eni.encheres.bo.Utilisateur;
 
 /**
  * Servlet implementation class ServletAjouterVente
@@ -36,14 +38,23 @@ public class ServletAjouterVente extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/nouvelleVente.jsp");
-		rd.forward(request, response);
+		HttpSession session = request.getSession();
+		RequestDispatcher rd = null;
+		if(session.getAttribute("no_utilisateur") != null) { // A confirmer
+			rd = request.getRequestDispatcher("/WEB-INF/nouvelleVente.jsp");
+			rd.forward(request, response);
+		} else {
+			rd = request.getRequestDispatcher("/WEB-INF/connexion.jsp");
+			rd.forward(request, response);
+		}
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		RequestDispatcher rd = null;
 		request.setCharacterEncoding("UTF-8");
 		
 		List<Integer> listeCodesErreur = new ArrayList<>();
@@ -53,13 +64,18 @@ public class ServletAjouterVente extends HttpServlet {
 		
 		String nomArticle = request.getParameter("nom_article");
 		String description = request.getParameter("description");
-		String noCategorie = request.getParameter("no_categorie");
+		int noCategorie = Integer.parseInt(request.getParameter("no_categorie"));
 		int miseAPrix = Integer.parseInt(request.getParameter("prix_initial"));
 		String lectureDateDebut = request.getParameter("date_debut");
 		String lectureDateFin = request.getParameter("date_fin");
-		String rue = request.getParameter("rue"); // TODO: vérifier si c'est renseigné; sinon affecter l'adresse du vendeur
-		String codePostal = request.getParameter("code_postal"); // TODO: vérifier si c'est renseigné; sinon affecter l'adresse du vendeur
-		String ville = request.getParameter("ville"); // TODO: vérifier si c'est renseigné; sinon affecter l'adresse du vendeur
+		
+		String lectureRue = request.getParameter("rue");
+		String lectureCodePostal = request.getParameter("code_postal");
+		String lectureVille = request.getParameter("ville");
+		
+		String rue = lectureRue.trim().equals("") ? (String) session.getAttribute("rue") : lectureRue; // A confirmer
+		String codePostal = lectureCodePostal.trim().equals("") ? (String) session.getAttribute("code_postal") : lectureCodePostal; // A confirmer
+		String ville =  lectureVille.trim().equals("") ? (String) session.getAttribute("ville") : lectureVille; // A confirmer
 		
 		try {
 			dateDebut = Date.valueOf(lectureDateDebut);
@@ -77,13 +93,13 @@ public class ServletAjouterVente extends HttpServlet {
 		
 		if(listeCodesErreur.size() > 0) {
 			request.setAttribute("listeCodesErreur", listeCodesErreur);
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/nouvelleVente.jsp");
+			rd = request.getRequestDispatcher("/WEB-INF/nouvelleVente.jsp");
 			rd.forward(request, response);
 		} else {
 			ArticleManager articleManager = new ArticleManager();
 			try {
-				articleManager.addArticle(nomArticle, description, dateDebut, dateFin, miseAPrix, rue, codePostal, ville);
-				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/index.jsp");
+				articleManager.addArticle(nomArticle, description, dateDebut, dateFin, miseAPrix, rue, codePostal, ville, noCategorie);
+				rd = request.getRequestDispatcher("/WEB-INF/index.jsp");
 				rd.forward(request, response);
 			} catch (BusinessException ex) {
 				ex.printStackTrace();
