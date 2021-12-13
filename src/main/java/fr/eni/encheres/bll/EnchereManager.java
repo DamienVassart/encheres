@@ -20,8 +20,7 @@ public class EnchereManager {
 		super();
 		this.enchereDAO = DAOFactory.getEnchereDAO();
 	}
-	
-	public void addEnchere(Date dateEnchere, int prixVente, int montantEnchere) throws BusinessException {
+	public void addEnchere(int noUtilisateur, int noArticle ,Date dateEnchere, int prixVente, int montantEnchere) throws BusinessException {
 		BusinessException ex = new BusinessException();
 		Enchere enchere = null;
 		
@@ -29,8 +28,12 @@ public class EnchereManager {
 		
 		if(!ex.hasErreurs()) {
 			enchere = new Enchere();
+			enchere.setNoUtilisateur(noUtilisateur);
+			enchere.setNoArticle(noArticle);
 			enchere.setDateEnchere(dateEnchere);
 			enchere.setMontantEnchere(montantEnchere);
+			
+			this.enchereDAO.insert(enchere);
 		} else {
 			throw ex;
 		}
