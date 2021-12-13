@@ -70,8 +70,11 @@ public class ServletEncherir extends HttpServlet {
 		try {
 			enchereManager.addEnchere(noUtilisateur, noArticle, dateEnchere, prixVente, montantEnchere);
 			rd = request.getRequestDispatcher("/WEB-INF/detailVente.jsp");
+			rd.forward(request, response);
 		} catch (Exception ex) {
 			ex.printStackTrace();
+			rd = request.getRequestDispatcher("/WEB-INF/index.jsp");
+			rd.forward(request, response);
 		}
 		
 	}
