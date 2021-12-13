@@ -40,7 +40,7 @@ import fr.eni.encheres.bo.Enchere;
 				+ "WHERE no_utilisateur=?";
 		
 		@Override
-		//Insertion d'une nouvelle enchère
+		//Insertion d'une nouvelle enchère----
 		public void insert(Enchere enchere, Article article, int noUtilisateur, int noArticle)
 				throws BusinessException {
 			Connection cn = null;
