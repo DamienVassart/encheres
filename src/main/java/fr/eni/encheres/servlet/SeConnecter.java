@@ -39,7 +39,7 @@ public class SeConnecter extends HttpServlet {
 			throws ServletException, IOException {
 		RequestDispatcher rd = null;
 
-		rd = this.getServletContext().getNamedDispatcher("connexion");
+		rd = this.getServletContext().getRequestDispatcher("connexion");
 		rd.forward(request, response);
 	}
 
