@@ -21,6 +21,7 @@ public class Article {
 	private int prixVente;
 	private boolean estVendu;
 	private int noCategorie;
+	private int noUtilisateur;
 	private Retrait Retrait = new Retrait();
 	private Categorie Categories = new Categorie();
 	private ArrayList<Enchere> encheres = new ArrayList<>();
@@ -138,6 +139,14 @@ public class Article {
 
 	public void setNoCategorie(int noCategorie) {
 		this.noCategorie = noCategorie;
+	}
+
+	public int getNoUtilisateur() {
+		return noUtilisateur;
+	}
+
+	public void setNoUtilisateur(int noUtilisateur) {
+		this.noUtilisateur = noUtilisateur;
 	}
 
 	// @override
