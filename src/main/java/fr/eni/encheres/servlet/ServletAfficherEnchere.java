@@ -81,34 +81,60 @@ public class ServletAfficherEnchere extends HttpServlet {
 				// Sinon, il ne peut que consulter son annonce sans pouvoir enchérir
 				else {
 					request.setAttribute("role", "vendeur"); // pour désactiver la possibilité d'enchérir dans la jsp
+					request.setAttribute("meilleure_offre", montantMeilleureOffre(enchereManager, noArticle));
+					request.setAttribute("nom_encherisseur", meilleurEncherisseur(enchereManager, noArticle, utilisateurManager));
+					request.setAttribute("date_fin_enchere", article.getDateFinEncheres());
 					
-					setAttributsSupplementaires(request, article, noArticle, enchereManager, utilisateurManager);
+					if(today.before(article.getDateFinEncheres())) {
+						request.setAttribute("categorie", article.getNoCategorie());
+					} else {
+						/*
+						 * nom de l'utilisateur ayant remporté l'enchère
+						 * pseudo vendeur OK
+						 */
+						request.setAttribute("vendeur", pseudoVendeur(utilisateurManager, article));
+					}
 					
 					rd = request.getRequestDispatcher("/WEB-INF/detailVente.jsp");
 				}
 			} 
+			
 			/*
 			 * si on n'est pas le vendeur
 			 */
 			else {
 				request.setAttribute("role", "acheteur"); // pour laisser la possibilité d'enchérir dans la jsp
+				request.setAttribute("montant_meilleure_offre", montantMeilleureOffre(enchereManager, noArticle));
+				request.setAttribute("vendeur", pseudoVendeur(utilisateurManager, article));
 				
-				setAttributsSupplementaires(request, article, noArticle, enchereManager, utilisateurManager);
-				
-				String pseudoVendeur = "";
-				try {
-					pseudoVendeur = utilisateurManager.getUtilisateurById(article.getNoUtilisateur()).getPseudo();
-				} catch (BusinessException ex) {
-					ex.printStackTrace();
+				if(today.before(article.getDateFinEncheres())) {
+					request.setAttribute("categorie", article.getNoCategorie());
+					request.setAttribute("nom_encherisseur", meilleurEncherisseur(enchereManager, noArticle, utilisateurManager));
+					request.setAttribute("date_fin_enchere", article.getDateFinEncheres());
+					
+				} else {
+					// TODO
+					// si on a remporté la vente
+						/*
+						 * afficher "vous avez remporté la vente"
+						 * tel vendeur
+						 */
+					// si un autre utilisateur a remporté la vente
+						/*
+						 * nom de l'utilisateur ayant remporté l'enchère
+						 * auteur meilleure offre
+						 * fin de l'enchère
+						 */
 				}
 				
-				request.setAttribute("vendeur", pseudoVendeur);
 				
 				rd = request.getRequestDispatcher("/WEB-INF/detailVente.jsp");
 			}
+		// si on n'est pas connecté	
 		} else {
 			rd = request.getRequestDispatcher("/WEB-INF/connexion.jsp");
 		}
+		
 		rd.forward(request, response);
 	}
 
@@ -119,32 +145,43 @@ public class ServletAfficherEnchere extends HttpServlet {
 		doGet(request, response);
 	}
 	
-	private void setAttributsSupplementaires(HttpServletRequest request, Article article, int noArticle,
-			EnchereManager enchereManager, UtilisateurManager utilisateurManager) {
-		
-		request.setAttribute("categorie", article.getNoCategorie());
-		
-		int meilleureOffre = 0;
-		String nomEncherisseur = "";
-		
+
+	private int montantMeilleureOffre(EnchereManager enchereManager, int noArticle) {
+		int montant = 0;
+		try {
+			Enchere derniereEnchere = enchereManager.getEnchereByNoArticle(noArticle).get(0);
+			montant = derniereEnchere.getMontantEnchere();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		return montant;
+	}
+	
+	private String meilleurEncherisseur(EnchereManager enchereManager, int noArticle, UtilisateurManager utilisateurManager) {
+		String pseudo = "";
 		Enchere derniereEnchere = null;
+		
 		try {
 			derniereEnchere = enchereManager.getEnchereByNoArticle(noArticle).get(0);
-			
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-		meilleureOffre = derniereEnchere.getMontantEnchere();
 		try {
-			nomEncherisseur = utilisateurManager.getUtilisateurById(derniereEnchere.getNoUtilisateur()).getPseudo();
+			pseudo = utilisateurManager.getUtilisateurById(derniereEnchere.getNoUtilisateur()).getPseudo();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
 		
-		request.setAttribute("meilleure_offre", meilleureOffre);
-		request.setAttribute("nom_encherisseur", nomEncherisseur);
-		
-		request.setAttribute("date_fin_enchere", article.getDateFinEncheres());
+		return pseudo;
 	}
-
+	
+	private String pseudoVendeur(UtilisateurManager utilisateurManager, Article article) {
+		String pseudo = "";
+		try {
+			pseudo = utilisateurManager.getUtilisateurById(article.getNoUtilisateur()).getPseudo();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		return pseudo;
+	}
 }
