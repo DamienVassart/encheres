@@ -49,8 +49,8 @@ public class ServletEncherir extends HttpServlet {
 		HttpSession session = request.getSession();
 		RequestDispatcher rd = null;
 		
-		LocalDateTime currentDate = LocalDateTime.now();
-		Date dateEnchere = (Date) Date.from(currentDate.atZone(ZoneId.systemDefault()).toInstant());
+		String currentDateTime = String.valueOf(LocalDateTime.now());
+		Date dateEnchere = Date.valueOf(currentDateTime);
 		
 		int noUtilisateur = (int) session.getAttribute("no_utilisateur");
 		
