@@ -103,7 +103,7 @@ public class ServletAjouterVente extends HttpServlet {
 			ArticleManager articleManager = new ArticleManager();
 			try {
 				articleManager.addArticle(nomArticle, description, dateDebut, dateFin, miseAPrix, rue, codePostal, ville, noUtilisateur, noCategorie);
-				rd = request.getRequestDispatcher("/WEB-INF/index.jsp");
+				rd = request.getRequestDispatcher("/WEB-INF/pageAccueil.jsp");
 				rd.forward(request, response);
 			} catch (BusinessException ex) {
 				ex.printStackTrace();

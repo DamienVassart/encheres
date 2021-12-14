@@ -73,7 +73,7 @@ public class ServletEncherir extends HttpServlet {
 			rd.forward(request, response);
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			rd = request.getRequestDispatcher("/WEB-INF/index.jsp");
+			rd = request.getRequestDispatcher("/WEB-INF/pageAccueil.jsp");
 			rd.forward(request, response);
 		}
 		
