@@ -27,9 +27,11 @@ public class ServletSinscrire extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		RequestDispatcher rd = null;
-		rd = this.getServletContext().getRequestDispatcher("Sinscrire.jsp");
+		
+		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/JSP/Sinscrire.jsp");
 		rd.forward(request, response);
+		
+
 	}
 
 	/**
@@ -112,7 +114,7 @@ public class ServletSinscrire extends HttpServlet {
 			
 		}catch (BusinessException ex){
 			ex.printStackTrace();
-			request.getRequestDispatcher("/WEB-INF/nouvelleVente.jsp");
+			request.getRequestDispatcher("/WEB-INF/Sinscrire.jsp");
 			forward(request, response);
 		}
 	}
