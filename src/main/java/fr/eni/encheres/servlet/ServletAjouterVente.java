@@ -41,6 +41,9 @@ public class ServletAjouterVente extends HttpServlet {
 		HttpSession session = request.getSession();
 		RequestDispatcher rd = null;
 		if(session.getAttribute("no_utilisateur") != null) { // A confirmer
+			/*
+			 * TODO: charger les données relatives à l'utilisateur pour obtenir et transmettre son adresse à la jsp nouvelleVente
+			 */
 			rd = request.getRequestDispatcher("/WEB-INF/JSP/nouvelleVente.jsp");
 			rd.forward(request, response);
 		} else {
