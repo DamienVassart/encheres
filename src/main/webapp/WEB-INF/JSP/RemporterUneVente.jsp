@@ -7,6 +7,7 @@
 <title>Enchère remportée</title>
 </head>
 <body>
+
 	<strong>L'enchère a été remportée par : </strong>
 		<input type="text"name="Utilisateur" value="${pseudoGagnant}" readonly="readonly">
 					

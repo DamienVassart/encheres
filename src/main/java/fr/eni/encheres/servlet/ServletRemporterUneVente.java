@@ -38,12 +38,12 @@ import fr.eni.encheres.dal.UtilisateurDAO;
 				throws ServletException, IOException {
 			
 			String prixVente = request.getParameter("prixVente");
-			int montantFinal = Integer.parseInt(request.getParameter("prixVente"));
+			int prixFinal = Integer.parseInt(request.getParameter("prixFinal"));
 			
-			request.setAttribute("montantFinal", prixVente);
+			request.setAttribute("prixFinal", prixVente);
 			
 			int noArticle = Integer.parseInt(request.getParameter("noArticle"));
-			Enchere enchere = new Enchere();
+			Article article = new Article();
 			
 			List<Enchere> listeEnchere= new ArrayList();
 			
@@ -51,13 +51,14 @@ import fr.eni.encheres.dal.UtilisateurDAO;
 			int utilisateurEnchere = 0; //Pour recréditer les noUtilisateur du montant de leur enchère ou débiter le gagnant.
 			Utilisateur utilisateur = new Utilisateur(); //A utiliser pour les recréditer
 			int noUtilisateur;		
-			String pseudoGagnant = request.getParameter("PseudoGagnant"); //On récupère le pseudo de celui qui a gagné
-			int utilisateurVendeur =0;//Pour créditer et payer le vendeur
+			String pseudoMeilleurEncherisseur = request.getParameter("PseudoMeilleurEncherisseur"); //On récupère le pseudo de celui qui a gagné
+			int pseudoVendeur;//Pour créditer et payer le vendeur
+			
 			
 			//Enchère finale
 			try {
-				//miseAPrix = ArticleDAO.AfficherArticle(miseAPrix);
-				//listeEnchere = EnchereDAO.listeEnchere(miseAPrix);
+				Enchere derniereEnchere = enchereManager.getEnchereByNoArticle(noArticle).get(0);
+				montant = derniereEnchere.getMontantEnchere();
 			} catch (BusinessException e) {
 				
 				e.printStackTrace();
@@ -81,26 +82,24 @@ import fr.eni.encheres.dal.UtilisateurDAO;
 			
 			//Paiement du vendeur
 			
-			utilisateurVendeur = enchere.getNoUtilisateur();
-			
+			pseudoVendeur = article.getNoUtilisateur();
 			try {
-				utilisateur = UtilisateurDAO.obtenirUtilisateur(utilisateurVendeur);
+				utilisateur = Utilisateur.obtenirUtilisateur(pseudoVendeur);//A Modifier
 			} catch (BusinessException e) {
 				e.printStackTrace();
 			}
+			montant = utilisateur.getCredit() + prixVente;//A Modifier
 			
-			montant = utilisateur.getCredit() + prixVente;
 			
 			//Crédit du vendeur
 			try {
-				UtilisateurDAO.modifierCredit(montant, utilisateurVendeur);
+				UtilisateurDAO.modifierCredit(montant, pseudoVendeur);
 				
-			//Débit du gagnant
-				utilisateur = UtilisateurDAO.obtenirPseudo(pseudoGagnant);
+				//Débit du gagnant
+				utilisateur = UtilisateurDAO.obtenirPseudo(pseudoMeilleurEncherisseur);
 			} catch (BusinessException e) {
 				e.printStackTrace();
 			} 
-			
 			
 			montant = utilisateur.getCredit() - prixVente;
 			utilisateurEnchere = utilisateur.getNoUtilisateur();
