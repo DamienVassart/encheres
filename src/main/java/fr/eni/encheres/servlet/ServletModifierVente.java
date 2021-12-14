@@ -63,8 +63,8 @@ public class ServletModifierVente extends HttpServlet {
 		String nomArticle = request.getParameter("nom_article");
 		String description = request.getParameter("description");
 		
-		String lectureDateDebut = request.getParameter("date_debut");
-		String lectureDateFin = request.getParameter("date_fin");
+		String lectureDateDebut = request.getParameter("date_debut_enchere");
+		String lectureDateFin = request.getParameter("date_fin_enchere");
 		
 		try {
 			dateDebut = Date.valueOf(lectureDateDebut);

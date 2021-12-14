@@ -74,7 +74,7 @@ public class ServletAfficherEnchere extends HttpServlet {
 			if(article.getNoUtilisateur() == (int) session.getAttribute("no_utilisateur")) {
 				// Si l'enchère n'a pas encore débuté, le vendeur peut encore modifier les détails de la vente
 				if(article.getDateDebutEncheres().before(today)) {
-					request.setAttribute("date_debut_encheres", article.getDateDebutEncheres());
+					request.setAttribute("date_debut_enchere", article.getDateDebutEncheres());
 					request.setAttribute("date_fin_enchere", article.getDateFinEncheres());
 					rd = request.getRequestDispatcher("/WEB-INF/JSP/modifierVente.jsp");
 				} 
