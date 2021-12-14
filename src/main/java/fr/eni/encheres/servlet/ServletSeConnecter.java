@@ -77,6 +77,11 @@ public class ServletSeConnecter extends HttpServlet {
 			dispatcher.forward(request, response);
 			return;
 		} else {
+			try {
+				Utilisateur utilisateurManager =  UtilisateurManager.getUtilisateurByName(pseudo);
+			} catch (BusinessException ex) {
+				ex.printStackTrace();
+			}
 			
 
 	
