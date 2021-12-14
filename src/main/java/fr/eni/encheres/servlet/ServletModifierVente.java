@@ -39,6 +39,9 @@ public class ServletModifierVente extends HttpServlet {
 		HttpSession session = request.getSession();
 		RequestDispatcher rd = null;
 		if(session.getAttribute("no_utilisateur") != null) { // A confirmer
+			/*
+			 * TODO: charger les données relatives à l'article
+			 */
 			rd = request.getRequestDispatcher("/WEB-INF/JSP/modifierVente.jsp");
 			rd.forward(request, response);
 		} else {
