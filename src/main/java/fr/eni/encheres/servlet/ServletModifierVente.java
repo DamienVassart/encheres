@@ -39,10 +39,10 @@ public class ServletModifierVente extends HttpServlet {
 		HttpSession session = request.getSession();
 		RequestDispatcher rd = null;
 		if(session.getAttribute("no_utilisateur") != null) { // A confirmer
-			rd = request.getRequestDispatcher("/WEB-INF/modifierVente.jsp");
+			rd = request.getRequestDispatcher("/WEB-INF/JSP/modifierVente.jsp");
 			rd.forward(request, response);
 		} else {
-			rd = request.getRequestDispatcher("/WEB-INF/connexion.jsp");
+			rd = request.getRequestDispatcher("/WEB-INF/JSP/SeConnecter.jsp");
 			rd.forward(request, response);
 		}
 	}
@@ -95,17 +95,17 @@ public class ServletModifierVente extends HttpServlet {
 		
 		if(listeCodesErreur.size() > 0) {
 			request.setAttribute("listeCodesErreur", listeCodesErreur);
-			rd = request.getRequestDispatcher("/WEB-INF/modifierVente.jsp");
+			rd = request.getRequestDispatcher("/WEB-INF/JSP/modifierVente.jsp");
 			rd.forward(request, response);
 		} else {
 			ArticleManager articleManager = new ArticleManager();
 			try {
 				articleManager.updateArticle(nomArticle, description, dateDebut, dateFin, miseAPrix, rue, codePostal, ville, noUtilisateur, noCategorie);
-				rd = request.getRequestDispatcher("/WEB-INF/pageAccueil.jsp");
+				rd = request.getRequestDispatcher("/WEB-INF/JSP/pageAccueil.jsp");
 				rd.forward(request, response);
 			} catch (BusinessException ex) {
 				ex.printStackTrace();
-				rd = request.getRequestDispatcher("/WEB-INF/modifierVente.jsp");
+				rd = request.getRequestDispatcher("/WEB-INF/JSP/modifierVente.jsp");
 				rd.forward(request, response);
 			}
 			

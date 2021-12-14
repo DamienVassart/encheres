@@ -41,10 +41,10 @@ public class ServletAjouterVente extends HttpServlet {
 		HttpSession session = request.getSession();
 		RequestDispatcher rd = null;
 		if(session.getAttribute("no_utilisateur") != null) { // A confirmer
-			rd = request.getRequestDispatcher("/WEB-INF/nouvelleVente.jsp");
+			rd = request.getRequestDispatcher("/WEB-INF/JSP/nouvelleVente.jsp");
 			rd.forward(request, response);
 		} else {
-			rd = request.getRequestDispatcher("/WEB-INF/connexion.jsp");
+			rd = request.getRequestDispatcher("/WEB-INF/JSP/SeConnecter.jsp");
 			rd.forward(request, response);
 		}
 	}
@@ -103,11 +103,11 @@ public class ServletAjouterVente extends HttpServlet {
 			ArticleManager articleManager = new ArticleManager();
 			try {
 				articleManager.addArticle(nomArticle, description, dateDebut, dateFin, miseAPrix, rue, codePostal, ville, noUtilisateur, noCategorie);
-				rd = request.getRequestDispatcher("/WEB-INF/pageAccueil.jsp");
+				rd = request.getRequestDispatcher("/WEB-INF/JSP/pageAccueil.jsp");
 				rd.forward(request, response);
 			} catch (BusinessException ex) {
 				ex.printStackTrace();
-				rd = request.getRequestDispatcher("/WEB-INF/nouvelleVente.jsp");
+				rd = request.getRequestDispatcher("/WEB-INF/JSP/nouvelleVente.jsp");
 				rd.forward(request, response);
 			}
 			

@@ -76,7 +76,7 @@ public class ServletAfficherEnchere extends HttpServlet {
 				if(article.getDateDebutEncheres().before(today)) {
 					request.setAttribute("date_debut_encheres", article.getDateDebutEncheres());
 					request.setAttribute("date_fin_enchere", article.getDateFinEncheres());
-					rd = request.getRequestDispatcher("/WEB-INF/modifierVente.jsp");
+					rd = request.getRequestDispatcher("/WEB-INF/JSP/modifierVente.jsp");
 				} 
 				// Sinon, il ne peut que consulter son annonce sans pouvoir enchérir
 				else {
@@ -92,7 +92,7 @@ public class ServletAfficherEnchere extends HttpServlet {
 						request.setAttribute("vendeur", pseudoVendeur(utilisateurManager, article));
 					}
 					
-					rd = request.getRequestDispatcher("/WEB-INF/detailVente.jsp");
+					rd = request.getRequestDispatcher("/WEB-INF/JSP/detailVente.jsp");
 				}
 			} 
 			
@@ -122,11 +122,11 @@ public class ServletAfficherEnchere extends HttpServlet {
 				}
 				
 				
-				rd = request.getRequestDispatcher("/WEB-INF/detailVente.jsp");
+				rd = request.getRequestDispatcher("/WEB-INF/JSP/detailVente.jsp");
 			}
 		// si on n'est pas connecté	
 		} else {
-			rd = request.getRequestDispatcher("/WEB-INF/connexion.jsp");
+			rd = request.getRequestDispatcher("/WEB-INF/JSP/SeConnecter.jsp");
 		}
 		
 		rd.forward(request, response);
