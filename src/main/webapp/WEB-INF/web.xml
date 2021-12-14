@@ -34,7 +34,7 @@
 		<servlet-name>ServletSinscrire</servlet-name>
 		<url-pattern></url-pattern>
 	</servlet-mapping>
-	
+
 
 	<servlet>
 		<description> Servlet de modifcation de profil</description>
@@ -45,7 +45,7 @@
 		<servlet-name>ServletModifierMonProfil</servlet-name>
 		<url-pattern></url-pattern>
 	</servlet-mapping>
-	
+
 
 	<servlet>
 		<description> Servlet de Suppression de profil</description>
@@ -56,8 +56,8 @@
 		<servlet-name>ServletSupprimerMonCompte</servlet-name>
 		<url-pattern></url-pattern>
 	</servlet-mapping>
-	
-	
+
+
 	<servlet>
 		<description> Servlet de déconnexion</description>
 		<servlet-name>ServletSeDeconnecter</servlet-name>
@@ -67,8 +67,8 @@
 		<servlet-name>ServletSeDeconnecter</servlet-name>
 		<url-pattern></url-pattern>
 	</servlet-mapping>
-	
-	
+
+
 	<servlet>
 		<description> Servlet affichant un profil</description>
 		<servlet-name>ServletAffichantUnProfil</servlet-name>
@@ -78,4 +78,16 @@
 		<servlet-name>ServletAffichantUnProfil</servlet-name>
 		<url-pattern></url-pattern>
 	</servlet-mapping>
+
+
+	<servlet>
+		<description> JSP de connexion</description>
+		<servlet-name>SeConnecter</servlet-name>
+		<jsp-file>/WEB-INF/SeConnecter.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SeConnecter</servlet-name>
+		<url-pattern></url-pattern>
+	</servlet-mapping>
+
 </web-app>
