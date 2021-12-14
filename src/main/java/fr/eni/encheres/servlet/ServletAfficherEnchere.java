@@ -88,10 +88,7 @@ public class ServletAfficherEnchere extends HttpServlet {
 					if(today.before(article.getDateFinEncheres())) {
 						request.setAttribute("categorie", article.getNoCategorie());
 					} else {
-						/*
-						 * nom de l'utilisateur ayant remporté l'enchère
-						 * pseudo vendeur OK
-						 */
+						request.setAttribute("nom_encherisseur", pseudoMeilleurEncherisseur(enchereManager, noArticle, utilisateurManager));
 						request.setAttribute("vendeur", pseudoVendeur(utilisateurManager, article));
 					}
 					
