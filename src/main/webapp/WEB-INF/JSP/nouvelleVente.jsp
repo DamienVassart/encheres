@@ -37,13 +37,13 @@
 			<legend>Retrait</legend>
 			
 			<label for="rue">Rue</label>
-			<input type="text" name="rue" id="rue" required>
+			<input type="text" name="rue" id="rue" value="" required>
 			
 			<label for="code_postal">Code postal</label>
-			<input type="text" name="code_postal" id="code_postal" required>
+			<input type="text" name="code_postal" id="code_postal" value="" required>
 			
 			<label for="ville">Ville</label>
-			<input type="text" name="ville" id="ville" required>
+			<input type="text" name="ville" id="ville" value="" required>
 		</fieldset>
 		
 		<input type="submit" value="Enregistrer">
