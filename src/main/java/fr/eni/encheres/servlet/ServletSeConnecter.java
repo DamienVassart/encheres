@@ -10,7 +10,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.tools.ForwardingFileObject;
 
+import fr.eni.encheres.BusinessException;
+import fr.eni.encheres.bll.UtilisateurManager;
 import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.dal.UtilisateurDAO;
 
@@ -39,7 +42,7 @@ public class ServletSeConnecter extends HttpServlet {
 			throws ServletException, IOException {
 		RequestDispatcher rd = null;
 
-		rd = this.getServletContext().getRequestDispatcher("connexion");
+		rd = this.getServletContext().getRequestDispatcher("SeConnecter.jsp");
 		rd.forward(request, response);
 	}
 
@@ -50,8 +53,8 @@ public class ServletSeConnecter extends HttpServlet {
 			throws ServletException, IOException {
 		String pseudo = request.getParameter("Nom d'utilisateur");
 		String motDePasse = request.getParameter("motDePasse");
-		String rememberMeStr = request.getParameter("Se Souvenir de Moi");
-		boolean remember = "Y".equals(rememberMeStr);
+		
+	
 
 		if (pseudo == null) {
 			int errorMessagePseudo = CodesResultatsServlets.FORMAT_PSEUDO_NULL;
@@ -65,10 +68,24 @@ public class ServletSeConnecter extends HttpServlet {
 			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/connexion.jsp");
 			dispatcher.forward(request, response);
 			return;
-		}
-		
+		} else {
+			try {
+			
+					Utilisateur utilisateur = UtilisateurManager.getUtilisateurByName(pseudo);
+				} catch (BusinessException ex) {
+					ex.printStackTrace();
+					request.getRequestDispatcher("WEB-INF/index.jsp");
+					forward(request, response);
+				}
+			
+				
+			}
 
-		doGet(request, response);
+	doGet(request, response);
+	}
+
+private void forward(HttpServletRequest request, HttpServletResponse response) {
+		
 	}
 
 }
