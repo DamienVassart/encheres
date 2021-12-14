@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.Servlet;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpSession;
 
 import fr.eni.encheres.BusinessException;
 import fr.eni.encheres.bll.ArticleManager;
+import fr.eni.encheres.bo.Article;
 
 /**
  * Servlet implementation class ServletModifierVente
@@ -39,9 +41,18 @@ public class ServletModifierVente extends HttpServlet {
 		HttpSession session = request.getSession();
 		RequestDispatcher rd = null;
 		if(session.getAttribute("no_utilisateur") != null) { // A confirmer
-			/*
-			 * TODO: charger les données relatives à l'article
-			 */
+			
+			ArticleManager articleManager = new ArticleManager();
+			Article article = new Article();
+			int noArticle = Integer.parseInt(request.getParameter("no_article"));
+			try {
+				article = articleManager.getArticle(noArticle);
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+			
+			request.setAttribute("article", article);
+			
 			rd = request.getRequestDispatcher("/WEB-INF/JSP/modifierVente.jsp");
 			rd.forward(request, response);
 		} else {
