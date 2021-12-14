@@ -25,7 +25,8 @@ public class EnchereDAOJDBCImpl implements EnchereDAO {
 			+ "(no_utilisateur, no_article, date_enchere, montant_enchere)" + "FROM Enchere"
 			+ "WHERE no_article = ? AND no_utilisateur=?";
 	private static final String SQL_SelectByNoArticle = "SELECT  "
-			+ "(no_utilisateur, no_article, date_enchere, montant_enchere)" + "FROM ENCHERES" + "WHERE no_article = ?";
+			+ "(no_utilisateur, no_article, date_enchere, montant_enchere) FROM ENCHERES WHERE no_article = ?"
+			+ " ORDER BY date_enchere DESC";
 	private static final String SQL_SelectByNoUtilisateur = "SELECT "
 			+ "(no_utilisateur, no_article, date_enchere, montant_enchere)" + " FROM ENCHERES"
 			+ "WHERE no_utilisateur=?";
