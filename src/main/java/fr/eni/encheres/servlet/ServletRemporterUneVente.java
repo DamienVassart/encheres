@@ -120,6 +120,7 @@ import fr.eni.encheres.dal.UtilisateurDAO;
 		//Genèrer la réponse à une requête de type Post
 		protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 				throws ServletException, IOException  {
+			doGet(request, response);
 		}
 			
 		
