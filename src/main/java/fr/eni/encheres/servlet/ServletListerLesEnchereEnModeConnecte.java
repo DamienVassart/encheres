@@ -9,34 +9,27 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * 
  * @author Lydie Allart
- *
+ */
 
-//Servlet implementation class ServletListerLesEnchereEnModeConnecte
+	//Servlet implementation class ServletListerLesEnchereEnModeConnecte
  
-@WebServlet("/ServletListerLesEnchereEnModeConnecte")
-public class ServletListerLesEnchereEnModeConnecte extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-
-    /**
-     * Default constructor. 
-     */
+	@WebServlet("/ServletListerLesEnchereEnModeConnecte")
+	public class ServletListerLesEnchereEnModeConnecte extends HttpServlet {
+		private static final long serialVersionUID = 1L;
+    
     public ServletListerLesEnchereEnModeConnecte() {
-        // TODO Auto-generated constructor stub
+    	super();
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+  //Genèrer la réponse à une requête de type Get
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+	throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	//Genèrer la réponse à une requête de type Post
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 

@@ -47,11 +47,11 @@ public class ServletAfficherEnchere extends HttpServlet {
 			}
 			if(article.getNoUtilisateur() == (int) session.getAttribute("no_utilisateur")) {
 				request.setAttribute("article", article);
-				rd = request.getRequestDispatcher("modifierVente.jsp");
+				rd = request.getRequestDispatcher("/WEB-INF/modifierVente.jsp");
 				rd.forward(request, response);
 			} else {
 				request.setAttribute("article", article);
-				rd = request.getRequestDispatcher("detailVente.jsp");
+				rd = request.getRequestDispatcher("/WEB-INF/detailVente.jsp");
 				rd.forward(request, response);
 			}
 		} else {
