@@ -24,25 +24,21 @@ import fr.eni.encheres.dal.UtilisateurDAO;
 /**
  * Servlet implementation class SeConnecter
  */
-@WebServlet("/SeConnecter")
+@WebServlet("/ServletSeConnecter")
 public class ServletSeConnecter extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * Default constructor.
-	 */
 	public ServletSeConnecter() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	/**
-	 * renvoie à connexion.jsp
+	 * renvoie à Seconnecter.jsp
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		RequestDispatcher rd = null;
-
-		rd = this.getServletContext().getRequestDispatcher("SeConnecter.jsp");
+		
+		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/JSP/SeConnecter.jsp");
 		rd.forward(request, response);
 	}
 
@@ -51,41 +47,40 @@ public class ServletSeConnecter extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String pseudo = request.getParameter("Nom d'utilisateur");
+		String pseudo = request.getParameter("");
 		String motDePasse = request.getParameter("motDePasse");
-		
-	
+		String rememberMeStr = request.getParameter("rememberMe");
+		boolean remember = "Y".equals(rememberMeStr);
 
 		if (pseudo == null) {
 			int errorMessagePseudo = CodesResultatsServlets.FORMAT_PSEUDO_NULL;
 			request.setAttribute("FORMAT_PSEUDO_NULL", errorMessagePseudo);
-			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/connexion.jsp");
+			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/SeConnecter.jsp");
 			dispatcher.forward(request, response);
 			return;
 		} else if (motDePasse == null) {
 			int errorMessageMDP = CodesResultatsServlets.FORMAT_MDP_NULL;
 			request.setAttribute("FORMAT_PSEUDO_NULL", errorMessageMDP);
-			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/connexion.jsp");
+			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/SeConnecter.jsp");
+			dispatcher.forward(request, response);
+			return;
+		} else if (pseudo.length() == 0) {
+			int errorMessagePseudoFormat = CodesResultatsServlets.FORMAT_PSEUDO_ERREUR;
+			request.setAttribute("FORMAT_PSEUDO_ERREUR", errorMessagePseudoFormat);
+			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/SeConnecter.jsp");
+			dispatcher.forward(request, response);
+			return;
+		} else if (motDePasse.length() == 0) {
+			int errorMessageMDPFormat = CodesResultatsServlets.FORMAT_MDP_ERREUR;
+			request.setAttribute("FORMAT_PSEUDO_ERREUR", errorMessageMDPFormat);
+			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/SeConnecter.jsp");
 			dispatcher.forward(request, response);
 			return;
 		} else {
-			try {
 			
-					Utilisateur utilisateur = UtilisateurManager.getUtilisateurByName(pseudo);
-				} catch (BusinessException ex) {
-					ex.printStackTrace();
-					request.getRequestDispatcher("WEB-INF/index.jsp");
-					forward(request, response);
-				}
-			
-				
-			}
 
-	doGet(request, response);
-	}
+	
 
-private void forward(HttpServletRequest request, HttpServletResponse response) {
-		
-	}
-
+}
+}
 }

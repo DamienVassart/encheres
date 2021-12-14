@@ -15,7 +15,7 @@ import fr.eni.encheres.bll.UtilisateurManager;
 /**
  * @author Laurane Marie Servlet implementation class Sinscrire
  */
-@WebServlet("/Sinscrire")
+@WebServlet("/ServletSinscrire")
 public class ServletSinscrire extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
