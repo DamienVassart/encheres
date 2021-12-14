@@ -37,7 +37,7 @@ public class ServletSeConnecter extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/JSP/SeConnecter.jsp");
 		rd.forward(request, response);
 	}
@@ -79,13 +79,20 @@ public class ServletSeConnecter extends HttpServlet {
 		} else {
 			try {
 				Utilisateur utilisateurManager =  UtilisateurManager.getUtilisateurByName(pseudo);
-			} catch (BusinessException ex) {
+				request.getRequestDispatcher("WEB-INF/index.jsp");
+
+			}catch (BusinessException ex){
 				ex.printStackTrace();
+				request.getRequestDispatcher("/WEB-INF/PageAccueil.jsp");
+				forward(request, response);
 			}
+		}
 			
+		}
 
-	
+	private void forward(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		
+	}
+}
 
-}
-}
-}

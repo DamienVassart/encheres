@@ -114,7 +114,7 @@ public class ServletSinscrire extends HttpServlet {
 			
 		}catch (BusinessException ex){
 			ex.printStackTrace();
-			request.getRequestDispatcher("/WEB-INF/Sinscrire.jsp");
+			request.getRequestDispatcher("/WEB-INF/PageAccueil.jsp");
 			forward(request, response);
 		}
 	}
