@@ -102,8 +102,12 @@ public class UtilisateurManager {
 		return this.utilisateurDAO.selectById(noUtilisateur);
 	}
 	
-	public Utilisateur getUtilisateurByName(String nom) throws BusinessException {
-		return this.utilisateurDAO.selectByName(nom);
+	public Utilisateur getUtilisateurByPseudo(String pseudo) throws BusinessException {
+		return this.utilisateurDAO.selectByPseudo(pseudo);
+	}
+	
+	public Utilisateur getUtilisateurByEmail(String email) throws BusinessException {
+		return this.utilisateurDAO.selectByEmail(email);
 	}
 	
 	private void validerPseudo(String pseudo, BusinessException ex) {

@@ -24,7 +24,9 @@ public interface UtilisateurDAO {
 	// Se Connecter / Afficher Profil
 	public Utilisateur selectById(int noUtilisateur) throws BusinessException;
 
-	public Utilisateur selectByName(String nom) throws BusinessException;
+	public Utilisateur selectByPseudo(String pseudo) throws BusinessException;
+	
+	public Utilisateur selectByEmail(String email) throws BusinessException;
 
 	public List<Utilisateur> selectAll() throws BusinessException;
 
