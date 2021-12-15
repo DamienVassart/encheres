@@ -4,23 +4,49 @@
 
 *
 {
-  max-width: 600px;
   margin-top: 20px;
-  margin-left: 40px;
+  margin-left: 20px;
+  margin-right: 20px;
   padding-left: 20px;
 }
 
-h1,h2,h3,h4,h5,h6
+body 
 {
-  color: green;
+	background-color: #f2f2f2;
 }
 
-p
+h1,h2, h4
 {
-	font-family: "times new roman";
+	color: darkgreen;
 }
 
-#conteneur
+#header
 {
-    display: flex;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+#topmain 
+{
+	display: wrap;
+}
+
+#bottomsection
+{
+	display: flex;
+	flex-direction: column;
+    text-align: center;
+}
+
+#recherche, #articles
+{
+	display: flex;
+	justify-content: space-around;
+}
+
+.article1, .article2
+{
+	border:  1px black;
+	border-style: solid;
 }
