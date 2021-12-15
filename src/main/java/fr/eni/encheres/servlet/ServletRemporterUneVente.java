@@ -57,9 +57,8 @@ import fr.eni.encheres.dal.UtilisateurDAO;
 			
 			//Enchère finale
 			try {
-				article = ArticleDAO.selectById(noArticle);
+				Enchere derniereEnchere = enchereManager.getEnchereByNoArticle(noArticle).get(0);
 				montant = derniereEnchere.getMontantEnchere();
-				
 			} catch (BusinessException e) {
 				
 				e.printStackTrace();
@@ -71,7 +70,7 @@ import fr.eni.encheres.dal.UtilisateurDAO;
 				utilisateurEnchere = enchere.getNoUtilisateur();
 				
 				try {
-					utilisateur = UtilisateurDAO.select Utilisateur(utilisateurEnchere); //Utilisateur à créditer?
+					utilisateur = UtilisateurDAO.ajouterUtilisateur(utilisateurEnchere); //Utilisateur à créditer?
 					montant = enchere.getMontantEnchere() + utilisateur.getCredit(); //Montant à créditer + crédit précèdent
 					UtilisateurDAO.modifierCredit(montant, utilisateurEnchere); //Méthode pour modifier le crédit en BD?
 				} catch (BusinessException e) {
