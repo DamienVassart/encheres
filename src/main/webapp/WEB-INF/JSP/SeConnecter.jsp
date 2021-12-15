@@ -7,6 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="textcharset="UTF-8">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/SeConnecter.css">
 <title>ENI-Enchères</title>
 </head>
 <body>
