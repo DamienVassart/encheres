@@ -11,41 +11,40 @@
 <title>ENI-Enchères</title>
 </head>
 <body>
-	<jsp:include page="PageAccueil.jsp"></jsp:include>
-
+	
+	<div id="logo">
+		<jsp:include page="lienLogo.jsp"/>
+	</div>
+	
+	<h1>ENI Enchères</h1>
 
 	<h3>Connexion</h3>
-	<p style="color: red;">${errorString}</p>
+	<p id="error">${errorString}</p>
 
 
-	<form method="POST" action="http://localhost:8080/encheres/html/PageAccueilBis.html">
-		<table border="0">
-			<tr>
-				<td>Identifiant :</td>
-				<td><input type="text" name="pseudo"
-					value="${utilisateur.pseudo}" /></td>
-			</tr>
-			<tr>
-				<td>Mot de passe:</td>
-				<td><input type="text" name="motDePasse"
-					value="${utilisateur.motDePasse}" /></td>
-			</tr>
-			<tr>
-				<td>Se souvenir de moi</td>
-				<td><input type="checkbox" name="rememberMe" value="Y" /></td>
-			</tr>
-			<tr>
-				<td colspan="2"><a href="ServletPageAccueil" target="_blank"><input
-						type="submit" value="Connexion" /></a></td>
-				<td colspan="2"><a href="ServletSinscrire" target="_blank"><input
-						type="button" value="S'inscrire" /></a></td>
-				<td colspan="2"><a href="ServletPageAccueil" target="_blank"><input
-						type="button" value="Annuler" /></a></td>
-			</tr>
-		</table>
+	<form method="POST" action="http://localhost:8080/encheres/html/PageAccueilBis.html" id="login-form">
+
+			<div id="pseudo-block" class="form-block form-text-block">
+				<label for="pseudo">Identifiant: </label>
+				<input type="text" name="pseudo" id="pseudo" class="login-form-field" value="${utilisateur.pseudo}" required>
+			</div>
+			
+			<div id="mdp-block" class="form-block form-text-block">
+				<label for="motDePasse">Mot de passe: </label>
+				<input type="password" name="motDePasse" id="motDePasse" class="login-form-field" value="${utilisateur.motDePasse}" required>
+			</div>
+			
+			<div id="remember-block" class="form-block">
+				<label for="rememberMe">Se souvenir de moi </label>
+				<input type="checkbox" name="rememberMe" id="rememberMe" class="login-form-checkbox" value="Y">
+			</div>
+
+			<input type="submit" value="Connexion" id="connect-btn">
+			
+			<button id="register-btn"><a href="">Créer un compte</a></button>
 	</form>
 
-
+	
 
 
 </body>

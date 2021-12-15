@@ -1,3 +1,86 @@
-h1, h3 {
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap');
+
+body {
+	background-color: #f2f2f2;
+}
+
+#logo {
+	margin-top: 30px;
+	text-align: center;
+}
+
+#error {
 	color: red;
+}
+
+h1, h3 {
+	text-align: center;
+}
+
+#login-form {
+	display: flex;
+	flex-direction: column;
+	width: 400px;
+	margin: 0 auto;
+}
+
+h1 {
+	font-family: 'Abril Fatface', cursive;
+	color: darkgreen;
+}
+
+#login-form label, h3 {
+	font-family: 'Roboto', sans-serif;
+}
+
+#connect-btn {
+	margin-bottom: 20px;
+}
+
+.form-block {
+	display: flex;
+	flex-direction: row;
+	margin-bottom: 20px;
+}
+
+.form-text-block {
+	justify-content: space-between;
+}
+
+#remember-block {
+	align-self: center;
+}
+
+.form-block input {
+	border-radius: 0px;
+	border: 1px solid black;
+	outline: none;
+}
+
+.form-block input[type="text"], .form-block input[type="password"] {
+	width: 280px;
+	padding: 3px;
+}
+
+#connect-btn, #register-btn {
+	text-transform: uppercase;
+	padding: 10px 0;
+	
+}
+
+#connect-btn {
+	border: none;
+	background-color: darkgreen;
+	color: #ffffff;
+}
+
+#register-btn {
+	border: 2px solid darkgreen;
+	background-color: white;
+}
+
+#register-btn a {
+	color: darkgreen;
+	text-decoration: none;
 }
