@@ -1,49 +1,74 @@
 /*
-*@auteur Lydie Allart
+*@auteur Lydie et Dorothée
 *
 */
-@charset "UTF-8";
-
-/*!
- * Start Bootstrap - 4 Col Portfolio (https://startbootstrap.com/template-overviews/4-col-portfolio)
- * Copyright 2013-2017 Start Bootstrap
- * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-4-col-portfolio/blob/master/LICENSE)
- */
-
-body {
-  padding-top: 54px;
-}
-
-@media (min-width: 992px) {
-  body {
-    padding-top: 56px;
-  }
-}
-
-.portfolio-item {
-  margin-bottom: 30px;
-}
-
-.pagination {
-  margin-bottom: 30px;
-}
-
-.footer-demodule
+#header
 {
-	margin-top: 15px;
-}
-.demo
-{
-	margin-top: 15px;
+    display: flex;
+    flex-direction: column;
 }
 
-.support
+#main
 {
-	float: right;
+    display: flex;
 }
-.obligatoire
+
+#footer
 {
-	color:blue;
-	font-weight: bolder;
-	font-size: larger;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+*
+{
+  max-width: 800px;
+  margin-top: 20px;
+  margin-left: 40px;
+  padding-left: 20px;
+}
+
+h1,h2,h3,h4,h5,h6
+{
+	color: green;
+}
+
+p
+{
+	font-family: "times new roman";
+}
+
+img
+{
+	width: 20%;
+	height: auto;
+}
+
+blockquote 
+{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	margin-top: 100px;
+}
+
+#quote
+{
+	width: 30%;
+}
+
+blockquote 
+{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	margin-top: 100px;
+	color: grey;
+}
+
+#conteneur
+{
+    display: flex;
 }
