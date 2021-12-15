@@ -30,13 +30,6 @@ public class ServletAfficherEnchere extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * @see Servlet#init(ServletConfig)
-	 */
-	public void init(ServletConfig config) throws ServletException {
-
-	}
-
-	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -85,9 +78,12 @@ public class ServletAfficherEnchere extends HttpServlet {
 					request.setAttribute("nom_encherisseur", pseudoMeilleurEncherisseur(enchereManager, noArticle, utilisateurManager));
 					request.setAttribute("date_fin_enchere", article.getDateFinEncheres());
 					
+					// si l'enchère n'est pas terminée
 					if(today.before(article.getDateFinEncheres())) {
 						request.setAttribute("categorie", article.getNoCategorie());
-					} else {
+					} 
+					// sinon
+					else {
 						request.setAttribute("nom_encherisseur", pseudoMeilleurEncherisseur(enchereManager, noArticle, utilisateurManager));
 						request.setAttribute("vendeur", pseudoVendeur(utilisateurManager, article));
 					}
@@ -104,17 +100,23 @@ public class ServletAfficherEnchere extends HttpServlet {
 				request.setAttribute("montant_meilleure_offre", montantMeilleureOffre(enchereManager, noArticle));
 				request.setAttribute("vendeur", pseudoVendeur(utilisateurManager, article));
 				
+				// si l'enchère n'est pas terminée
 				if(today.before(article.getDateFinEncheres())) {
 					request.setAttribute("categorie", article.getNoCategorie());
 					request.setAttribute("nom_encherisseur", pseudoMeilleurEncherisseur(enchereManager, noArticle, utilisateurManager));
 					request.setAttribute("date_fin_enchere", article.getDateFinEncheres());
 					
-				} else {
+				} 
+				// sinon
+				else {
 					
+					// si on est l'utilisateur ayant remporté l'enchère
 					if((int)session.getAttribute("no_utilisateur") == idMeilleurEncherisseur(enchereManager, noArticle, utilisateurManager)) {
 						request.setAttribute("vente_remportee", true);
 						request.setAttribute("tel_vendeur", telVendeur(utilisateurManager, article));
-					} else {
+					} 
+					// si c'est un autre utilisateur qui a remporté l'enchère
+					else {
 						request.setAttribute("vente_remportee", false);
 						request.setAttribute("nom_encherisseur", pseudoMeilleurEncherisseur(enchereManager, noArticle, utilisateurManager));
 						request.setAttribute("date_fin_enchere", article.getDateFinEncheres());
@@ -140,6 +142,9 @@ public class ServletAfficherEnchere extends HttpServlet {
 	}
 	
 
+	/*
+	 * Renvoie le montant de la dernière enchère
+	 */
 	private int montantMeilleureOffre(EnchereManager enchereManager, int noArticle) {
 		int montant = 0;
 		try {
@@ -151,6 +156,10 @@ public class ServletAfficherEnchere extends HttpServlet {
 		return montant;
 	}
 	
+	
+	/*
+	 * Renvoie le pseudo du dernier enchérisseur
+	 */
 	private String pseudoMeilleurEncherisseur(EnchereManager enchereManager, int noArticle, UtilisateurManager utilisateurManager) {
 		String pseudo = "";
 		Enchere derniereEnchere = null;
@@ -169,6 +178,9 @@ public class ServletAfficherEnchere extends HttpServlet {
 		return pseudo;
 	}
 	
+	/*
+	 * Renvoie le noUtilisateur du dernier enchérisseur
+	 */
 	private int idMeilleurEncherisseur(EnchereManager enchereManager, int noArticle, UtilisateurManager utilisateurManager) {
 		int noUtilisateur = 0;
 		
@@ -188,6 +200,9 @@ public class ServletAfficherEnchere extends HttpServlet {
 		return noUtilisateur;
 	}
 	
+	/*
+	 * Renvoie le pseudo du vendeur
+	 */
 	private String pseudoVendeur(UtilisateurManager utilisateurManager, Article article) {
 		String pseudo = "";
 		try {
@@ -198,6 +213,9 @@ public class ServletAfficherEnchere extends HttpServlet {
 		return pseudo;
 	}
 	
+	/*
+	 * Renvoie le numéro de téléphone du vendeur
+	 */
 	private String telVendeur(UtilisateurManager utilisateurManager, Article article) {
 		String tel = "";
 		try {
