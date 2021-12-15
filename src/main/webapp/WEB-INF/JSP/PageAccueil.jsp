@@ -10,6 +10,6 @@
 </head>
 <body>
 	<h1>ENI-Encheres</h1>
-	<a href=""></a>
+	<a href="http://localhost:8080/encheres/html/PageAccueil.html"></a>
 </body>
 </html>
