@@ -17,7 +17,7 @@
 	<p style="color: red;">${errorString}</p>
 
 
-	<form method="POST" action="encheres/servlet/ServletSeConnecter">
+	<form method="POST" action="/servlet/ServletPageAccueil">
 		<table border="0">
 			<tr>
 				<td>Identifiant :</td>
@@ -34,11 +34,12 @@
 				<td><input type="checkbox" name="rememberMe" value="Y" /></td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="submit" value="Connexion"/>
-					
-					</td>
-					<td colspan="2"><input type="button" value="S'inscrire"/>
-					</td>
+				<td colspan="2"><a href="ServletPageAccueil" target="_blank"><input
+						type="submit" value="Connexion" /></a></td>
+				<td colspan="2"><a href="ServletSinscrire" target="_blank"><input
+						type="button" value="S'inscrire" /></a></td>
+				<td colspan="2"><a href="ServletPageAccueil" target="_blank"><input
+						type="button" value="Annuler" /></a></td>
 			</tr>
 		</table>
 	</form>

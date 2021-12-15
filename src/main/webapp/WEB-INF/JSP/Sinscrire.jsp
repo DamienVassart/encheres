@@ -10,7 +10,7 @@
 	<h2>Mon profil</h2>
 	<p style="color: red;">${errorString}</p>
 
-	<form method="POST" action="encheres/servlet/ServletSinscrire">
+	<form method="POST" action="encheres/servlet/ServletPageAccueil">
 		<table border="0">
 			<tr>
 				<td>Pseudo :</td>
@@ -61,7 +61,7 @@
 					value="${utilisateur.motdePasse}" /></td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="submit" value="Création" /> 
+				<td colspan="2"><a href="ServletPageAccueil" target="_blank"><input type="submit" value="Création" /></a>
 			</tr>
 			<tr>
 				<td colspan="2"><input type="reset" value="Annuler" /> 

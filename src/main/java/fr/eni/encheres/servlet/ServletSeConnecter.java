@@ -79,7 +79,7 @@ public class ServletSeConnecter extends HttpServlet {
 		} else {
 			try {
 				Utilisateur utilisateurManager =  UtilisateurManager.getUtilisateurByName(pseudo);
-				request.getRequestDispatcher("WEB-INF/index.jsp");
+				request.getRequestDispatcher("WEB-INF/PageAccueil.jsp");
 
 			}catch (BusinessException ex){
 				ex.printStackTrace();
