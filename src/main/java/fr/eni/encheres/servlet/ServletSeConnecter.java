@@ -91,7 +91,6 @@ public class ServletSeConnecter extends HttpServlet {
 		}
 
 	private void forward(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
 		
 	}
 }
