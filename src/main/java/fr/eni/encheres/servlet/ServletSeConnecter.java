@@ -1,3 +1,4 @@
+
 package fr.eni.encheres.servlet;
 
 import java.io.IOException;
@@ -10,27 +11,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.tools.ForwardingFileObject;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.encheres.BusinessException;
 import fr.eni.encheres.bll.UtilisateurManager;
 import fr.eni.encheres.bo.Utilisateur;
-import fr.eni.encheres.dal.UtilisateurDAO;
 
 /**
- * @author Laurane Marie 
+ * Servlet implementation class ServletConnexion
  */
 
 /**
- * Servlet implementation class SeConnecter
+ * Servlet implementation class ServletConnexion
  */
-@WebServlet("/ServletSeConnecter")
+@WebServlet("/ServletSeconnecter")
 public class ServletSeConnecter extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	public ServletSeConnecter() {
-
-	}
 
 	/**
 	 * renvoie à Seconnecter.jsp
@@ -42,56 +38,60 @@ public class ServletSeConnecter extends HttpServlet {
 		rd.forward(request, response);
 	}
 
-	/**
-	 * appelle la methode getUtilisateurByName du bll
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		String pseudo = request.getParameter("");
+		
+		RequestDispatcher rd = null;
+		UtilisateurManager utilisateurManager = new UtilisateurManager();
+		Utilisateur utilisateur = null;
+		
+		// On récupère l'identifiant et le mot de passe
+		String pseudo = request.getParameter("pseudo");
 		String motDePasse = request.getParameter("motDePasse");
-		String rememberMeStr = request.getParameter("rememberMe");
-		boolean remember = "Y".equals(rememberMeStr);
-
-		if (pseudo == null) {
-			int errorMessagePseudo = CodesResultatsServlets.FORMAT_PSEUDO_NULL;
-			request.setAttribute("FORMAT_PSEUDO_NULL", errorMessagePseudo);
-			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/SeConnecter.jsp");
-			dispatcher.forward(request, response);
-			return;
-		} else if (motDePasse == null) {
-			int errorMessageMDP = CodesResultatsServlets.FORMAT_MDP_NULL;
-			request.setAttribute("FORMAT_PSEUDO_NULL", errorMessageMDP);
-			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/SeConnecter.jsp");
-			dispatcher.forward(request, response);
-			return;
-		} else if (pseudo.length() == 0) {
-			int errorMessagePseudoFormat = CodesResultatsServlets.FORMAT_PSEUDO_ERREUR;
-			request.setAttribute("FORMAT_PSEUDO_ERREUR", errorMessagePseudoFormat);
-			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/SeConnecter.jsp");
-			dispatcher.forward(request, response);
-			return;
-		} else if (motDePasse.length() == 0) {
-			int errorMessageMDPFormat = CodesResultatsServlets.FORMAT_MDP_ERREUR;
-			request.setAttribute("FORMAT_PSEUDO_ERREUR", errorMessageMDPFormat);
-			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/SeConnecter.jsp");
-			dispatcher.forward(request, response);
-			return;
-		} else {
+		
+		// Si l'identifiant et / ou le mot de passe sont vides
+		if(pseudo == null || pseudo.trim().equals("") || motDePasse == null || motDePasse.trim().equals("")) {
+			request.setAttribute("message", "L'identifiant et le mot de passe sont obligatoires");
+			rd = request.getRequestDispatcher("WEB-INF/JSP/SeConnecter.jsp");
+		} 
+		// si l'identifiant et le mot de passe ont bien été renseignés
+		else {
+			// appelle la méthode de sélection par pseudo du BLL
 			try {
-				Utilisateur utilisateurManager =  UtilisateurManager.getUtilisateurByName(pseudo);
-				request.getRequestDispatcher("WEB-INF/PageAccueil.jsp");
-
-			}catch (BusinessException ex){
+				utilisateur = utilisateurManager.getUtilisateurByPseudo(pseudo);
+			} catch (Exception ex) {
 				ex.printStackTrace();
-				request.getRequestDispatcher("/WEB-INF/PageAccueil.jsp");
-				forward(request, response);
+			}
+			// si un utilisateur avec ce pseudo est trouvé
+			if(utilisateur != null) {
+				
+				// compare le mot de passe saisi avec celui stocké en BDD
+				// si il est valide
+				if(motDePasse.equals(utilisateur.getMotDePasse())) {
+					/*
+					 * TODO: créer une session ou un cookie
+					 */
+					HttpSession session = request.getSession();
+					rd = request.getRequestDispatcher("WEB-INF/JSP/PageAccueil.jsp");
+				} 
+				// sinon
+				else {
+					request.setAttribute("message", "Le mot de passe est invalide");
+					rd = request.getRequestDispatcher("WEB-INF/JSP/SeConnecter.jsp");
+				}
+				
+			} 
+			// si aucun utilisateur avec ce pseudo n'est trouvé
+			else {
+				request.setAttribute("message", "Aucun compte associé à cet identifiant");
+				rd = request.getRequestDispatcher("WEB-INF/JSP/SeConnecter.jsp");
 			}
 		}
-			
-		}
-
-	private void forward(HttpServletRequest request, HttpServletResponse response) {
 		
+		rd.forward(request, response);
 	}
-}
 
+	
+
+}

@@ -110,7 +110,7 @@ public class ServletSinscrire extends HttpServlet {
 			UtilisateurManager utilisateurManager = new UtilisateurManager();
 			try {
 			utilisateurManager.insert(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse);
-			request.getRequestDispatcher("WEB-INF/index.jsp");
+			request.getRequestDispatcher("WEB-INF/pageAccueil.jsp");
 			
 		}catch (BusinessException ex){
 			ex.printStackTrace();
