@@ -11,5 +11,11 @@
 </head>
 <body>
 
+	<div>
+
+		<br><br> <img src=".WEB-INF/Images/recycling_yellow_green_logo.png" class="Lib" alt="logo_Enchères">
+
+	</div>
+
 </body>
 </html>
