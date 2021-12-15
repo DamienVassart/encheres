@@ -17,7 +17,7 @@
 	<p style="color: red;">${errorString}</p>
 
 
-	<form method="POST" action="/servlet/ServletPageAccueil">
+	<form method="POST" action="http://localhost:8080/encheres/html/PageAccueilBis.html">
 		<table border="0">
 			<tr>
 				<td>Identifiant :</td>
