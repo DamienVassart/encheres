@@ -26,16 +26,16 @@ public class ServletPageAccueil extends HttpServlet {
 	/**
 	 * Default constructor.
 	 */
-	public ServletPageAccueil() {
-		// TODO Auto-generated constructor stub
-	}
+	// public ServletPageAccueil() {
+	//}
 	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd = null; 
-		rd = this.getServletContext().getNamedDispatcher("WEB-INF/JSP/PageAccueil.jsp");
+		// rd = this.getServletContext().getNamedDispatcher("/WEB-INF/JSP/PageAccueil.jsp");
+		rd = this.getServletContext().getRequestDispatcher("/WEB-INF/JSP/PageAccueil.jsp");
 		rd.forward(request, response);
 	}
 
