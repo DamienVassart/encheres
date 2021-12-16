@@ -13,14 +13,11 @@
 	<body>
 		<!-- this is the header at the top of the page -->
 		<div id="header">
-			<!-- use img for logo -->
 
 			<div class="element1">
 				<jsp:include page="lienLogo.jsp"/>
 			</div>
-			<!-- there is no need to close an img tag -->
 
-			<!-- use h1 for page title --> 
 			<div class="element2">
 				<h1>
 					Bienvenue sur ENI-Enchères
@@ -106,6 +103,7 @@
 			</div>
 		</div>
 		
+		<!--  this is the bottom section -->
 		<div id="bottomsection">
 				<small>&copy; ENI ECOLE Informatique<br>
 				Dernière mise a jour: décembre 2021.</small>
