@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +16,7 @@
 	</div>
 	<h1>Eni-Enchères</h1>
 	<h2>Mon profil</h2>
+
 	<p style="color: red;">${errorString}</p>
 	<table="0">
 		<form method="POST"
