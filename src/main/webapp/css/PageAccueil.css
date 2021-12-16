@@ -20,6 +20,11 @@ h1,h2, h4
 	color: darkgreen;
 }
 
+h3
+{
+	margin-bottom: 0px;
+}
+
 #header
 {
 	display: flex;
@@ -39,10 +44,16 @@ h1,h2, h4
     text-align: center;
 }
 
-#recherche, #articles
+#articles
 {
 	display: flex;
 	justify-content: space-around;
+}
+
+#recherche
+{
+	display: flex;
+	flex-direction: column;
 }
 
 .article1, .article2
