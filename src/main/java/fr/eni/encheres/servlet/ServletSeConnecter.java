@@ -52,7 +52,7 @@ public class ServletSeConnecter extends HttpServlet {
 		
 		// Si l'identifiant et / ou le mot de passe sont vides
 		if(pseudo == null || pseudo.trim().equals("") || motDePasse == null || motDePasse.trim().equals("")) {
-			request.setAttribute("message", "L'identifiant et le mot de passe sont obligatoires");
+			request.setAttribute("errorString", "L'identifiant et le mot de passe sont obligatoires");
 			rd = request.getRequestDispatcher("/WEB-INF/JSP/SeConnecter.jsp");
 		} 
 		// si l'identifiant et le mot de passe ont bien été renseignés
@@ -77,14 +77,14 @@ public class ServletSeConnecter extends HttpServlet {
 				} 
 				// sinon
 				else {
-					request.setAttribute("message", "Le mot de passe est invalide");
+					request.setAttribute("errorString", "Le mot de passe est invalide");
 					rd = request.getRequestDispatcher("/WEB-INF/JSP/SeConnecter.jsp");
 				}
 				
 			} 
 			// si aucun utilisateur avec ce pseudo n'est trouvé
 			else {
-				request.setAttribute("message", "Aucun compte associé à cet identifiant");
+				request.setAttribute("errorString", "Aucun compte associé à cet identifiant");
 				rd = request.getRequestDispatcher("/WEB-INF/JSP/SeConnecter.jsp");
 			}
 		}

@@ -26,12 +26,12 @@
 
 			<div id="pseudo-block" class="form-block form-text-block">
 				<label for="pseudo">Identifiant: </label>
-				<input type="text" name="pseudo" id="pseudo" class="login-form-field" value="${utilisateur.pseudo}" required>
+				<input type="text" name="pseudo" id="pseudo" class="login-form-field" value="${utilisateur.pseudo}">
 			</div>
 			
 			<div id="mdp-block" class="form-block form-text-block">
 				<label for="motDePasse">Mot de passe: </label>
-				<input type="password" name="motDePasse" id="motDePasse" class="login-form-field" value="${utilisateur.motDePasse}" required>
+				<input type="password" name="motDePasse" id="motDePasse" class="login-form-field" value="${utilisateur.motDePasse}">
 			</div>
 			
 			<div id="remember-block" class="form-block">
