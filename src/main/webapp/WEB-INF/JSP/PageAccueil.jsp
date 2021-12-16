@@ -16,7 +16,8 @@
 			<!-- use img for logo -->
 
 			<div class="element1">
-				<img src="/images/recycling_yellow_green_logo_small.png" alt="logo" width="100" height="100" />
+			<%--	<img src="/webapp/images/recycling_yellow_green_logo_small.png" alt="logo" width="100" height="100" /> --%>
+				<jsp:include page="lienLogo.jsp"/>
 			</div>
 			<!-- there is no need to close an img tag -->
 
@@ -80,7 +81,7 @@
 
 		<div id="articles">
 			<div class="article1">
-				<img src="/images/pcgamer.jpeg" alt="PC Gamer" width="110" height="100" />
+				<img src="/webapp/images/pcgamer.jpeg" alt="PC Gamer" width="110" height="100" />
 				<a href=""><h4>PC Gamer pour travailler</h4></a>
 				<p>Prix: 210 points</p>
 				<p>Fin de l'enchère: 10/01/2022</p>
