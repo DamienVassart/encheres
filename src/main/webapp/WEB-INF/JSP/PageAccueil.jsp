@@ -16,7 +16,7 @@
 			<!-- use img for logo -->
 
 			<div class="element1">
-				<img src="${pageContext.request.contextPath}/images/recycling_yellow_green_logo_small.png" alt="logo" width="100" height="100" />
+				<img src="/images/recycling_yellow_green_logo_small.png" alt="logo" width="100" height="100" />
 			</div>
 			<!-- there is no need to close an img tag -->
 
@@ -80,7 +80,7 @@
 
 		<div id="articles">
 			<div class="article1">
-				<img src="${pageContext.request.contextPath}/images/pcgamer.jpeg" alt="PC Gamer" width="110" height="100" />
+				<img src="/images/pcgamer.jpeg" alt="PC Gamer" width="110" height="100" />
 				<a href=""><h4>PC Gamer pour travailler</h4></a>
 				<p>Prix: 210 points</p>
 				<p>Fin de l'enchère: 10/01/2022</p>
@@ -88,7 +88,7 @@
 			</div>
 
 			<div class="article2">
-				<img src="${pageContext.request.contextPath}/images/rocketstove.jpeg" alt="Rocket Stove" width="100" height="100" />
+				<img src="/images/rocketstove.jpeg" alt="Rocket Stove" width="100" height="100" />
 				<a href=""><h4>Rocket stove pour riz et pâtes</h4></a>
 				<p>Prix: 185 points</p>
 				<p>Fin de l'enchère: 03/01/2022</p>
@@ -96,7 +96,7 @@
 			</div>
 
 			<div class="article3">
-				<img src="${pageContext.request.contextPath}/images/raquette.jpeg" alt="Raquette de tennis" width="100" height="100" />
+				<img src="/images/raquette.jpeg" alt="Raquette de tennis" width="100" height="100" />
 				<a href=""><h4>Raquette de tennis</h4></a>
 				<p>Prix: 20 points</p>
 				<p>Fin de l'enchère: 08/01/2022</p>
