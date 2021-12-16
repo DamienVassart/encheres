@@ -24,7 +24,7 @@ import fr.eni.encheres.bo.Utilisateur;
 /**
  * Servlet implementation class ServletConnexion
  */
-@WebServlet("/ServletSeconnecter")
+@WebServlet("/ServletSeConnecter")
 public class ServletSeConnecter extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -34,7 +34,7 @@ public class ServletSeConnecter extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/JSP/SeConnecter.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/JSP/SeConnecter.jsp");
 		rd.forward(request, response);
 	}
 
@@ -53,7 +53,7 @@ public class ServletSeConnecter extends HttpServlet {
 		// Si l'identifiant et / ou le mot de passe sont vides
 		if(pseudo == null || pseudo.trim().equals("") || motDePasse == null || motDePasse.trim().equals("")) {
 			request.setAttribute("message", "L'identifiant et le mot de passe sont obligatoires");
-			rd = request.getRequestDispatcher("WEB-INF/JSP/SeConnecter.jsp");
+			rd = request.getRequestDispatcher("/WEB-INF/JSP/SeConnecter.jsp");
 		} 
 		// si l'identifiant et le mot de passe ont bien été renseignés
 		else {
@@ -73,19 +73,19 @@ public class ServletSeConnecter extends HttpServlet {
 					 * TODO: créer une session ou un cookie
 					 */
 					HttpSession session = request.getSession();
-					rd = request.getRequestDispatcher("WEB-INF/JSP/PageAccueil.jsp");
+					rd = request.getRequestDispatcher("/WEB-INF/JSP/PageAccueil.jsp");
 				} 
 				// sinon
 				else {
 					request.setAttribute("message", "Le mot de passe est invalide");
-					rd = request.getRequestDispatcher("WEB-INF/JSP/SeConnecter.jsp");
+					rd = request.getRequestDispatcher("/WEB-INF/JSP/SeConnecter.jsp");
 				}
 				
 			} 
 			// si aucun utilisateur avec ce pseudo n'est trouvé
 			else {
 				request.setAttribute("message", "Aucun compte associé à cet identifiant");
-				rd = request.getRequestDispatcher("WEB-INF/JSP/SeConnecter.jsp");
+				rd = request.getRequestDispatcher("/WEB-INF/JSP/SeConnecter.jsp");
 			}
 		}
 		

@@ -22,7 +22,7 @@
 	<p id="error">${errorString}</p>
 
 
-	<form method="POST" action="${pagecontext.request.contextPath}/" id="login-form">
+	<form method="POST" action="<%=request.getContextPath() %>/ServletSeConnecter" id="login-form">
 
 			<div id="pseudo-block" class="form-block form-text-block">
 				<label for="pseudo">Identifiant: </label>
@@ -41,8 +41,12 @@
 
 			<input type="submit" value="Connexion" id="connect-btn">
 			
-			<button id="register-btn"><a href="http://localhost:8080/encheres/ServletSinscrire">Créer un compte</a></button>
+			
 	</form>
+	
+	<div id="register">
+		<button id="register-btn"><a href="http://localhost:8080/encheres/ServletSinscrire">Créer un compte</a></button>
+	</div>
 
 	
 
