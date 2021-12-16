@@ -12,7 +12,7 @@ body {
 
 #error {
 	text-align: center;
-	color: white;
+	color: red;
 }
 
 h1, h3 {
