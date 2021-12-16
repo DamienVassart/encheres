@@ -73,7 +73,7 @@ public class ServletSeConnecter extends HttpServlet {
 					 * TODO: créer une session ou un cookie
 					 */
 					HttpSession session = request.getSession();
-					rd = request.getRequestDispatcher("/WEB-INF/JSP/PageAccueil.jsp");
+					rd = request.getRequestDispatcher("/WEB-INF/JSP/PageAccueilConnecte.jsp");
 				} 
 				// sinon
 				else {
