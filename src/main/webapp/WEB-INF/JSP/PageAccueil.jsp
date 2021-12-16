@@ -1,4 +1,4 @@
-<%-- @auteur Dorothee Blanchard --%>
+<%-- @auteur Dorothee Blanchard et Lydie Allart --%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
