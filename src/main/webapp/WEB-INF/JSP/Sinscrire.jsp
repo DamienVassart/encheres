@@ -10,13 +10,11 @@
 <title>Eni-Enchères</title>
 </head>
 <body>
-
 	<div id="logo">
 		<jsp:include page="lienLogo.jsp" />
 	</div>
 	<h1>Eni-Enchères</h1>
 	<h2>Mon profil</h2>
-
 	<p style="color: red;">${errorString}</p>
 	<table="0">
 		<form method="POST"
@@ -67,8 +65,7 @@
 		</tr>
 		<tr id="confirm-block" class="form-block form-text-block">
 			<td>Confirmation :</td>
-			<td><input type="password" name="motDePasseConf"
-				value="${utilisateur.motdePasse}" /></td>
+			<td><input type="password" name="motDePasseConf" /></td>
 		</tr>
 
 

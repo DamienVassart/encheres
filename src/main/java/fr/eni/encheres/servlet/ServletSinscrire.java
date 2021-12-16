@@ -53,7 +53,7 @@ public class ServletSinscrire extends HttpServlet {
 		String codePostal = request.getParameter("codePostal");
 		String ville = request.getParameter("ville");
 		String motDePasse = request.getParameter("motDePasse");
-		String motDePasseConf = request.getParameter("motDePasseconf");
+		String motDePasseConf = request.getParameter("motDePasseConf");
 
 		if (pseudo == null) {
 
