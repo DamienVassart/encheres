@@ -79,5 +79,7 @@ public abstract class CodesResultatsServlets {
 	
 	// ville null
 	public static final int FORMAT_VILLE_NULL = 30023;
+	
+	public static final int FORMAT_MDPCONF_NULL = 30024;
 
 }
