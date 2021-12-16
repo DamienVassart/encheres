@@ -7,7 +7,7 @@
 <title>ENI-Enchères</title>
 </head>
 <body>
-	<jsp:include page="PageAccueil.jsp"></jsp:include>
+	
 	
 	<h3>Profil</h3>
 

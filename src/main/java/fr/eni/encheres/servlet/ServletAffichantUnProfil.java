@@ -10,24 +10,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @author Laurane Marie
- * Servlet implementation class AfficherUnProfil
+ * @author Laurane Marie Servlet implementation class AfficherUnProfil
  */
-@WebServlet("/AfficherUnProfil")
+@WebServlet("/ServletAffichantUnProfil")
 public class ServletAffichantUnProfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public ServletAffichantUnProfil() {
-    	super();
-    }
-
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("WEB-INF/AfficherUnProfil.jsp");
-		dispatcher.forward(request, response);
+	public ServletAffichantUnProfil() {
+		super();
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/JSP/AfficherUnProfil.jsp");
+		rd.forward(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 

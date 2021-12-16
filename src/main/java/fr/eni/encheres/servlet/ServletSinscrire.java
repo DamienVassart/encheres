@@ -34,7 +34,6 @@ public class ServletSinscrire extends HttpServlet {
 		rd.forward(request, response);
 
 	}
-	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
@@ -95,22 +94,19 @@ public class ServletSinscrire extends HttpServlet {
 		if (motDePasseConf == null || motDePasseConf != motDePasse) {
 			listeCodeErreur.add(CodesResultatsServlets.FORMAT_MDPCONF_NULL);
 
-		} 
-		if (listeCodeErreur.size()>0) {
+		}
+		if (listeCodeErreur.size() > 0) {
 			request.setAttribute("errorString", listeCodeErreur);
 			rd = request.getRequestDispatcher("/WEB-INF/JSP/Sinscrire.jsp");
 		}
-		
-		
-		
-		
-	else {
-			
+
+		else {
+
 			UtilisateurManager utilisateurManager = new UtilisateurManager();
 			try {
 				utilisateurManager.insert(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse);
 				rd = request.getRequestDispatcher("WEB-INF/JSP/PageAccueil.jsp");
-			}catch (BusinessException ex) {
+			} catch (BusinessException ex) {
 				request.setAttribute("errorString", ex.getListeCodesErreur());
 				rd = request.getRequestDispatcher("WEB-INF/JSP/Sinscrire.jsp");
 			}
