@@ -1,5 +1,13 @@
 @charset "UTF-8";
 
+@import
+	url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap')
+	;
+
+@import
+	url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap')
+	;
+
 /* auteurs: Dorothée et Lydie */
 
 *
@@ -15,9 +23,17 @@ body
 	background-color: #f2f2f2;
 }
 
-h1,h2, h4
+h1,h2
 {
 	color: darkgreen;
+	font-family: 'Abril Fatface', cursive;
+}
+
+h4
+{
+	text-align: center;
+	color: darkgreen;
+	margin-bottom: 0px;
 }
 
 h3
@@ -41,7 +57,7 @@ h3
 {
 	display: flex;
 	flex-direction: column;
-    text-align: center;
+  text-align: center;
 }
 
 #articles
@@ -53,11 +69,19 @@ h3
 #recherche
 {
 	display: flex;
-	flex-direction: column;
+	justify-content: space-around;
 }
 
-.article1, .article2
+.article1, .article2, .article3
 {
 	border:  1px black;
 	border-style: solid;
+	border-radius: 0px;
+	outline:  none;
+	text-align: center;
+}
+
+.element4, .element5
+{
+	text-align: center;
 }
