@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/ServletPageAccueil") 
 //on conserve cette annotation, on écrit entre parentheses l'url d'acces, par exemple /modules/module2/NomDuFichier
-public class ServletPageAccueil extends HttpServlet {
+public class ServletPageAccueilConnecte extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	/**
