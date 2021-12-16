@@ -42,76 +42,42 @@ public class ServletSinscrire extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		List<Integer> listeCodeErreur = new ArrayList<>();
 		RequestDispatcher rd = null;
-		String pseudo = request.getParameter("pseudo");
-		String nom = request.getParameter("nom");
-		String prenom = request.getParameter("prenom");
-		String email = request.getParameter("email");
-		String telephone = request.getParameter("telephone");
-		String rue = request.getParameter("rue");
-		String codePostal = request.getParameter("codePostal");
-		String ville = request.getParameter("ville");
-		String motDePasse = request.getParameter("motDePasse");
-		String motDePasseConf = request.getParameter("motDePasseconf");
+		String pseudo;
+		String nom;
+		String prenom;
+		String email;
+		String telephone;
+		String rue;
+		String codePostal;
+		String ville;
+		String motDePasse;
+		String motDePasseConf;
 
-		if (pseudo == null) {
-
-			listeCodeErreur.add(CodesResultatsServlets.FORMAT_PSEUDO_NULL);
-
-		}
-		if (nom == null) {
-			listeCodeErreur.add(CodesResultatsServlets.FORMAT_NOM_NULL);
-
-		}
-		if (prenom == null) {
-			listeCodeErreur.add(CodesResultatsServlets.FORMAT_PRENOM_NULL);
-
-		}
-		if (email == null) {
-			listeCodeErreur.add(CodesResultatsServlets.FORMAT_EMAIL_NULL);
-
-		}
-		if (telephone == null) {
-			listeCodeErreur.add(CodesResultatsServlets.FORMAT_TEL_NULL);
-
-		}
-		if (rue == null) {
-			listeCodeErreur.add(CodesResultatsServlets.FORMAT_RUE_NULL);
-
-		}
-		if (codePostal == null) {
-			listeCodeErreur.add(CodesResultatsServlets.FORMAT_CPO_NULL);
-
-		}
-		if (ville == null) {
-			listeCodeErreur.add(CodesResultatsServlets.FORMAT_VILLE_NULL);
-
-		}
-		if (motDePasse == null) {
-			listeCodeErreur.add(CodesResultatsServlets.FORMAT_MDP_NULL);
-		}
-		if (motDePasseConf == null || motDePasseConf != motDePasse) {
-			listeCodeErreur.add(CodesResultatsServlets.FORMAT_MDPCONF_NULL);
-
-		}
-		if (listeCodeErreur.size() > 0) {
-			request.setAttribute("errorString", listeCodeErreur);
-			rd = request.getRequestDispatcher("/WEB-INF/JSP/Sinscrire.jsp");
-		}
-
-		else {
+		try {
+			pseudo = request.getParameter("pseudo");
+			nom = request.getParameter("nom");
+			prenom = request.getParameter("prenom");
+			email = request.getParameter("email");
+			telephone = request.getParameter("telephone");
+			rue = request.getParameter("rue");
+			codePostal = request.getParameter("codePostal");
+			ville = request.getParameter("ville");
+			motDePasse = request.getParameter("motDePasse");
+			motDePasseConf = request.getParameter("motDePasseconf");
 
 			UtilisateurManager utilisateurManager = new UtilisateurManager();
-			try {
-				utilisateurManager.insert(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse);
-				rd = request.getRequestDispatcher("WEB-INF/JSP/PageAccueil.jsp");
-			} catch (BusinessException ex) {
-				request.setAttribute("errorString", ex.getListeCodesErreur());
-				rd = request.getRequestDispatcher("WEB-INF/JSP/Sinscrire.jsp");
-			}
+
+			utilisateurManager.insert(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse);
+			rd = request.getRequestDispatcher("WEB-INF/JSP/PageAccueilConnecte.jsp");
+			rd.forward(request, response);
+
+		} catch (BusinessException ex) {
+			ex.printStackTrace();
+			rd = request.getRequestDispatcher("WEB-INF/JSP/Sinscrire.jsp");
+			rd.forward(request, response);
 		}
-		rd.forward(request, response);
+
 	}
 
 }
