@@ -11,6 +11,7 @@ body {
 }
 
 #error {
+	text-align: center;
 	color: red;
 }
 
@@ -30,7 +31,7 @@ h1 {
 	color: darkgreen;
 }
 
-#login-form label, h3 {
+#login-form label, h3, #error {
 	font-family: 'Roboto', sans-serif;
 }
 
