@@ -28,8 +28,10 @@
 			</div>
 
 			<div class="element3">
-				<a href="http://localhost:8080/encheres/ServletSinscrire">S'inscrire</a><br>
-				<a href="http://localhost:8080/encheres/ServletSeConnecter">Se connecter</a>
+				<a href="http://localhost:8080/encheres/ServletListerLesEncheresEnModeConnecte">Enchères</a><br>
+				<a href="http://localhost:8080/encheres/ServletAjouterUneVente">Vendre un article</a><br>
+				<a href="http://localhost:8080/encheres/ServletAffichantUnProfil">Mon profil</a><br>
+				<a href="http://localhost:8080/encheres/ServletSeDeconnecter">Déconnexion</a>
 		    </div>
 		</div>
 

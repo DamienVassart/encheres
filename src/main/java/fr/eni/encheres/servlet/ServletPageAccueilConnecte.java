@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/ServletPageAccueil") 
 //on conserve cette annotation, on écrit entre parentheses l'url d'acces, par exemple /modules/module2/NomDuFichier
-public class ServletPageAccueil extends HttpServlet {
+public class ServletPageAccueilConnecte extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	/**
@@ -28,7 +28,7 @@ public class ServletPageAccueil extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// rd = this.getServletContext().getNamedDispatcher("/WEB-INF/JSP/PageAccueil.jsp");
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/JSP/PageAccueil.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/JSP/PageAccueilConnecte.jsp");
 		rd.forward(request, response);
 	}
 
