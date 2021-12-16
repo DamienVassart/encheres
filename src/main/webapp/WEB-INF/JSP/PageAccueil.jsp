@@ -28,8 +28,8 @@
 			</div>
 
 			<div class="element3">
-				<a href="">S'inscrire</a><br>
-				<a href="">Se connecter</a>
+				<a href="http://localhost:8080/encheres/ServletSinscrire">S'inscrire</a><br>
+				<a href="http://localhost:8080/encheres/ServletSeConnecter">Se connecter</a>
 		    </div>
 		</div>
 
