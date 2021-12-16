@@ -28,7 +28,7 @@ public class ServletPageAccueil extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// rd = this.getServletContext().getNamedDispatcher("/WEB-INF/JSP/PageAccueil.jsp");
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/JSP/PageAccueil.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/JSP/PageAccueilConnecte.jsp");
 		rd.forward(request, response);
 	}
 
