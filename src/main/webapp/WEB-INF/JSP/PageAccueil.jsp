@@ -5,9 +5,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>ENI-Encheres</title>
+	<meta charset="UTF-8">
+	<title>ENI-Encheres</title>
+	<link href="<c:url value="/webapp/css/PageAccueil.css" />" rel="stylesheet">
 </head>
+
 <body>
 	<h1>ENI-Encheres</h1>
 	<a href="http://localhost:8080/encheres/html/PageAccueil.html"></a>
