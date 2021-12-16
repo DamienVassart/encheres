@@ -30,16 +30,16 @@ public class UtilisateurDAOJDBCImpl implements UtilisateurDAO {
 											+ "mot_de_passe = ?, credit = ?, administrateur = ?"
 											+ "WHERE no_utilisateur = ?;";
 	private static final String SQL_DELETE = "DELETE FROM Utilisateurs WHERE no_utilisateur = ?;";
-	private static final String SQL_SELECT_ALL = "SELECT (no_utilisateur, pseudo, nom, prenom, "
+	private static final String SQL_SELECT_ALL = "SELECT no_utilisateur, pseudo, nom, prenom, "
 												+ "email, telephone, rue, code_postal, ville, "
-												+ "mot_de_passe, credit, administrateur)"
+												+ "mot_de_passe, credit, administrateur"
 												+ "FROM Utilisateurs;";
-	private static final String SQL_SELECT_BY_ID = "SELECT (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur)"
-												+ "FROM Utilisateurs WHERE no_utilisateur = ?;";
-	private static final String SQL_SELECT_BY_PSEUDO = "SELECT (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur)"
-												+ "FROM Utilisateurs WHERE pseudo = ?;";
-	private static final String SQL_SELECT_BY_EMAIL = "SELECT (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur)"
-			+ "FROM Utilisateurs WHERE email = ?;";
+	private static final String SQL_SELECT_BY_ID = "SELECT no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur"
+												+ " FROM Utilisateurs WHERE no_utilisateur = ?;";
+	private static final String SQL_SELECT_BY_PSEUDO = "SELECT no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur"
+												+ " FROM Utilisateurs WHERE pseudo = ?;";
+	private static final String SQL_SELECT_BY_EMAIL = "SELECT no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur"
+			+ " FROM Utilisateurs WHERE email = ?;";
 	
 	/*
 	 * Insertion d'un nouvel utilisateur (Inscription)
