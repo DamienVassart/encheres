@@ -41,7 +41,8 @@ public class UtilisateurManager {
 		if(!ex.hasErreurs()) {
 			utilisateur = new Utilisateur();
 			utilisateur.setPseudo(pseudo);
-			utilisateur.setNom(nom); 
+			utilisateur.setNom(nom);
+			utilisateur.setPrenom(prenom);
 			utilisateur.setEmail(email); 
 			utilisateur.setTelephone(telephone);
 			utilisateur.setRue(rue);
