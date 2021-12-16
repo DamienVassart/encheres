@@ -7,7 +7,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>ENI-Encheres</title>
-	<link href="<c:url value="/webapp/css/PageAccueil.css" />" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/PageAccueil.css">
 </head>
 
 <body>
