@@ -1,6 +1,8 @@
 package fr.eni.encheres.servlet;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * @author Laurane Marie Servlet implementation class SeDeconnecter
  */
-@WebServlet("/SeDeconnecter")
+@WebServlet("/ServletSeDeconnecter")
 public class ServletSeDeconnecter extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -19,8 +21,8 @@ public class ServletSeDeconnecter extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.getSession().invalidate();
-		response.sendRedirect(request.getContextPath()+ "/WEB-INF/index.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/JSP/PageAccueil.jsp");
+		rd.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

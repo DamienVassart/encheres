@@ -28,7 +28,7 @@
 				<a href="http://localhost:8080/encheres/ServletListerLesEncheresEnModeConnecte">Enchères</a><br>
 				<a href="http://localhost:8080/encheres/ServletAjouterUneVente">Vendre un article</a><br>
 				<a href="http://localhost:8080/encheres/ServletAffichantUnProfil">Mon profil</a><br>
-				<a href="http://localhost:8080/encheres/ServletSeDeconnecter">Déconnexion</a>
+				<a href="<%=request.getContextPath()%>/ServletSeDeconnecter">Déconnexion</a>
 		    </div>
 		</div>
 
